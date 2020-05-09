@@ -1,6 +1,6 @@
 name: chat_bubbles
-description: This is a simple Flutter widget plugin. This plugin is compatible with both iOS and Android platforms.
-version: 0.7.1+2
+description: This is a simple Flutter widget plugin which can use to implement chat bubbles.
+version: 0.7.1+3
 homepage: https://github.com/prahack/chat_bubbles
 
 environment:
