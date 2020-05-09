@@ -23,7 +23,8 @@ Now you can use this plugin to implement various types of Chat Bubbles.
 
 ## Example
 
-![](https://github.com/prahack/chat_bubbles/blob/master/images/screenshots/screenshot_1.png?raw=true)
+![](https://github.com/prahack/chat_bubbles/blob/master/images/screenshots/screenshot_1.png)
+<img src="https://github.com/prahack/chat_bubbles/blob/master/images/screenshots/screenshot_1.png?raw=true"  width="250" height="450" />
 
 
 
