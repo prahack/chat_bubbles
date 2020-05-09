@@ -1,8 +1,7 @@
 name: chat_bubbles
-description: A new Flutter package.
+description: Flutter chat bubble widgets.
 version: 0.7.0
-author: Prabhanu Gunaweera <prabhanu96@gmail.com>
-homepage:
+homepage: https://github.com/prahack/chat_bubbles
 
 environment:
   sdk: ">=2.1.0 <3.0.0"
