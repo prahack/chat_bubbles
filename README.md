@@ -1,6 +1,6 @@
 # chat_bubbles plugin
 
-Flutter widgets for messaging apps as chat bubbles.
+Chat bubble widgets, similar to the Whatsapp and more shapes. Easy to use and implement chat bubbles.
 
 ## Getting Started
 
@@ -8,7 +8,7 @@ Add this to your package's `pubspec.yaml` file:
 
 ```yaml
 dependencies:
-  chat_bubbles: ^0.7.1+3
+  chat_bubbles: ^0.7.1+5
 ```
 
 ## Usage
