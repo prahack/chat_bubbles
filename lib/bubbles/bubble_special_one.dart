@@ -7,7 +7,12 @@ class BubbleSpecialOne extends StatelessWidget {
   final bool tail;
   final Color color;
 
-  const BubbleSpecialOne({Key key, this.isSender = true, @required this.text,this.color = Colors.white70, this.tail = true})
+  const BubbleSpecialOne(
+      {Key key,
+      this.isSender = true,
+      @required this.text,
+      this.color = Colors.white70,
+      this.tail = true})
       : super(key: key);
   @override
   Widget build(BuildContext context) {
@@ -18,9 +23,8 @@ class BubbleSpecialOne extends StatelessWidget {
         child: CustomPaint(
           painter: SpecialChatBubbleOne(
               color: color,
-              alignment:
-                  isSender ? Alignment.topRight : Alignment.topLeft,
-          tail: tail),
+              alignment: isSender ? Alignment.topRight : Alignment.topLeft,
+              tail: tail),
           child: Container(
             constraints: BoxConstraints(
               maxWidth: MediaQuery.of(context).size.width * .8,
@@ -72,7 +76,6 @@ class SpecialChatBubbleOne extends CustomPainter {
               bottomLeft: Radius.circular(_radius),
               bottomRight: Radius.circular(_radius),
               topLeft: Radius.circular(_radius),
-
             ),
             Paint()
               ..color = this.color
@@ -109,7 +112,6 @@ class SpecialChatBubbleOne extends CustomPainter {
               ..color = this.color
               ..style = PaintingStyle.fill);
       }
-
     } else {
       if (tail) {
         canvas.drawRRect(

@@ -7,7 +7,12 @@ class BubbleSpecialTwo extends StatelessWidget {
   final bool tail;
   final Color color;
 
-  const BubbleSpecialTwo({Key key, this.isSender = true, @required this.text,this.color = Colors.white70, this.tail = true})
+  const BubbleSpecialTwo(
+      {Key key,
+      this.isSender = true,
+      @required this.text,
+      this.color = Colors.white70,
+      this.tail = true})
       : super(key: key);
   @override
   Widget build(BuildContext context) {
@@ -18,9 +23,8 @@ class BubbleSpecialTwo extends StatelessWidget {
         child: CustomPaint(
           painter: SpecialChatBubbleTwo(
               color: color,
-              alignment:
-                  isSender ? Alignment.topRight : Alignment.topLeft,
-          tail : tail),
+              alignment: isSender ? Alignment.topRight : Alignment.topLeft,
+              tail: tail),
           child: Container(
             constraints: BoxConstraints(
               maxWidth: MediaQuery.of(context).size.width * .8,
