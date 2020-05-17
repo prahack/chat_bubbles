@@ -66,11 +66,11 @@ class _MyHomePageState extends State<MyHomePage> {
                 color: Color(0xAF52FF8C),
               ),
               BubbleSpecialOne(
-                text: 'bubble special one without tail',
+                text: 'bubble special one with tail',
                 color: Color(0xAF6AD0F5),
               ),
               BubbleSpecialOne(
-                text: 'bubble special one with tail',
+                text: 'bubble special one without tail',
                 isSender: false,
                 tail: false,
                 color: Color(0xAF52FF8C),
