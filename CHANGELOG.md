@@ -1,3 +1,7 @@
+## [0.7.1+6] - 17/05/2020
+
+* Update the example.
+
 ## [0.7.1+5] - 10/05/2020
 
 * Update README.md file.
