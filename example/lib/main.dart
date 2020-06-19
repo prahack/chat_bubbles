@@ -44,10 +44,11 @@ class _MyHomePageState extends State<MyHomePage> {
                 tail: true,
               ),
               BubbleNormal(
-                text: 'bubble normal with tail',
+                text: 'bubble normal with tail bubble normal with tail bubble normal with tail back the',
                 isSender: true,
                 color: Color(0xAF6AD0F5),
                 tail: true,
+                sent: true,
               ),
               BubbleNormal(
                 text: 'bubble normal without tail',
@@ -59,6 +60,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 text: 'bubble normal without tail',
                 color: Color(0xAF6AD0F5),
                 tail: false,
+                delivered: true,
               ),
               BubbleSpecialOne(
                 text: 'bubble special one with tail',

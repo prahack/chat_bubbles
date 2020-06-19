@@ -9,6 +9,9 @@ class BubbleNormal extends StatelessWidget {
   final Color color;
   final String text;
   final bool tail;
+  final bool sent;
+  final bool delivered;
+  final bool seen;
 
   BubbleNormal({
     Key key,
@@ -17,9 +20,34 @@ class BubbleNormal extends StatelessWidget {
     this.isSender = true,
     this.color,
     this.tail = true,
+    this.sent,
+    this.delivered,
+    this.seen,
   }) : super(key: key);
   @override
   Widget build(BuildContext context) {
+    bool stateTick = false;
+    Icon stateIcon;
+    if(sent != null && sent) {
+      stateTick = true;
+      stateIcon = Icon(
+        Icons.done,
+        size: 18,
+      );
+    } else if (delivered != null && delivered) {
+      stateTick = true;
+      stateIcon = Icon(
+        Icons.done_all,
+        size: 18,
+      );
+    } else if (seen != null && seen) {
+      stateTick = true;
+      stateIcon = Icon(
+        Icons.done_all,
+        size: 18,
+      );
+    }
+
     return Row(
       children: <Widget>[
         isSender
@@ -29,49 +57,49 @@ class BubbleNormal extends StatelessWidget {
                 ),
               )
             : Container(),
-        Stack(
-          children: <Widget>[
-            Container(
-              color: Colors.transparent,
-              constraints: BoxConstraints(
-                  maxWidth: MediaQuery.of(context).size.width * .8),
-              child: Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 16, vertical: 2),
-                child: Container(
-                  decoration: BoxDecoration(
-                    color: color ?? Colors.white70,
-                    borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(bubbleRadius ?? BUBBLE_RADIUS),
-                      topRight: Radius.circular(bubbleRadius ?? BUBBLE_RADIUS),
-                      bottomLeft: Radius.circular(tail
-                          ? isSender ? bubbleRadius ?? BUBBLE_RADIUS : 0
-                          : BUBBLE_RADIUS),
-                      bottomRight: Radius.circular(tail
-                          ? isSender ? 0 : bubbleRadius ?? BUBBLE_RADIUS
-                          : BUBBLE_RADIUS),
-                    ),
-                  ),
-                  child: Padding(
-                    padding: EdgeInsets.symmetric(vertical: 6, horizontal: 12),
-                    child: Column(
-                      children: <Widget>[
-                        Text(
-                          text,
-                          style: TextStyle(
-                            color: Colors.black87,
-                            fontSize: 16,
-                          ),
-                          textAlign: TextAlign.left,
-                        ),
-                      ],
-                    ),
-                  ),
+        Container(
+          color: Colors.transparent,
+          constraints:
+              BoxConstraints(maxWidth: MediaQuery.of(context).size.width * .8),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 2),
+            child: Container(
+              decoration: BoxDecoration(
+                color: color ?? Colors.white70,
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(bubbleRadius ?? BUBBLE_RADIUS),
+                  topRight: Radius.circular(bubbleRadius ?? BUBBLE_RADIUS),
+                  bottomLeft: Radius.circular(tail
+                      ? isSender ? bubbleRadius ?? BUBBLE_RADIUS : 0
+                      : BUBBLE_RADIUS),
+                  bottomRight: Radius.circular(tail
+                      ? isSender ? 0 : bubbleRadius ?? BUBBLE_RADIUS
+                      : BUBBLE_RADIUS),
                 ),
               ),
+              child: Stack(
+                children: <Widget>[
+                  Padding(
+                    padding: stateTick ? EdgeInsets.fromLTRB(12, 6, 28, 6) : EdgeInsets.symmetric(vertical: 6, horizontal: 12),
+                    child: Text(
+                      text,
+                      style: TextStyle(
+                        color: Colors.black87,
+                        fontSize: 16,
+                      ),
+                      textAlign: TextAlign.left,
+                    ),
+                  ),
+                  stateTick ? Positioned(
+                    bottom: 4,
+                    right: 6,
+                    child: stateIcon,
+                  ) : SizedBox(width: 1,),
+                ],
+              ),
             ),
-          ],
-        )
+          ),
+        ),
       ],
     );
   }
