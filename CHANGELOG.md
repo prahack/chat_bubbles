@@ -1,3 +1,8 @@
+## [0.7.5] - 21/06/2020
+
+* Add message states(sent, delivered, seen) flag for BubbleNormal.
+* Update the example.
+
 ## [0.7.1+6] - 17/05/2020
 
 * Update the example.

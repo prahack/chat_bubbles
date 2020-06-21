@@ -28,23 +28,26 @@ class BubbleNormal extends StatelessWidget {
   Widget build(BuildContext context) {
     bool stateTick = false;
     Icon stateIcon;
-    if(sent != null && sent) {
+    if (sent != null && sent) {
       stateTick = true;
       stateIcon = Icon(
         Icons.done,
         size: 18,
+        color: Color(0xFF97AD8E),
       );
     } else if (delivered != null && delivered) {
       stateTick = true;
       stateIcon = Icon(
         Icons.done_all,
         size: 18,
+        color: Color(0xFF97AD8E),
       );
     } else if (seen != null && seen) {
       stateTick = true;
       stateIcon = Icon(
         Icons.done_all,
         size: 18,
+        color: Color(0xFF92DEDA),
       );
     }
 
@@ -80,7 +83,9 @@ class BubbleNormal extends StatelessWidget {
               child: Stack(
                 children: <Widget>[
                   Padding(
-                    padding: stateTick ? EdgeInsets.fromLTRB(12, 6, 28, 6) : EdgeInsets.symmetric(vertical: 6, horizontal: 12),
+                    padding: stateTick
+                        ? EdgeInsets.fromLTRB(12, 6, 28, 6)
+                        : EdgeInsets.symmetric(vertical: 6, horizontal: 12),
                     child: Text(
                       text,
                       style: TextStyle(
@@ -90,11 +95,15 @@ class BubbleNormal extends StatelessWidget {
                       textAlign: TextAlign.left,
                     ),
                   ),
-                  stateTick ? Positioned(
-                    bottom: 4,
-                    right: 6,
-                    child: stateIcon,
-                  ) : SizedBox(width: 1,),
+                  stateTick
+                      ? Positioned(
+                          bottom: 4,
+                          right: 6,
+                          child: stateIcon,
+                        )
+                      : SizedBox(
+                          width: 1,
+                        ),
                 ],
               ),
             ),
