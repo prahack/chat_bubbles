@@ -1,6 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+///WhatsApp's chat bubble type
+///
+///chat bubble color can be customized using [color]
+///chat bubble tail can be customized  using [tail]
+///chat bubble display message can be changed using [text]
+///[text] is the only required parameter
+///message sender can be changed using [isSender]
+
 class BubbleSpecialOne extends StatelessWidget {
   final bool isSender;
   final String text;
@@ -14,6 +22,8 @@ class BubbleSpecialOne extends StatelessWidget {
       this.color = Colors.white70,
       this.tail = true})
       : super(key: key);
+
+  ///chat bubble builder method
   @override
   Widget build(BuildContext context) {
     return Align(
