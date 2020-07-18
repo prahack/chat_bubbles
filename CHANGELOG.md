@@ -1,3 +1,7 @@
+## [0.7.5+1] - 18/07/2020
+
+* Add some dartdoc comments.
+
 ## [0.7.5] - 21/06/2020
 
 * Add message states(sent, delivered, seen) flag for BubbleNormal.
