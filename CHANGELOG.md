@@ -1,3 +1,7 @@
+## [0.7.8+1] - 20/07/2020
+
+* Update README.md example.
+
 ## [0.7.8] - 20/07/2020
 
 * Add message states(sent, delivered, seen) flag for BubbleSpecialOne and BubbleSpecialTwo.
