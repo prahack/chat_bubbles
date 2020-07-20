@@ -28,70 +28,76 @@ Now you can use this plugin to implement various types of Chat Bubbles.
 
 
 ```dart
-BubbleNormal(
+   BubbleNormal(
     text: 'bubble normal with tail',
     isSender: false,
-    color: Color(0xAF52FF8C),
+    color: Color(0xAF6AD0F5),
     tail: true,
-),
-BubbleNormal(
+  ),
+  BubbleNormal(
     text: 'bubble normal with tail',
     isSender: true,
-    color: Color(0xAF6AD0F5),
+    color: Color(0xFFE2FFC7),
     tail: true,
-),
-BubbleNormal(
+    sent: true,
+  ),
+  BubbleNormal(
     text: 'bubble normal without tail',
     isSender: false,
-    color: Color(0xAF52FF8C),
+    color: Color(0xAF6AD0F5),
     tail: false,
-),
-BubbleNormal(
+  ),
+  BubbleNormal(
     text: 'bubble normal without tail',
-    color: Color(0xAF6AD0F5),
+    color: Color(0xFFE2FFC7),
     tail: false,
-),
-BubbleSpecialOne(
+    seen: true,
+  ),
+  BubbleSpecialOne(
     text: 'bubble special one with tail',
     isSender: false,
-    color: Color(0xAF52FF8C),
-),
-BubbleSpecialOne(
-    text: 'bubble special one without tail',
     color: Color(0xAF6AD0F5),
-),
-BubbleSpecialOne(
+  ),
+  BubbleSpecialOne(
     text: 'bubble special one with tail',
+    color: Color(0xFFE2FFC7),
+    seen: true,
+  ),
+  BubbleSpecialOne(
+    text: 'bubble special one without tail',
     isSender: false,
     tail: false,
-    color: Color(0xAF52FF8C),
-),
-BubbleSpecialOne(
+    color: Color(0xAF6AD0F5),
+  ),
+  BubbleSpecialOne(
     text: 'bubble special one without tail',
     tail: false,
-    color: Color(0xAF6AD0F5),
-),
-BubbleSpecialTwo(
+    color: Color(0xFFE2FFC7),
+    sent: true,
+  ),
+  BubbleSpecialTwo(
     text: 'bubble special tow with tail',
     isSender: false,
-    color: Color(0xAF52FF8C),
-),
-BubbleSpecialTwo(
+    color: Color(0xAF6AD0F5),
+  ),
+  BubbleSpecialTwo(
     text: 'bubble special tow with tail',
     isSender: true,
-    color: Color(0xAF6AD0F5),
-),
-BubbleSpecialTwo(
+    color: Color(0xFFE2FFC7),
+    sent: true,
+  ),
+  BubbleSpecialTwo(
     text: 'bubble special tow without tail',
     isSender: false,
     tail: false,
-    color: Color(0xAF52FF8C),
-),
-BubbleSpecialTwo(
+    color: Color(0xAF6AD0F5),
+  ),
+  BubbleSpecialTwo(
     text: 'bubble special tow without tail',
     tail: false,
-    color: Color(0xAF6AD0F5),
-)
+    color: Color(0xFFE2FFC7),
+    delivered: true,
+  )
 ```
 
 ## Issues
