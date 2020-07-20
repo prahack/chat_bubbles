@@ -108,6 +108,10 @@ class BubbleSpecialOne extends StatelessWidget {
   }
 }
 
+///custom painter use to create the shape of the chat bubble
+///
+/// [color],[alignment] and [tail] can be changed
+
 class SpecialChatBubbleOne extends CustomPainter {
   final Color color;
   final Alignment alignment;

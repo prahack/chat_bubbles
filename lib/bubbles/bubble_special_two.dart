@@ -13,18 +13,49 @@ class BubbleSpecialTwo extends StatelessWidget {
   final String text;
   final bool tail;
   final Color color;
+  final bool sent;
+  final bool delivered;
+  final bool seen;
 
-  const BubbleSpecialTwo(
-      {Key key,
-      this.isSender = true,
-      @required this.text,
-      this.color = Colors.white70,
-      this.tail = true})
-      : super(key: key);
+  const BubbleSpecialTwo({
+    Key key,
+    this.isSender = true,
+    @required this.text,
+    this.color = Colors.white70,
+    this.tail = true,
+    this.sent,
+    this.delivered,
+    this.seen,
+  }) : super(key: key);
 
   ///chat bubble builder method
   @override
   Widget build(BuildContext context) {
+    bool stateTick = false;
+    Icon stateIcon;
+    if (sent != null && sent) {
+      stateTick = true;
+      stateIcon = Icon(
+        Icons.done,
+        size: 18,
+        color: Color(0xFF97AD8E),
+      );
+    } else if (delivered != null && delivered) {
+      stateTick = true;
+      stateIcon = Icon(
+        Icons.done_all,
+        size: 18,
+        color: Color(0xFF97AD8E),
+      );
+    } else if (seen != null && seen) {
+      stateTick = true;
+      stateIcon = Icon(
+        Icons.done_all,
+        size: 18,
+        color: Color(0xFF92DEDA),
+      );
+    }
+
     return Align(
       alignment: isSender ? Alignment.topRight : Alignment.topLeft,
       child: Padding(
@@ -38,17 +69,35 @@ class BubbleSpecialTwo extends StatelessWidget {
             constraints: BoxConstraints(
               maxWidth: MediaQuery.of(context).size.width * .8,
             ),
-            margin: isSender ?? true
-                ? EdgeInsets.fromLTRB(7, 7, 17, 7)
+            margin: isSender
+                ? stateTick
+                    ? EdgeInsets.fromLTRB(7, 7, 14, 7)
+                    : EdgeInsets.fromLTRB(7, 7, 17, 7)
                 : EdgeInsets.fromLTRB(17, 7, 7, 7),
             child: Stack(
               children: <Widget>[
-                Text(
-                  text,
-                  style: TextStyle(
-                    fontSize: 16,
+                Padding(
+                  padding: stateTick
+                      ? EdgeInsets.only(right: 20)
+                      : EdgeInsets.symmetric(vertical: 0, horizontal: 0),
+                  child: Text(
+                    text,
+                    style: TextStyle(
+                      color: Colors.black87,
+                      fontSize: 16,
+                    ),
+                    textAlign: TextAlign.left,
                   ),
                 ),
+                stateTick
+                    ? Positioned(
+                        bottom: 0,
+                        right: 0,
+                        child: stateIcon,
+                      )
+                    : SizedBox(
+                        width: 1,
+                      ),
               ],
             ),
           ),
@@ -57,6 +106,10 @@ class BubbleSpecialTwo extends StatelessWidget {
     );
   }
 }
+
+///custom painter use to create the shape of the chat bubble
+///
+/// [color],[alignment] and [tail] can be changed
 
 class SpecialChatBubbleTwo extends CustomPainter {
   final Color color;
