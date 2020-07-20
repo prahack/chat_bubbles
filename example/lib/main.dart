@@ -44,8 +44,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 tail: true,
               ),
               BubbleNormal(
-                text:
-                    'bubble normal with tail bubble normal with tail bubble normal with tail back the',
+                text: 'bubble normal with tail',
                 isSender: true,
                 color: Color(0xFFE2FFC7),
                 tail: true,
@@ -71,6 +70,7 @@ class _MyHomePageState extends State<MyHomePage> {
               BubbleSpecialOne(
                 text: 'bubble special one with tail',
                 color: Color(0xFFE2FFC7),
+                seen: true,
               ),
               BubbleSpecialOne(
                 text: 'bubble special one without tail',
@@ -82,6 +82,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 text: 'bubble special one without tail',
                 tail: false,
                 color: Color(0xFFE2FFC7),
+                sent: true,
               ),
               BubbleSpecialTwo(
                 text: 'bubble special tow with tail',
@@ -92,6 +93,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 text: 'bubble special tow with tail',
                 isSender: true,
                 color: Color(0xFFE2FFC7),
+                sent: true,
               ),
               BubbleSpecialTwo(
                 text: 'bubble special tow without tail',
@@ -103,6 +105,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 text: 'bubble special tow without tail',
                 tail: false,
                 color: Color(0xFFE2FFC7),
+                delivered: true,
               ),
             ],
           ),
