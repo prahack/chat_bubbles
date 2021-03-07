@@ -1,3 +1,7 @@
+## [0.7.8+2] - 21/10/2020
+
+* dartfmt formatting.
+
 ## [0.7.8+1] - 20/07/2020
 
 * Update README.md example.
