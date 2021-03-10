@@ -18,36 +18,36 @@ class BubbleSpecialTwo extends StatelessWidget {
   final bool seen;
 
   const BubbleSpecialTwo({
-    Key key,
+    Key? key,
     this.isSender = true,
-    @required this.text,
+    required this.text,
     this.color = Colors.white70,
     this.tail = true,
-    this.sent,
-    this.delivered,
-    this.seen,
+    this.sent = false,
+    this.delivered = false,
+    this.seen = false,
   }) : super(key: key);
 
   ///chat bubble builder method
   @override
   Widget build(BuildContext context) {
     bool stateTick = false;
-    Icon stateIcon;
-    if (sent != null && sent) {
+    Icon? stateIcon;
+    if (sent) {
       stateTick = true;
       stateIcon = Icon(
         Icons.done,
         size: 18,
         color: Color(0xFF97AD8E),
       );
-    } else if (delivered != null && delivered) {
+    } else if (delivered) {
       stateTick = true;
       stateIcon = Icon(
         Icons.done_all,
         size: 18,
         color: Color(0xFF97AD8E),
       );
-    } else if (seen != null && seen) {
+    } else if (seen) {
       stateTick = true;
       stateIcon = Icon(
         Icons.done_all,
@@ -89,7 +89,7 @@ class BubbleSpecialTwo extends StatelessWidget {
                     textAlign: TextAlign.left,
                   ),
                 ),
-                stateTick
+                stateIcon != null && stateTick
                     ? Positioned(
                         bottom: 0,
                         right: 0,
@@ -117,9 +117,9 @@ class SpecialChatBubbleTwo extends CustomPainter {
   final bool tail;
 
   SpecialChatBubbleTwo({
-    @required this.color,
-    this.alignment,
-    this.tail,
+    required this.color,
+    required this.alignment,
+    required this.tail,
   });
 
   double _radius = 10.0;

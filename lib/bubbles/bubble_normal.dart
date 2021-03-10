@@ -23,37 +23,37 @@ class BubbleNormal extends StatelessWidget {
   final bool seen;
 
   BubbleNormal({
-    Key key,
-    @required this.text,
-    this.bubbleRadius,
+    Key? key,
+    required this.text,
+    this.bubbleRadius = BUBBLE_RADIUS,
     this.isSender = true,
-    this.color,
+    this.color = Colors.white70,
     this.tail = true,
-    this.sent,
-    this.delivered,
-    this.seen,
+    this.sent = false,
+    this.delivered = false,
+    this.seen = false,
   }) : super(key: key);
 
   ///chat bubble builder method
   @override
   Widget build(BuildContext context) {
     bool stateTick = false;
-    Icon stateIcon;
-    if (sent != null && sent) {
+    Icon? stateIcon;
+    if (sent) {
       stateTick = true;
       stateIcon = Icon(
         Icons.done,
         size: 18,
         color: Color(0xFF97AD8E),
       );
-    } else if (delivered != null && delivered) {
+    } else if (delivered) {
       stateTick = true;
       stateIcon = Icon(
         Icons.done_all,
         size: 18,
         color: Color(0xFF97AD8E),
       );
-    } else if (seen != null && seen) {
+    } else if (seen) {
       stateTick = true;
       stateIcon = Icon(
         Icons.done_all,
@@ -79,19 +79,19 @@ class BubbleNormal extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 2),
             child: Container(
               decoration: BoxDecoration(
-                color: color ?? Colors.white70,
+                color: color,
                 borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(bubbleRadius ?? BUBBLE_RADIUS),
-                  topRight: Radius.circular(bubbleRadius ?? BUBBLE_RADIUS),
+                  topLeft: Radius.circular(bubbleRadius),
+                  topRight: Radius.circular(bubbleRadius),
                   bottomLeft: Radius.circular(tail
                       ? isSender
-                          ? bubbleRadius ?? BUBBLE_RADIUS
+                          ? bubbleRadius
                           : 0
                       : BUBBLE_RADIUS),
                   bottomRight: Radius.circular(tail
                       ? isSender
                           ? 0
-                          : bubbleRadius ?? BUBBLE_RADIUS
+                          : bubbleRadius
                       : BUBBLE_RADIUS),
                 ),
               ),
@@ -110,7 +110,7 @@ class BubbleNormal extends StatelessWidget {
                       textAlign: TextAlign.left,
                     ),
                   ),
-                  stateTick
+                  stateIcon != null && stateTick
                       ? Positioned(
                           bottom: 4,
                           right: 6,

@@ -8,7 +8,7 @@ Add this to your package's `pubspec.yaml` file:
 
 ```yaml
 dependencies:
-  chat_bubbles: ^0.7.8+2
+  chat_bubbles: ^0.7.9+3
 ```
 
 ## Usage
