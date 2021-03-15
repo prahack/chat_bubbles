@@ -12,6 +12,8 @@ const double BUBBLE_RADIUS = 16;
 ///[text] is the only required parameter
 ///message sender can be changed using [isSender]
 ///[sent],[delivered] and [seen] can be used to display the message state
+///chat bubble [TextStyle] can be customized using [textStyle]
+
 class BubbleNormal extends StatelessWidget {
   final double bubbleRadius;
   final bool isSender;

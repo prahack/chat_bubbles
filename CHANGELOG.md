@@ -1,3 +1,7 @@
+## [0.8.0] - 15/03/2021
+
+* Add the option to customize the chat bubble text styles by changing `textStyle` parameter
+
 ## [0.7.9+3] - 10/03/2021
 
 * null-safety.

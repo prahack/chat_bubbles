@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 ///chat bubble display message can be changed using [text]
 ///[text] is the only required parameter
 ///message sender can be changed using [isSender]
+///chat bubble [TextStyle] can be customized using [textStyle]
 
 class BubbleSpecialOne extends StatelessWidget {
   final bool isSender;
