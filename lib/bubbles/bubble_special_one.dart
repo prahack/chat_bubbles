@@ -17,6 +17,7 @@ class BubbleSpecialOne extends StatelessWidget {
   final bool sent;
   final bool delivered;
   final bool seen;
+  final TextStyle textStyle;
 
   const BubbleSpecialOne({
     Key? key,
@@ -27,6 +28,10 @@ class BubbleSpecialOne extends StatelessWidget {
     this.sent = false,
     this.delivered = false,
     this.seen = false,
+    this.textStyle = const TextStyle(
+      color: Colors.black87,
+      fontSize: 16,
+    ),
   }) : super(key: key);
 
   ///chat bubble builder method
@@ -83,10 +88,7 @@ class BubbleSpecialOne extends StatelessWidget {
                       : EdgeInsets.symmetric(vertical: 0, horizontal: 0),
                   child: Text(
                     text,
-                    style: TextStyle(
-                      color: Colors.black87,
-                      fontSize: 16,
-                    ),
+                    style: textStyle,
                     textAlign: TextAlign.left,
                   ),
                 ),

@@ -21,6 +21,7 @@ class BubbleNormal extends StatelessWidget {
   final bool sent;
   final bool delivered;
   final bool seen;
+  final TextStyle textStyle;
 
   BubbleNormal({
     Key? key,
@@ -32,6 +33,10 @@ class BubbleNormal extends StatelessWidget {
     this.sent = false,
     this.delivered = false,
     this.seen = false,
+    this.textStyle = const TextStyle(
+      color: Colors.black87,
+      fontSize: 16,
+    ),
   }) : super(key: key);
 
   ///chat bubble builder method
@@ -103,10 +108,7 @@ class BubbleNormal extends StatelessWidget {
                         : EdgeInsets.symmetric(vertical: 6, horizontal: 12),
                     child: Text(
                       text,
-                      style: TextStyle(
-                        color: Colors.black87,
-                        fontSize: 16,
-                      ),
+                      style: textStyle,
                       textAlign: TextAlign.left,
                     ),
                   ),

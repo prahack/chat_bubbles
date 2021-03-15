@@ -41,6 +41,10 @@ class _MyHomePageState extends State<MyHomePage> {
                 isSender: false,
                 color: Color(0xAF6AD0F5),
                 tail: true,
+                textStyle: TextStyle(
+                  fontSize: 20,
+                  color: Colors.white,
+                ),
               ),
               BubbleNormal(
                 text: 'bubble normal with tail',
@@ -54,6 +58,10 @@ class _MyHomePageState extends State<MyHomePage> {
                 isSender: false,
                 color: Color(0xAF6AD0F5),
                 tail: false,
+                textStyle: TextStyle(
+                  fontSize: 20,
+                  color: Colors.white,
+                ),
               ),
               BubbleNormal(
                 text: 'bubble normal without tail',
@@ -65,6 +73,10 @@ class _MyHomePageState extends State<MyHomePage> {
                 text: 'bubble special one with tail',
                 isSender: false,
                 color: Color(0xAF6AD0F5),
+                textStyle: TextStyle(
+                  fontSize: 20,
+                  color: Colors.teal,
+                ),
               ),
               BubbleSpecialOne(
                 text: 'bubble special one with tail',
@@ -76,6 +88,10 @@ class _MyHomePageState extends State<MyHomePage> {
                 isSender: false,
                 tail: false,
                 color: Color(0xAF6AD0F5),
+                textStyle: TextStyle(
+                  fontSize: 20,
+                  color: Colors.teal,
+                ),
               ),
               BubbleSpecialOne(
                 text: 'bubble special one without tail',
@@ -87,6 +103,10 @@ class _MyHomePageState extends State<MyHomePage> {
                 text: 'bubble special tow with tail',
                 isSender: false,
                 color: Color(0xAF6AD0F5),
+                textStyle: TextStyle(
+                  fontSize: 20,
+                  color: Colors.red,
+                ),
               ),
               BubbleSpecialTwo(
                 text: 'bubble special tow with tail',
@@ -99,6 +119,10 @@ class _MyHomePageState extends State<MyHomePage> {
                 isSender: false,
                 tail: false,
                 color: Color(0xAF6AD0F5),
+                textStyle: TextStyle(
+                  fontSize: 20,
+                  color: Colors.red,
+                ),
               ),
               BubbleSpecialTwo(
                 text: 'bubble special tow without tail',

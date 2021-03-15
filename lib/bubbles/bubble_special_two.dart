@@ -16,6 +16,7 @@ class BubbleSpecialTwo extends StatelessWidget {
   final bool sent;
   final bool delivered;
   final bool seen;
+  final TextStyle textStyle;
 
   const BubbleSpecialTwo({
     Key? key,
@@ -26,6 +27,10 @@ class BubbleSpecialTwo extends StatelessWidget {
     this.sent = false,
     this.delivered = false,
     this.seen = false,
+    this.textStyle = const TextStyle(
+      color: Colors.black87,
+      fontSize: 16,
+    ),
   }) : super(key: key);
 
   ///chat bubble builder method
@@ -82,10 +87,7 @@ class BubbleSpecialTwo extends StatelessWidget {
                       : EdgeInsets.symmetric(vertical: 0, horizontal: 0),
                   child: Text(
                     text,
-                    style: TextStyle(
-                      color: Colors.black87,
-                      fontSize: 16,
-                    ),
+                    style: textStyle,
                     textAlign: TextAlign.left,
                   ),
                 ),
