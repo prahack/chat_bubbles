@@ -1,3 +1,7 @@
+## [0.8.0+1] - 22/03/2020
+
+* Update README.md example.
+
 ## [0.8.0] - 15/03/2021
 
 * Add the option to customize the chat bubble text styles by changing `textStyle` parameter

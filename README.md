@@ -8,7 +8,7 @@ Add this to your package's `pubspec.yaml` file:
 
 ```yaml
 dependencies:
-  chat_bubbles: ^0.8.0
+  chat_bubbles: ^0.8.0+1
 ```
 
 ## Usage
@@ -25,7 +25,7 @@ Now you can use this plugin to implement various types of Chat Bubbles.
 
 ### Single bubble example
 
-<img src="https://github.com/prahack/chat_bubbles/blob/master/images/screenshots/single_bubble.png?raw=true"  width="200" height="60" />
+<img src="https://github.com/prahack/chat_bubbles/blob/master/images/screenshots/single_bubble.png?raw=true"  width="220" height="60" />
 
 
 ```dart
