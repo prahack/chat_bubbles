@@ -47,14 +47,16 @@ class BubbleSpecialOne extends StatelessWidget {
         size: 18,
         color: Color(0xFF97AD8E),
       );
-    } else if (delivered) {
+    }
+    if (delivered) {
       stateTick = true;
       stateIcon = Icon(
         Icons.done_all,
         size: 18,
         color: Color(0xFF97AD8E),
       );
-    } else if (seen) {
+    }
+    if (seen) {
       stateTick = true;
       stateIcon = Icon(
         Icons.done_all,

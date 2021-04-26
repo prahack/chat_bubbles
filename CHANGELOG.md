@@ -1,4 +1,8 @@
-## [0.8.0+1] - 22/03/2020
+## [0.8.1] - 26/04/2021
+
+* set piority for message status tick (seen > delivered > sent)
+
+## [0.8.0+1] - 22/03/2021
 
 * Update README.md example.
 
