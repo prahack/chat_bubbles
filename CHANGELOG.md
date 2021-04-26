@@ -1,6 +1,6 @@
 ## [0.8.1] - 26/04/2021
 
-* set piority for message status tick (seen > delivered > sent)
+* set priority for message status tick (seen > delivered > sent)
 
 ## [0.8.0+1] - 22/03/2021
 
