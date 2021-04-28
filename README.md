@@ -1,10 +1,13 @@
 # chat_bubbles plugin
 
-![Pub Version](https://img.shields.io/pub/v/chat_bubbles?color=blue&style=plastic)
-![GitHub forks](https://img.shields.io/github/forks/prahack/chat_bubbles?style=plastic)
-![GitHub Repo stars](https://img.shields.io/github/stars/prahack/chat_bubbles?style=plastic)
-![GitHub](https://img.shields.io/github/license/prahack/chat_bubbles?style=plastic)
-![GitHub last commit](https://img.shields.io/github/last-commit/prahack/chat_bubbles?style=plastic)
+![Pub Version](https://img.shields.io/pub/v/chat_bubbles?color=blue)
+![likes](https://badges.bar/chat_bubbles/likes)
+![popularity](https://badges.bar/chat_bubbles/popularity)
+![pub points](https://badges.bar/sentry/pub%20points)
+![GitHub](https://img.shields.io/github/license/prahack/chat_bubbles)
+![GitHub forks](https://img.shields.io/github/forks/prahack/chat_bubbles)
+![GitHub Repo stars](https://img.shields.io/github/stars/prahack/chat_bubbles)
+![GitHub last commit](https://img.shields.io/github/last-commit/prahack/chat_bubbles)
 
 Flutter chat bubble widgets, similar to the Whatsapp and more shapes. Easy to use and implement chat bubbles.
 
