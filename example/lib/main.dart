@@ -36,6 +36,9 @@ class _MyHomePageState extends State<MyHomePage> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
+              DateChip(
+                date: new DateTime.now(),
+              ),
               BubbleNormal(
                 text: 'bubble normal with tail',
                 isSender: false,
