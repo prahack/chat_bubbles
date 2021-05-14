@@ -1,12 +1,18 @@
 import 'package:intl/intl.dart';
 
+///initial formatter to find the date txt
 final DateFormat _formatter = DateFormat('yyyy-MM-dd');
 
+///[DateChipText] class included with algorithms which are need to implement [DateChip]
+///
+///
 class DateChipText {
   final DateTime date;
 
   DateChipText(this.date);
-
+  ///generate and return [DateChip] string
+  ///
+  ///
   String getText() {
     final now = new DateTime.now();
     if (_formatter.format(now) == _formatter.format(date)) {
