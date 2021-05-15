@@ -17,7 +17,7 @@ Add this to your package's `pubspec.yaml` file:
 
 ```yaml
 dependencies:
-  chat_bubbles: ^0.8.1
+  chat_bubbles: ^1.0.0
 ```
 
 ## Usage
@@ -28,7 +28,7 @@ Then you just have to import the package with
 import 'package:chat_bubbles/chat_bubbles.dart'
 ```
 
-Now you can use this plugin to implement various types of Chat Bubbles.
+Now you can use this plugin to implement various types of Chat Bubbles and Date chips.
 
 ## Example
 
@@ -48,6 +48,17 @@ Now you can use this plugin to implement various types of Chat Bubbles.
       fontStyle: FontStyle.italic,
       fontWeight: FontWeight.bold,
     ),
+  ),
+```
+
+### Date Chip example
+
+<img src="https://github.com/prahack/chat_bubbles/blob/master/images/screenshots/datechip.png?raw=true"  width="237" height="58" />
+
+```dart
+  DateChip(
+    date: new DateTime(2021, 5, 7),
+    color: Color(0x558AD3D5),
   ),
 ```
 

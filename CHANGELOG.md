@@ -1,3 +1,7 @@
+## [1.0.0] - 15/05/2021
+
+* Add `DateChip` widget
+
 ## [0.8.1] - 26/04/2021
 
 * set priority for message status tick (seen > delivered > sent)
