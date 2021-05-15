@@ -4,7 +4,7 @@ import 'package:intl/intl.dart';
 final DateFormat _formatter = DateFormat('yyyy-MM-dd');
 
 ///[DateChipText] class included with algorithms which are need to implement [DateChip]
-///
+///[date] parameter is required
 ///
 class DateChipText {
   final DateTime date;
@@ -22,7 +22,7 @@ class DateChipText {
         _formatter.format(date)) {
       return 'Yesterday';
     } else {
-      return '${DateFormat('d').format(date)}-${DateFormat('MMMM').format(date)}-${DateFormat('y').format(date)}';
+      return '${DateFormat('d').format(date)} ${DateFormat('MMMM').format(date)} ${DateFormat('y').format(date)}';
     }
   }
 }
