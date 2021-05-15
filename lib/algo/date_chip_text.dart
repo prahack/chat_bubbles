@@ -10,6 +10,7 @@ class DateChipText {
   final DateTime date;
 
   DateChipText(this.date);
+
   ///generate and return [DateChip] string
   ///
   ///
