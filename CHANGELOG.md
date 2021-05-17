@@ -1,3 +1,15 @@
+## [1.0.0+3] - 16/05/2021
+
+* Update `README` main example code.
+
+## [1.0.0+2] - 15/05/2021
+
+* dartfmt formatting.
+
+## [1.0.0+1] - 15/05/2021
+
+* dartfmt formatting.
+
 ## [1.0.0] - 15/05/2021
 
 * Add `DateChip` widget

@@ -2,6 +2,7 @@ library chat_bubbles;
 
 import 'package:chat_bubbles/bubbles/bubble_normal.dart';
 import 'package:chat_bubbles/bubbles/bubble_special_one.dart';
+
 ///
 /// all the widgets of the package export here
 /// [BubbleNormal]

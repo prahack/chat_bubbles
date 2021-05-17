@@ -17,7 +17,7 @@ Add this to your package's `pubspec.yaml` file:
 
 ```yaml
 dependencies:
-  chat_bubbles: ^1.0.0
+  chat_bubbles: ^1.0.0+3
 ```
 
 ## Usage
@@ -68,100 +68,126 @@ Now you can use this plugin to implement various types of Chat Bubbles and Date 
 
 
 ```dart
-   BubbleNormal(
-      text: 'bubble normal with tail',
-      isSender: false,
-      color: Color(0xAF6AD0F5),
-      tail: true,
-      textStyle: TextStyle(
-        fontSize: 20,
-        color: Colors.white,
-      ),
-    ),
-    BubbleNormal(
-      text: 'bubble normal with tail',
-      isSender: true,
-      color: Color(0xFFE2FFC7),
-      tail: true,
-      sent: true,
-    ),
-    BubbleNormal(
-      text: 'bubble normal without tail',
-      isSender: false,
-      color: Color(0xAF6AD0F5),
-      tail: false,
-      textStyle: TextStyle(
-        fontSize: 20,
-        color: Colors.white,
-      ),
-    ),
-    BubbleNormal(
-      text: 'bubble normal without tail',
-      color: Color(0xFFE2FFC7),
-      tail: false,
-      seen: true,
-    ),
-    BubbleSpecialOne(
-      text: 'bubble special one with tail',
-      isSender: false,
-      color: Color(0xAF6AD0F5),
-      textStyle: TextStyle(
-        fontSize: 20,
-        color: Colors.teal,
-      ),
-    ),
-    BubbleSpecialOne(
-      text: 'bubble special one with tail',
-      color: Color(0xFFE2FFC7),
-      seen: true,
-    ),
-    BubbleSpecialOne(
-      text: 'bubble special one without tail',
-      isSender: false,
-      tail: false,
-      color: Color(0xAF6AD0F5),
-      textStyle: TextStyle(
-        fontSize: 20,
-        color: Colors.teal,
-      ),
-    ),
-    BubbleSpecialOne(
-      text: 'bubble special one without tail',
-      tail: false,
-      color: Color(0xFFE2FFC7),
-      sent: true,
-    ),
-    BubbleSpecialTwo(
-      text: 'bubble special tow with tail',
-      isSender: false,
-      color: Color(0xAF6AD0F5),
-      textStyle: TextStyle(
-        fontSize: 20,
-        color: Colors.red,
-      ),
-    ),
-    BubbleSpecialTwo(
-      text: 'bubble special tow with tail',
-      isSender: true,
-      color: Color(0xFFE2FFC7),
-      sent: true,
-    ),
-    BubbleSpecialTwo(
-      text: 'bubble special tow without tail',
-      isSender: false,
-      tail: false,
-      color: Color(0xAF6AD0F5),
-      textStyle: TextStyle(
-        fontSize: 20,
-        color: Colors.red,
-      ),
-    ),
-    BubbleSpecialTwo(
-      text: 'bubble special tow without tail',
-      tail: false,
-      color: Color(0xFFE2FFC7),
-      delivered: true,
-    ),
+   final now = new DateTime.now();
+   return Scaffold(
+     appBar: AppBar(
+       title: Text(widget.title),
+     ),
+     body: Center(
+       child: SingleChildScrollView(
+         child: Column(
+           mainAxisAlignment: MainAxisAlignment.center,
+           children: <Widget>[
+             BubbleNormal(
+               text: 'bubble normal with tail',
+               isSender: false,
+               color: Color(0xFF1B97F3),
+               tail: true,
+               textStyle: TextStyle(
+                 fontSize: 20,
+                 color: Colors.white,
+               ),
+             ),
+             BubbleNormal(
+               text: 'bubble normal with tail',
+               isSender: true,
+               color: Color(0xFFE8E8EE),
+               tail: true,
+               sent: true,
+             ),
+             DateChip(
+               date: new DateTime(now.year, now.month, now.day - 2),
+             ),
+             BubbleNormal(
+               text: 'bubble normal without tail',
+               isSender: false,
+               color: Color(0xFF1B97F3),
+               tail: false,
+               textStyle: TextStyle(
+                 fontSize: 20,
+                 color: Colors.white,
+               ),
+             ),
+             BubbleNormal(
+               text: 'bubble normal without tail',
+               color: Color(0xFFE8E8EE),
+               tail: false,
+               sent: true,
+               seen: true,
+               delivered: true,
+             ),
+             BubbleSpecialOne(
+               text: 'bubble special one with tail',
+               isSender: false,
+               color: Color(0xFF1B97F3),
+               textStyle: TextStyle(
+                 fontSize: 20,
+                 color: Colors.white,
+               ),
+             ),
+             DateChip(
+               date: new DateTime(now.year, now.month, now.day - 1),
+             ),
+             BubbleSpecialOne(
+               text: 'bubble special one with tail',
+               color: Color(0xFFE8E8EE),
+               seen: true,
+             ),
+             BubbleSpecialOne(
+               text: 'bubble special one without tail',
+               isSender: false,
+               tail: false,
+               color: Color(0xFF1B97F3),
+               textStyle: TextStyle(
+                 fontSize: 20,
+                 color: Colors.black,
+               ),
+             ),
+             BubbleSpecialOne(
+               text: 'bubble special one without tail',
+               tail: false,
+               color: Color(0xFFE8E8EE),
+               sent: true,
+             ),
+             BubbleSpecialTwo(
+               text: 'bubble special tow with tail',
+               isSender: false,
+               color: Color(0xFF1B97F3),
+               textStyle: TextStyle(
+                 fontSize: 20,
+                 color: Colors.black,
+               ),
+             ),
+             DateChip(
+               date: now,
+             ),
+             BubbleSpecialTwo(
+               text: 'bubble special tow with tail',
+               isSender: true,
+               color: Color(0xFFE8E8EE),
+               sent: true,
+             ),
+             BubbleSpecialTwo(
+               text: 'bubble special tow without tail',
+               isSender: false,
+               tail: false,
+               color: Color(0xFF1B97F3),
+               textStyle: TextStyle(
+                 fontSize: 20,
+                 color: Colors.black,
+               ),
+             ),
+             BubbleSpecialTwo(
+               text: 'bubble special tow without tail',
+               tail: false,
+               color: Color(0xFFE8E8EE),
+               delivered: true,
+             ),
+           ],
+         ),
+       ),
+     ),
+   );
 ```
 
 ## Issues
