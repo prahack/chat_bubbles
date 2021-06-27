@@ -1,3 +1,7 @@
+## [1.1.0] - 27/06/2021
+
+* Audio chat bubble widget(`BubbleNormalAudio`) for the bubble normal widget set.
+
 ## [1.0.0+3] - 16/05/2021
 
 * Update `README` main example code.
