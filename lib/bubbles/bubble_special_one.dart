@@ -13,17 +13,20 @@ import 'package:flutter/material.dart';
 class BubbleSpecialOne extends StatelessWidget {
   final bool isSender;
   final String text;
+  final String? time;
   final bool tail;
   final Color color;
   final bool sent;
   final bool delivered;
   final bool seen;
   final TextStyle textStyle;
+  final TextStyle? timeTextStyle;
 
   const BubbleSpecialOne({
     Key? key,
     this.isSender = true,
     required this.text,
+    this.time,
     this.color = Colors.white70,
     this.tail = true,
     this.sent = false,
@@ -33,13 +36,17 @@ class BubbleSpecialOne extends StatelessWidget {
       color: Colors.black87,
       fontSize: 16,
     ),
+    this.timeTextStyle  = const TextStyle(
+      color: Colors.black87,
+      fontSize: 10,
+    ),
   }) : super(key: key);
 
   ///chat bubble builder method
   @override
   Widget build(BuildContext context) {
     bool stateTick = false;
-    Icon? stateIcon;
+    Widget? stateIcon;
     if (sent) {
       stateTick = true;
       stateIcon = Icon(
@@ -65,6 +72,23 @@ class BubbleSpecialOne extends StatelessWidget {
       );
     }
 
+    if (time != null) {
+      if (stateIcon != null) {
+        stateIcon = Row(children: [Text(
+          time!,
+          style: timeTextStyle,
+          textAlign: TextAlign.right,
+        ), SizedBox(width: 3), stateIcon, ]);
+      } else {
+        stateIcon = Text(
+          time!,
+          style: timeTextStyle,
+          textAlign: TextAlign.right,
+        );
+      }
+    }
+
+
     return Align(
       alignment: isSender ? Alignment.topRight : Alignment.topLeft,
       child: Padding(
@@ -79,7 +103,7 @@ class BubbleSpecialOne extends StatelessWidget {
               maxWidth: MediaQuery.of(context).size.width * .7,
             ),
             margin: isSender
-                ? stateTick
+                ? stateTick || time != null
                     ? EdgeInsets.fromLTRB(7, 7, 14, 7)
                     : EdgeInsets.fromLTRB(7, 7, 17, 7)
                 : EdgeInsets.fromLTRB(17, 7, 7, 7),
@@ -87,15 +111,22 @@ class BubbleSpecialOne extends StatelessWidget {
               children: <Widget>[
                 Padding(
                   padding: stateTick
-                      ? EdgeInsets.only(right: 20)
-                      : EdgeInsets.symmetric(vertical: 0, horizontal: 0),
-                  child: Text(
-                    text,
-                    style: textStyle,
-                    textAlign: TextAlign.left,
-                  ),
+                      ? time != null
+                        ? EdgeInsets.only(right: 50)
+                        : EdgeInsets.only(right: 20)
+                      : time != null
+                        ? EdgeInsets.only(right: 30)
+                        : EdgeInsets.symmetric(vertical: 0, horizontal: 0),
+                  child:
+                  Column(children: [
+                    Text(
+                      text,
+                      style: textStyle,
+                      textAlign: TextAlign.left,
+                    ),
+                  ]),
                 ),
-                stateIcon != null && stateTick
+                stateIcon != null && (stateTick || time != null)
                     ? Positioned(
                         bottom: 0,
                         right: 0,
