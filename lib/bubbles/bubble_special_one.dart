@@ -10,36 +10,71 @@ import 'package:flutter/material.dart';
 ///message sender can be changed using [isSender]
 ///chat bubble [TextStyle] can be customized using [textStyle]
 
-class BubbleSpecialOne extends StatelessWidget {
+class BubbleSpecialOne extends FlexibleBubbleSpecialOne {
+  BubbleSpecialOne({
+    bool isSender: true,
+    required String text,
+    String? time,
+    bool tail: true,
+    Color color: Colors.white70,
+    bool sent: false,
+    bool delivered: false,
+    bool seen: false,
+    TextStyle textStyle: const TextStyle(
+      color: Colors.black87,
+      fontSize: 16,
+    ),
+    TextStyle timeTextStyle: const TextStyle(
+      color: Colors.black87,
+      fontSize: 10,
+    ),
+  }) : super(
+          isSender: isSender,
+          widget: Text(
+            text,
+            style: textStyle,
+            textAlign: TextAlign.left,
+          ),
+          timeWidget: time != null ? Text(
+            time,
+            style: timeTextStyle,
+            textAlign: TextAlign.right,
+          ) : null,
+          tail: tail,
+          color: color,
+          sent: sent,
+          delivered: delivered,
+          seen: seen,
+        );
+}
+
+class FlexibleBubbleSpecialOne extends StatelessWidget {
   final bool isSender;
-  final String text;
+  final Widget widget;
+  final Widget? timeWidget;
   final bool tail;
   final Color color;
   final bool sent;
   final bool delivered;
   final bool seen;
-  final TextStyle textStyle;
 
-  const BubbleSpecialOne({
+  const FlexibleBubbleSpecialOne({
     Key? key,
     this.isSender = true,
-    required this.text,
+    required this.widget,
+    this.timeWidget,
     this.color = Colors.white70,
     this.tail = true,
     this.sent = false,
     this.delivered = false,
     this.seen = false,
-    this.textStyle = const TextStyle(
-      color: Colors.black87,
-      fontSize: 16,
-    ),
   }) : super(key: key);
 
   ///chat bubble builder method
   @override
   Widget build(BuildContext context) {
     bool stateTick = false;
-    Icon? stateIcon;
+    Widget? stateIcon;
     if (sent) {
       stateTick = true;
       stateIcon = Icon(
@@ -65,6 +100,18 @@ class BubbleSpecialOne extends StatelessWidget {
       );
     }
 
+    if (timeWidget != null) {
+      if (stateIcon != null) {
+        stateIcon = Row(children: [
+          timeWidget!,
+          SizedBox(width: 3),
+          stateIcon,
+        ]);
+      } else {
+        stateIcon = timeWidget;
+      }
+    }
+
     return Align(
       alignment: isSender ? Alignment.topRight : Alignment.topLeft,
       child: Padding(
@@ -79,7 +126,7 @@ class BubbleSpecialOne extends StatelessWidget {
               maxWidth: MediaQuery.of(context).size.width * .7,
             ),
             margin: isSender
-                ? stateTick
+                ? stateTick || timeWidget != null
                     ? EdgeInsets.fromLTRB(7, 7, 14, 7)
                     : EdgeInsets.fromLTRB(7, 7, 17, 7)
                 : EdgeInsets.fromLTRB(17, 7, 7, 7),
@@ -87,15 +134,15 @@ class BubbleSpecialOne extends StatelessWidget {
               children: <Widget>[
                 Padding(
                   padding: stateTick
-                      ? EdgeInsets.only(right: 20)
-                      : EdgeInsets.symmetric(vertical: 0, horizontal: 0),
-                  child: Text(
-                    text,
-                    style: textStyle,
-                    textAlign: TextAlign.left,
-                  ),
+                      ? timeWidget != null
+                          ? EdgeInsets.only(right: 50)
+                          : EdgeInsets.only(right: 20)
+                      : timeWidget != null
+                          ? EdgeInsets.only(right: 30)
+                          : EdgeInsets.symmetric(vertical: 0, horizontal: 0),
+                  child: Column(children: [widget]),
                 ),
-                stateIcon != null && stateTick
+                stateIcon != null && (stateTick || timeWidget != null)
                     ? Positioned(
                         bottom: 0,
                         right: 0,
