@@ -1,5 +1,4 @@
 import 'package:chat_bubbles/algo/algo.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 ///[DateChip] use to show the date breakers on the chat view

@@ -1,6 +1,5 @@
 library chat_bubbles;
 
-import 'package:chat_bubbles/bubbles/bubble_normal_audio.dart';
 
 ///
 /// all the widgets of the package export here
