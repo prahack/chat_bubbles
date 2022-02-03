@@ -29,7 +29,7 @@ dev_dependencies:
     sdk: flutter
   chat_bubbles:
     path: ../
-  audioplayers: ^0.19.0
+  audioplayers: ^0.20.1
 
 
 # For information on the generic Dart part of this file, see the
