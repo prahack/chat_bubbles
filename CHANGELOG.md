@@ -1,3 +1,7 @@
+## [1.2.0] - 04/02/2022
+
+* Add iMessage's chat bubble shape bubble widget (`BubbleSpecialThree`).
+
 ## [1.1.0] - 27/06/2021
 
 * Audio chat bubble widget(`BubbleNormalAudio`) for the bubble normal widget set.
