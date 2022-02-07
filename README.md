@@ -3,7 +3,7 @@
 ![Pub Version](https://img.shields.io/pub/v/chat_bubbles?color=blue)
 ![likes](https://badges.bar/chat_bubbles/likes)
 ![popularity](https://badges.bar/chat_bubbles/popularity)
-![pub points](https://badges.bar/sentry/pub%20points)
+![pub points](https://badges.bar/chat_bubbles/pub%20points)
 ![GitHub](https://img.shields.io/github/license/prahack/chat_bubbles)
 ![GitHub forks](https://img.shields.io/github/forks/prahack/chat_bubbles)
 ![GitHub Repo stars](https://img.shields.io/github/stars/prahack/chat_bubbles)
