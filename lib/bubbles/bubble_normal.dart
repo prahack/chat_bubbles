@@ -22,6 +22,9 @@ class BubbleNormal extends StatelessWidget {
   final bool sent;
   final bool delivered;
   final bool seen;
+   final Color? sentColor;
+  final Color? deliveredColor;
+  final Color? seenColor;
   final TextStyle textStyle;
 
   BubbleNormal({
@@ -34,6 +37,9 @@ class BubbleNormal extends StatelessWidget {
     this.sent = false,
     this.delivered = false,
     this.seen = false,
+    this.sentColor,
+    this.deliveredColor,
+    this.seenColor,
     this.textStyle = const TextStyle(
       color: Colors.black87,
       fontSize: 16,
@@ -45,28 +51,28 @@ class BubbleNormal extends StatelessWidget {
   Widget build(BuildContext context) {
     bool stateTick = false;
     Icon? stateIcon;
-    if (sent) {
+   if (sent) {
       stateTick = true;
-      stateIcon = Icon(
+      stateIcon =  Icon(
         Icons.done,
         size: 18,
-        color: Color(0xFF97AD8E),
+        color: sentColor == null ? Color(0xFF97AD8E) : sentColor,
       );
     }
     if (delivered) {
       stateTick = true;
-      stateIcon = Icon(
+      stateIcon =  Icon(
         Icons.done_all,
         size: 18,
-        color: Color(0xFF97AD8E),
+        color:  deliveredColor == null ? Color(0xFF97AD8E) : deliveredColor,
       );
     }
     if (seen) {
       stateTick = true;
-      stateIcon = Icon(
+      stateIcon =  Icon(
         Icons.done_all,
         size: 18,
-        color: Color(0xFF92DEDA),
+        color: seenColor == null ? Color(0xFF92DEDA) : seenColor,
       );
     }
 
