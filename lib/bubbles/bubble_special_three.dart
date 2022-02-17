@@ -17,6 +17,7 @@ class BubbleSpecialThree extends StatelessWidget {
   final bool sent;
   final bool delivered;
   final bool seen;
+  final Color? seenColor;
   final TextStyle textStyle;
 
   const BubbleSpecialThree({
@@ -28,6 +29,7 @@ class BubbleSpecialThree extends StatelessWidget {
     this.sent = false,
     this.delivered = false,
     this.seen = false,
+    this.seenColor;
     this.textStyle = const TextStyle(
       color: Colors.black87,
       fontSize: 16,
@@ -60,7 +62,7 @@ class BubbleSpecialThree extends StatelessWidget {
       stateIcon = const Icon(
         Icons.done_all,
         size: 18,
-        color: Color(0xFF92DEDA),
+        color: seenColor == null ? Color(0xFF92DEDA) : seenColor,
       );
     }
 
