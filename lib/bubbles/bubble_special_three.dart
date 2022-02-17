@@ -29,7 +29,7 @@ class BubbleSpecialThree extends StatelessWidget {
     this.sent = false,
     this.delivered = false,
     this.seen = false,
-    this.seenColor;
+    this.seenColor,
     this.textStyle = const TextStyle(
       color: Colors.black87,
       fontSize: 16,
