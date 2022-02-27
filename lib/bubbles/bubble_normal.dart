@@ -22,6 +22,9 @@ class BubbleNormal extends StatelessWidget {
   final bool sent;
   final bool delivered;
   final bool seen;
+  final Color sentIconColor;
+  final Color deliveredIconColor;
+  final Color seenIconColor;
   final TextStyle textStyle;
 
   BubbleNormal({
@@ -34,6 +37,9 @@ class BubbleNormal extends StatelessWidget {
     this.sent = false,
     this.delivered = false,
     this.seen = false,
+    this.sentIconColor = const Color(0xFF97AD8E),
+    this.deliveredIconColor = const Color(0xFF97AD8E),
+    this.seenIconColor = const Color(0xFF92DEDA),
     this.textStyle = const TextStyle(
       color: Colors.black87,
       fontSize: 16,
@@ -50,7 +56,7 @@ class BubbleNormal extends StatelessWidget {
       stateIcon = Icon(
         Icons.done,
         size: 18,
-        color: Color(0xFF97AD8E),
+        color: sentIconColor,
       );
     }
     if (delivered) {
@@ -58,7 +64,7 @@ class BubbleNormal extends StatelessWidget {
       stateIcon = Icon(
         Icons.done_all,
         size: 18,
-        color: Color(0xFF97AD8E),
+        color: deliveredIconColor,
       );
     }
     if (seen) {
@@ -66,7 +72,7 @@ class BubbleNormal extends StatelessWidget {
       stateIcon = Icon(
         Icons.done_all,
         size: 18,
-        color: Color(0xFF92DEDA),
+        color: seenIconColor,
       );
     }
 
