@@ -1,3 +1,7 @@
+## [1.3.0] - 03/07/2022
+
+* Add `MessageBar` widget 
+
 ## [1.2.0] - 04/02/2022
 
 * Add iMessage's chat bubble shape bubble widget (`BubbleSpecialThree`).
