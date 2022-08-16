@@ -1,3 +1,7 @@
+## [1.3.1] - 16/08/2022
+
+* Support up-to-date dependencies
+
 ## [1.3.0] - 03/07/2022
 
 * Add `MessageBar` widget 
