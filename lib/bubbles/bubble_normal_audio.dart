@@ -34,12 +34,15 @@ class BubbleNormalAudio extends StatelessWidget {
   final bool delivered;
   final bool seen;
   final TextStyle textStyle;
+  final BoxConstraints constraints;
+
 
   BubbleNormalAudio({
     Key? key,
     required this.onSeekChanged,
     required this.onPlayPauseButtonClick,
     this.isPlaying = false,
+    this.constraints,
     this.isPause = false,
     this.duration,
     this.position,
@@ -98,7 +101,7 @@ class BubbleNormalAudio extends StatelessWidget {
             : Container(),
         Container(
           color: Colors.transparent,
-          constraints: BoxConstraints(
+          constraints:constraints?? BoxConstraints(
               maxWidth: MediaQuery.of(context).size.width * .8, maxHeight: 70),
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 2),
