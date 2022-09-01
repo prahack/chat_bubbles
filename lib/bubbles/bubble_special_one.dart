@@ -18,7 +18,7 @@ class BubbleSpecialOne extends StatelessWidget {
   final bool delivered;
   final bool seen;
   final TextStyle textStyle;
-  final BoxConstraints constraints;
+  final BoxConstraints? constraints;
 
 
   const BubbleSpecialOne({
