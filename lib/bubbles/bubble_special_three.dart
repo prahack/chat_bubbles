@@ -93,7 +93,7 @@ class BubbleSpecialThree extends StatelessWidget {
             child: Stack(
               children: <Widget>[
                 if(image != null)
-                image,
+                image(),
                 Padding(
                   padding: stateTick
                       ? const EdgeInsets.only(left: 4, right: 20)
