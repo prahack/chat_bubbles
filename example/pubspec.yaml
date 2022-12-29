@@ -30,6 +30,7 @@ dev_dependencies:
   chat_bubbles:
     path: ../
   audioplayers: ^0.20.1
+  cached_network_image: ^3.2.2
 
 
 # For information on the generic Dart part of this file, see the
