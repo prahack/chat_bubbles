@@ -1,3 +1,7 @@
+## [1.4.0] - 29/12/2022
+
+* Add `BubbleNormalImage` image chat bubble widget 
+
 ## [1.3.1] - 16/08/2022
 
 * Support up-to-date dependencies

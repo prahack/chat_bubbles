@@ -1,15 +1,12 @@
 # chat_bubbles plugin
 
 ![Pub Version](https://img.shields.io/pub/v/chat_bubbles?color=blue)
-![likes](https://badges.bar/chat_bubbles/likes)
-![popularity](https://badges.bar/chat_bubbles/popularity)
-![pub points](https://badges.bar/chat_bubbles/pub%20points)
 ![GitHub](https://img.shields.io/github/license/prahack/chat_bubbles)
 ![GitHub forks](https://img.shields.io/github/forks/prahack/chat_bubbles)
 ![GitHub Repo stars](https://img.shields.io/github/stars/prahack/chat_bubbles)
 ![GitHub last commit](https://img.shields.io/github/last-commit/prahack/chat_bubbles)
 
-Flutter chat bubble widgets, similar to the Whatsapp and more shapes. Audio chat bubble widgets are also included. Easy to use and implement chat bubbles.
+Flutter chat bubble widgets, similar to the Whatsapp and more shapes. Audio and Image chat bubble widgets are also included. Easy to use and implement chat bubbles.
 
 ## Getting Started
 
@@ -17,7 +14,7 @@ Add this to your package's `pubspec.yaml` file:
 
 ```yaml
 dependencies:
-  chat_bubbles: ^1.3.1
+  chat_bubbles: ^1.4.0
 ```
 
 ## Usage
@@ -118,6 +115,20 @@ BubbleSpecialThree(
   ),
 ```
 
+### Image chat bubble example
+
+<img src="https://github.com/prahack/chat_bubbles/blob/master/images/screenshots/image_bubble.jpg?raw=true"  width="206" height="188" />
+
+```dart
+  BubbleNormalImage(
+    id: 'id001',
+    image: _image(),
+    color: Colors.purpleAccent,
+    tail: true,
+    delivered: true,
+  ),
+```
+
 ### Date Chip example
 
 <img src="https://github.com/prahack/chat_bubbles/blob/master/images/screenshots/datechip.png?raw=true"  width="237" height="58" />
@@ -161,7 +172,7 @@ MessageBar(
 ```
 
 ### Main example (Chat View)
-<img src="https://github.com/prahack/chat_bubbles/blob/master/images/screenshots/2022_7_3_main1.png?raw=true"  width="235" height="460" /> <img src="https://github.com/prahack/chat_bubbles/blob/master/images/screenshots/2022_7_3_main2.png?raw=true"  width="235" height="460" />
+<img src="https://github.com/prahack/chat_bubbles/blob/master/images/screenshots/2022_12_29_main1.jpg?raw=true"  width="235" height="460" /> <img src="https://github.com/prahack/chat_bubbles/blob/master/images/screenshots/2022_12_29_main2.jpg?raw=true"  width="235" height="460" />
 
 Checkout the plugin example to figure out more.
 
@@ -184,6 +195,13 @@ Widget build(BuildContext context) {
         SingleChildScrollView(
           child: Column(
             children: <Widget>[
+              BubbleNormalImage(
+                  id: 'id001',
+                  image: _image(),
+                  color: Colors.purpleAccent,
+                  tail: true,
+                  delivered: true,
+              ),
               BubbleNormalAudio(
                 color: Color(0xFFE8E8EE),
                 duration: duration.inSeconds.toDouble(),
