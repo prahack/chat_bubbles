@@ -230,19 +230,16 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   Widget _image() {
-    return
-    Container(
+    return Container(
       constraints: BoxConstraints(
         minHeight: 20.0,
         minWidth: 20.0,
       ),
       child: CachedNetworkImage(
         imageUrl: 'https://i.ibb.co/JCyT1kT/Asset-1.png',
-        progressIndicatorBuilder:
-            (context, url, downloadProgress) => CircularProgressIndicator(
-                value: downloadProgress.progress),
-        errorWidget: (context, url, error) =>
-        const Icon(Icons.error),
+        progressIndicatorBuilder: (context, url, downloadProgress) =>
+            CircularProgressIndicator(value: downloadProgress.progress),
+        errorWidget: (context, url, error) => const Icon(Icons.error),
       ),
     );
   }
