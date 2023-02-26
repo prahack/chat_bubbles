@@ -9,6 +9,7 @@ import 'package:flutter/material.dart';
 class DateChip extends StatelessWidget {
   final DateTime date;
   final Color color;
+  final TextStyle? style;
 
   ///
   ///
@@ -16,6 +17,7 @@ class DateChip extends StatelessWidget {
   const DateChip({
     Key? key,
     required this.date,
+    this.style,
     this.color = const Color(0x558AD3D5),
   }) : super(key: key);
   @override
@@ -34,6 +36,7 @@ class DateChip extends StatelessWidget {
           padding: const EdgeInsets.all(5.0),
           child: Text(
             Algo.dateChipText(date),
+            style: style,
           ),
         ),
       ),
