@@ -35,7 +35,7 @@ Now you can use this plugin to implement various types of Chat Bubbles, Audio Ch
 
 ```dart
 BubbleSpecialThree(
-  text: 'Added iMassage shape bubbles',
+  text: 'Added iMessage shape bubbles',
   color: Color(0xFF1B97F3),
   tail: false,
   textStyle: TextStyle(
