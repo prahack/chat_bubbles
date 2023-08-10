@@ -252,7 +252,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   void _playAudio() async {
     final url =
-        'https://file-examples-com.github.io/uploads/2017/11/file_example_MP3_700KB.mp3';
+        'https://file-examples.com/storage/fef1706276640fa2f99a5a4/2017/11/file_example_MP3_700KB.mp3';
     if (isPause) {
       await audioPlayer.resume();
       setState(() {
@@ -269,7 +269,7 @@ class _MyHomePageState extends State<MyHomePage> {
       setState(() {
         isLoading = true;
       });
-      await audioPlayer.play(url);
+      await audioPlayer.play(UrlSource(url));
       setState(() {
         isPlaying = true;
       });
@@ -281,12 +281,12 @@ class _MyHomePageState extends State<MyHomePage> {
         isLoading = false;
       });
     });
-    audioPlayer.onAudioPositionChanged.listen((Duration p) {
+    audioPlayer.onPositionChanged.listen((Duration p) {
       setState(() {
         position = p;
       });
     });
-    audioPlayer.onPlayerCompletion.listen((event) {
+    audioPlayer.onPlayerComplete.listen((event) {
       setState(() {
         isPlaying = false;
         duration = new Duration();

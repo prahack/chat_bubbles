@@ -16,5 +16,9 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
 
+screenshots:
+  - description: The Flutter chat_bubbles package logo.
+    path: images/logo/logo.png
+
 flutter:
 

@@ -5,6 +5,9 @@
 ![GitHub forks](https://img.shields.io/github/forks/prahack/chat_bubbles)
 ![GitHub Repo stars](https://img.shields.io/github/stars/prahack/chat_bubbles)
 ![GitHub last commit](https://img.shields.io/github/last-commit/prahack/chat_bubbles)
+![likes](https://img.shields.io/pub/likes/chat_bubbles?logo=dart)
+![popularity](https://img.shields.io/pub/popularity/chat_bubbles?logo=dart)
+![pub points](https://img.shields.io/pub/points/chat_bubbles?logo=dart)
 
 Flutter chat bubble widgets, similar to the Whatsapp and more shapes. Audio and Image chat bubble widgets are also included. Easy to use and implement chat bubbles.
 
