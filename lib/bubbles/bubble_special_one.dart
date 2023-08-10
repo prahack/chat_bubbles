@@ -18,10 +18,13 @@ class BubbleSpecialOne extends StatelessWidget {
   final bool delivered;
   final bool seen;
   final TextStyle textStyle;
+  final BoxConstraints? constraints;
+
 
   const BubbleSpecialOne({
     Key? key,
     this.isSender = true,
+    this.constraints,
     required this.text,
     this.color = Colors.white70,
     this.tail = true,
@@ -74,7 +77,7 @@ class BubbleSpecialOne extends StatelessWidget {
               alignment: isSender ? Alignment.topRight : Alignment.topLeft,
               tail: tail),
           child: Container(
-            constraints: BoxConstraints(
+            constraints:constraints?? BoxConstraints(
               maxWidth: MediaQuery.of(context).size.width * .7,
             ),
             margin: isSender
