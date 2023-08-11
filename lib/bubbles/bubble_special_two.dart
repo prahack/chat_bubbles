@@ -20,7 +20,6 @@ class BubbleSpecialTwo extends StatelessWidget {
   final TextStyle textStyle;
   final BoxConstraints? constraints;
 
-
   const BubbleSpecialTwo({
     Key? key,
     this.isSender = true,
@@ -77,9 +76,10 @@ class BubbleSpecialTwo extends StatelessWidget {
               alignment: isSender ? Alignment.topRight : Alignment.topLeft,
               tail: tail),
           child: Container(
-            constraints: constraints??BoxConstraints(
-              maxWidth: MediaQuery.of(context).size.width * .8,
-            ),
+            constraints: constraints ??
+                BoxConstraints(
+                  maxWidth: MediaQuery.of(context).size.width * .8,
+                ),
             margin: isSender
                 ? stateTick
                     ? EdgeInsets.fromLTRB(7, 7, 14, 7)

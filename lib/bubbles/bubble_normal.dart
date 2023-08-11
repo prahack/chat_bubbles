@@ -25,7 +25,6 @@ class BubbleNormal extends StatelessWidget {
   final TextStyle textStyle;
   final BoxConstraints? constraints;
 
-
   BubbleNormal({
     Key? key,
     required this.text,
@@ -84,8 +83,8 @@ class BubbleNormal extends StatelessWidget {
             : Container(),
         Container(
           color: Colors.transparent,
-          constraints:
-              constraints?? BoxConstraints(maxWidth: MediaQuery.of(context).size.width * .8),
+          constraints: constraints ??
+              BoxConstraints(maxWidth: MediaQuery.of(context).size.width * .8),
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 2),
             child: Container(

@@ -20,7 +20,6 @@ class BubbleSpecialThree extends StatelessWidget {
   final TextStyle textStyle;
   final BoxConstraints? constraints;
 
-
   const BubbleSpecialThree({
     Key? key,
     this.isSender = true,
@@ -77,9 +76,10 @@ class BubbleSpecialThree extends StatelessWidget {
               alignment: isSender ? Alignment.topRight : Alignment.topLeft,
               tail: tail),
           child: Container(
-            constraints:constraints?? BoxConstraints(
-              maxWidth: MediaQuery.of(context).size.width * .7,
-            ),
+            constraints: constraints ??
+                BoxConstraints(
+                  maxWidth: MediaQuery.of(context).size.width * .7,
+                ),
             margin: isSender
                 ? stateTick
                     ? const EdgeInsets.fromLTRB(7, 7, 14, 7)
