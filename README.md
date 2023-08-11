@@ -34,11 +34,11 @@ Now you can use this plugin to implement various types of Chat Bubbles, Audio Ch
 
 ### iMessage's bubble example
 
-<img src="https://github.com/prahack/chat_bubbles/blob/master/images/screenshots/imsg.png?raw=true"  width="250" height="190" />
+<img src="https://github.com/prahack/chat_bubbles/blob/master/images/screenshots/imsg1.png?raw=true"  width="250" height="190" />
 
 ```dart
 BubbleSpecialThree(
-  text: 'Added iMassage shape bubbles',
+  text: 'Added iMessage shape bubbles',
   color: Color(0xFF1B97F3),
   tail: false,
   textStyle: TextStyle(
@@ -143,7 +143,7 @@ BubbleSpecialThree(
   ),
 ```
 
-### Massage bar example
+### Message bar example
 
 <img src="https://github.com/prahack/chat_bubbles/blob/master/images/screenshots/messagebar.jpeg?raw=true"  width="270" height="45" />
 
