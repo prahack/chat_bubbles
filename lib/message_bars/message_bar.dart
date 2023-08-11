@@ -6,27 +6,29 @@ import 'package:flutter/material.dart';
 ///
 ///
 /// # BOOLEANS
-/// [replying] is additional reply widget top of the message bar
+/// [replying] is the additional reply widget top of the message bar
 ///
 /// # STRINGS
-/// [replyingTo] is a string to tag the replying message
+/// [replyingTo] is the string to tag the replying message
+/// [messageBarHitText] is the string to show as message bar hint
 ///
 /// # WIDGETS
 /// [actions] are the additional leading action buttons like camera
 /// and file select
 ///
 /// # COLORS
-/// [replyWidgetColor] is reply widget color
+/// [replyWidgetColor] is the reply widget color
 /// [replyIconColor] is the reply icon color on the left side of reply widget
 /// [replyCloseColor] is the close icon color on the right side of the reply
 /// widget
 /// [messageBarColor] is the color of the message bar
 /// [sendButtonColor] is the color of the send button
+/// [messageBarHintStyle] is the style of the message bar hint
 ///
 /// # METHODS
-/// [onTextChanged] is function which triggers after text every text change
-/// [onSend] is send button action
-/// [onTapCloseReply] is close button action of the close button on the
+/// [onTextChanged] is the function which triggers after text every text change
+/// [onSend] is the send button action
+/// [onTapCloseReply] is the close button action of the close button on the
 /// reply widget usually change [replying] attribute to `false`
 
 class MessageBar extends StatelessWidget {
@@ -38,6 +40,7 @@ class MessageBar extends StatelessWidget {
   final Color replyIconColor;
   final Color replyCloseColor;
   final Color messageBarColor;
+  final String messageBarHitText;
   final TextStyle messageBarHintStyle;
   final Color sendButtonColor;
   final void Function(String)? onTextChanged;
@@ -56,6 +59,7 @@ class MessageBar extends StatelessWidget {
     this.replyCloseColor = Colors.black12,
     this.messageBarColor = const Color(0xffF4F4F5),
     this.sendButtonColor = Colors.blue,
+    this.messageBarHitText = "Type your message here",
     this.messageBarHintStyle = const TextStyle(fontSize: 16),
     this.onTextChanged,
     this.onSend,
@@ -130,7 +134,7 @@ class MessageBar extends StatelessWidget {
                         maxLines: 3,
                         onChanged: onTextChanged,
                         decoration: InputDecoration(
-                          hintText: "Type your message here",
+                          hintText: messageBarHitText,
                           hintMaxLines: 1,
                           contentPadding: const EdgeInsets.symmetric(
                               horizontal: 8.0, vertical: 10),
