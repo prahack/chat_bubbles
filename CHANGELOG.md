@@ -1,3 +1,10 @@
+## [1.5.0] - 11/08/2023
+
+* Customizable constrains for bubbles
+* Customizable message bar hint text
+* Customizable message bar hint style
+* Update the example
+
 ## [1.4.1] - 26/01/2023
 
 * Support up-to-date dependencies
