@@ -16,6 +16,9 @@ BubbleNormalImage Widget-
 * Added [margin] and [padding] parameters
 * Added Tap Callbacks such as [onTap] and [onLongPress].
 
+### For DateChip Widget
+* Fixes [DateChip] taking full width
+
 ### Other
 * Updated the environment to allow support for latest dart sdks
 * Updated the documentation within code to be easier to read
