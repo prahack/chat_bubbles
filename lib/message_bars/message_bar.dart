@@ -40,8 +40,9 @@ class MessageBar extends StatelessWidget {
   final Color replyIconColor;
   final Color replyCloseColor;
   final Color messageBarColor;
-  final String messageBarHitText;
+  final String messageBarHintText;
   final TextStyle messageBarHintStyle;
+  final TextStyle textFieldTextStyle;
   final Color sendButtonColor;
   final void Function(String)? onTextChanged;
   final void Function(String)? onSend;
@@ -59,8 +60,9 @@ class MessageBar extends StatelessWidget {
     this.replyCloseColor = Colors.black12,
     this.messageBarColor = const Color(0xffF4F4F5),
     this.sendButtonColor = Colors.blue,
-    this.messageBarHitText = "Type your message here",
+    this.messageBarHintText = "Type your message here",
     this.messageBarHintStyle = const TextStyle(fontSize: 16),
+    this.textFieldTextStyle = const TextStyle(color: Colors.black),
     this.onTextChanged,
     this.onSend,
     this.onTapCloseReply,
@@ -133,8 +135,9 @@ class MessageBar extends StatelessWidget {
                         minLines: 1,
                         maxLines: 3,
                         onChanged: onTextChanged,
+                        style: textFieldTextStyle,
                         decoration: InputDecoration(
-                          hintText: messageBarHitText,
+                          hintText: messageBarHintText,
                           hintMaxLines: 1,
                           contentPadding: const EdgeInsets.symmetric(
                               horizontal: 8.0, vertical: 10),
