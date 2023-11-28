@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:linkwell/linkwell.dart';
 
 const double BUBBLE_RADIUS = 16;
 
@@ -111,10 +112,11 @@ class BubbleNormal extends StatelessWidget {
                     padding: stateTick
                         ? EdgeInsets.fromLTRB(12, 6, 28, 6)
                         : EdgeInsets.symmetric(vertical: 6, horizontal: 12),
-                    child: Text(
+                    child: LinkWell(
                       text,
                       style: textStyle,
                       textAlign: TextAlign.left,
+                      linkStyle: const TextStyle(color: Colors.blue),
                     ),
                   ),
                   stateIcon != null && stateTick
