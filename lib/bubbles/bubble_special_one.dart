@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:linkwell/linkwell.dart';
 
 ///WhatsApp's chat bubble type
 ///
@@ -91,10 +92,11 @@ class BubbleSpecialOne extends StatelessWidget {
                   padding: stateTick
                       ? EdgeInsets.only(right: 20)
                       : EdgeInsets.symmetric(vertical: 0, horizontal: 0),
-                  child: Text(
+                  child: LinkWell(
                     text,
                     style: textStyle,
                     textAlign: TextAlign.left,
+                    linkStyle: const TextStyle(color: Colors.blue),
                   ),
                 ),
                 stateIcon != null && stateTick
