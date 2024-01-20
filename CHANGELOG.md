@@ -1,4 +1,4 @@
-## [1.6.0] - 20/01/2023
+## [1.6.0] - 20/01/2024
 
 ### For Message Bar
 * Customizable text style for message bar text
