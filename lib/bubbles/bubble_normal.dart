@@ -123,49 +123,46 @@ class BubbleNormal extends StatelessWidget {
             onTap: onTap,
             onDoubleTap: onDoubleTap,
             onLongPress: onLongPress,
-            child: Padding(
-              padding: padding,
-              child: Container(
-                decoration: BoxDecoration(
-                  color: color,
-                  borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(bubbleRadius),
-                    topRight: Radius.circular(bubbleRadius),
-                    bottomLeft: Radius.circular(tail
-                        ? isSender
-                            ? bubbleRadius
-                            : 0
-                        : BUBBLE_RADIUS),
-                    bottomRight: Radius.circular(tail
-                        ? isSender
-                            ? 0
-                            : bubbleRadius
-                        : BUBBLE_RADIUS),
-                  ),
+            child: Container(
+              decoration: BoxDecoration(
+                color: color,
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(bubbleRadius),
+                  topRight: Radius.circular(bubbleRadius),
+                  bottomLeft: Radius.circular(tail
+                      ? isSender
+                          ? bubbleRadius
+                          : 0
+                      : BUBBLE_RADIUS),
+                  bottomRight: Radius.circular(tail
+                      ? isSender
+                          ? 0
+                          : bubbleRadius
+                      : BUBBLE_RADIUS),
                 ),
-                child: Stack(
-                  children: <Widget>[
-                    Padding(
-                      padding: stateTick
-                          ? EdgeInsets.fromLTRB(12, 6, 28, 6)
-                          : EdgeInsets.symmetric(vertical: 6, horizontal: 12),
-                      child: SelectableText(
-                        text,
-                        style: textStyle,
-                        textAlign: TextAlign.left,
-                      ),
+              ),
+              child: Stack(
+                children: <Widget>[
+                  Padding(
+                    padding: stateTick
+                        ? EdgeInsets.fromLTRB(12, 6, 28, 6)
+                        : EdgeInsets.symmetric(vertical: 6, horizontal: 12),
+                    child: SelectableText(
+                      text,
+                      style: textStyle,
+                      textAlign: TextAlign.left,
                     ),
-                    stateIcon != null && stateTick
-                        ? Positioned(
-                            bottom: 4,
-                            right: 6,
-                            child: stateIcon,
-                          )
-                        : SizedBox(
-                            width: 1,
-                          ),
-                  ],
-                ),
+                  ),
+                  stateIcon != null && stateTick
+                      ? Positioned(
+                          bottom: 4,
+                          right: 6,
+                          child: stateIcon,
+                        )
+                      : SizedBox(
+                          width: 1,
+                        ),
+                ],
               ),
             ),
           ),
