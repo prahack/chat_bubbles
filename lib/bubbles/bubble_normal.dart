@@ -2,16 +2,34 @@ import 'package:flutter/material.dart';
 
 const double BUBBLE_RADIUS = 16;
 
-///basic chat bubble type
+/// Basic chat bubble
 ///
-///chat bubble [BorderRadius] can be customized using [bubbleRadius]
-///chat bubble color can be customized using [color]
-///chat bubble tail can be customized  using [tail]
-///chat bubble display message can be changed using [text]
-///[text] is the only required parameter
-///message sender can be changed using [isSender]
-///[sent],[delivered] and [seen] can be used to display the message state
-///chat bubble [TextStyle] can be customized using [textStyle]
+/// The [BorderRadius] can be customized using [bubbleRadius]
+///
+/// [margin] and [padding] can be used to add space around or within
+/// the bubble respectively
+///
+/// Color can be customized using [color]
+///
+/// [tail] boolean is used to add or remove a tail accoring to the sender type
+///
+/// Display message can be changed using [text]
+///
+/// [text] is the only required parameter
+///
+/// Message sender can be changed using [isSender]
+///
+/// [sent], [delivered] and [seen] can be used to display the message state
+///
+/// The [TextStyle] can be customized using [textStyle]
+///
+/// [leading] is the widget that's infront of the bubble when [isSender]
+/// is false.
+///
+/// [trailing] is the widget that's at the end of the bubble when [isSender]
+/// is true.
+///
+/// [onTap], [onDoubleTap], [onLongPress] are callbacks used to register tap gestures
 
 class BubbleNormal extends StatelessWidget {
   final double bubbleRadius;
@@ -24,11 +42,20 @@ class BubbleNormal extends StatelessWidget {
   final bool seen;
   final TextStyle textStyle;
   final BoxConstraints? constraints;
+  final Widget? leading;
+  final Widget? trailing;
+  final EdgeInsets margin;
+  final EdgeInsets padding;
+  final VoidCallback? onTap;
+  final VoidCallback? onDoubleTap;
+  final VoidCallback? onLongPress;
 
   BubbleNormal({
     Key? key,
     required this.text,
     this.constraints,
+    this.margin = EdgeInsets.zero,
+    this.padding = const EdgeInsets.symmetric(horizontal: 16, vertical: 2),
     this.bubbleRadius = BUBBLE_RADIUS,
     this.isSender = true,
     this.color = Colors.white70,
@@ -36,6 +63,11 @@ class BubbleNormal extends StatelessWidget {
     this.sent = false,
     this.delivered = false,
     this.seen = false,
+    this.onTap,
+    this.onDoubleTap,
+    this.onLongPress,
+    this.leading,
+    this.trailing,
     this.textStyle = const TextStyle(
       color: Colors.black87,
       fontSize: 16,
@@ -80,13 +112,17 @@ class BubbleNormal extends StatelessWidget {
                   width: 5,
                 ),
               )
-            : Container(),
+            : leading ?? Container(),
         Container(
           color: Colors.transparent,
           constraints: constraints ??
               BoxConstraints(maxWidth: MediaQuery.of(context).size.width * .8),
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 2),
+          margin: margin,
+          padding: padding,
+          child: GestureDetector(
+            onTap: onTap,
+            onDoubleTap: onDoubleTap,
+            onLongPress: onLongPress,
             child: Container(
               decoration: BoxDecoration(
                 color: color,
@@ -111,7 +147,7 @@ class BubbleNormal extends StatelessWidget {
                     padding: stateTick
                         ? EdgeInsets.fromLTRB(12, 6, 28, 6)
                         : EdgeInsets.symmetric(vertical: 6, horizontal: 12),
-                    child: Text(
+                    child: SelectableText(
                       text,
                       style: textStyle,
                       textAlign: TextAlign.left,
@@ -131,6 +167,7 @@ class BubbleNormal extends StatelessWidget {
             ),
           ),
         ),
+        if (isSender && trailing != null) SizedBox.shrink(),
       ],
     );
   }

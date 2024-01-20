@@ -1,3 +1,31 @@
+## [1.6.0] - 20/01/2024
+
+### For Message Bar
+* Customizable text style for message bar text
+
+### For BubbleNormal Widget
+
+* Added optional [leading] widget for _non senders_
+* Added optional [trailing] widget for _sender_
+* Added [margin] and [padding] properties
+* Added tap callbacks such as [onTap], [onDoubleTap] and [onLongPress].
+* Changes the texts to selectable texts
+
+### For BubbleNormalImage Widget
+
+BubbleNormalImage Widget-
+* Added optional [leading] widget for _non senders_
+* Added optional [trailing] widget for _sender_
+* Added [margin] and [padding] parameters
+* Added Tap Callbacks such as [onTap] and [onLongPress].
+
+### For DateChip Widget
+* Fixes [DateChip] taking full width
+
+### Other
+* Updated the environment to allow support for latest dart sdks
+* Updated the documentation within code to be easier to read
+
 ## [1.5.0] - 11/08/2023
 
 * Customizable constrains for bubbles
