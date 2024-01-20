@@ -1,4 +1,7 @@
-## [1.6.0] - 18/08/2023
+## [1.6.0] - 20/01/2023
+
+### For Message Bar
+* Customizable text style for message bar text
 
 ### For BubbleNormal Widget
 
