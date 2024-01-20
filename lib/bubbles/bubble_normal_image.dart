@@ -2,20 +2,37 @@ import 'package:flutter/material.dart';
 
 const double BUBBLE_RADIUS_IMAGE = 16;
 
-///basic image bubble type
+/// Basic image bubble
 ///
+/// Image bubble should have [id] to work with Hero animations
+/// [id] must be a unique value and is also required
 ///
-/// image bubble should have [id] to work with Hero animations
-/// [id] must be a unique value
-///chat bubble [BorderRadius] can be customized using [bubbleRadius]
-///chat bubble color can be customized using [color]
-///chat bubble tail can be customized  using [tail]
-///chat bubble display image can be changed using [image]
-///[image] is a required parameter
-///[id] must be an unique value for each other
-///[id] is also a required parameter
-///message sender can be changed using [isSender]
-///[sent],[delivered] and [seen] can be used to display the message state
+/// The [BorderRadius] can be customized using [bubbleRadius]
+///
+/// [margin] and [padding] can be used to add space around or within
+/// the bubble respectively
+///
+/// Color can be customized using [color]
+///
+/// [tail] boolean is used to add or remove a tail accoring to the sender type
+///
+/// Display image can be changed using [image]
+///
+/// [image] is a required parameter
+///
+/// Message sender can be changed using [isSender]
+///
+/// [sent], [delivered] and [seen] can be used to display the message state
+///
+/// The [TextStyle] can be customized using [textStyle]
+///
+/// [leading] is the widget that's infront of the bubble when [isSender]
+/// is false.
+///
+/// [trailing] is the widget that's at the end of the bubble when [isSender]
+/// is true.
+///
+/// [onTap], [onLongPress] are callbacks used to register tap gestures
 
 class BubbleNormalImage extends StatelessWidget {
   static const loadingWidget = Center(
@@ -31,13 +48,22 @@ class BubbleNormalImage extends StatelessWidget {
   final bool sent;
   final bool delivered;
   final bool seen;
-  final void Function()? onTap;
+  final VoidCallback? onTap;
+  final VoidCallback? onLongPress;
+  final Widget? leading;
+  final Widget? trailing;
+  final EdgeInsets? margin;
+  final EdgeInsets? padding;
 
   const BubbleNormalImage({
     Key? key,
     required this.id,
     required this.image,
     this.bubbleRadius = BUBBLE_RADIUS_IMAGE,
+    this.margin = EdgeInsets.zero,
+    this.padding = const EdgeInsets.fromLTRB(16, 8, 16, 8),
+    this.leading,
+    this.trailing,
     this.isSender = true,
     this.color = Colors.white70,
     this.tail = true,
@@ -45,6 +71,7 @@ class BubbleNormalImage extends StatelessWidget {
     this.delivered = false,
     this.seen = false,
     this.onTap,
+    this.onLongPress,
   }) : super(key: key);
 
   /// image bubble builder method
@@ -85,67 +112,69 @@ class BubbleNormalImage extends StatelessWidget {
                   width: 5,
                 ),
               )
-            : Container(),
-        Padding(
-          padding: const EdgeInsets.fromLTRB(16, 8, 16, 8),
-          child: Container(
-            constraints: BoxConstraints(
-                maxWidth: MediaQuery.of(context).size.width * .5,
-                maxHeight: MediaQuery.of(context).size.width * .5),
-            child: GestureDetector(
-                child: Hero(
-                  tag: id,
-                  child: Stack(
-                    children: [
-                      Container(
-                        decoration: BoxDecoration(
-                          color: color,
-                          borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(bubbleRadius),
-                            topRight: Radius.circular(bubbleRadius),
-                            bottomLeft: Radius.circular(tail
-                                ? isSender
-                                    ? bubbleRadius
-                                    : 0
-                                : BUBBLE_RADIUS_IMAGE),
-                            bottomRight: Radius.circular(tail
-                                ? isSender
-                                    ? 0
-                                    : bubbleRadius
-                                : BUBBLE_RADIUS_IMAGE),
-                          ),
-                        ),
-                        child: Padding(
-                          padding: const EdgeInsets.all(4.0),
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(bubbleRadius),
-                            child: image,
-                          ),
+            : leading ?? Container(),
+        Container(
+          padding: padding,
+          margin: margin,
+          constraints: BoxConstraints(
+            maxWidth: MediaQuery.of(context).size.width * .5,
+            maxHeight: MediaQuery.of(context).size.width * .5,
+          ),
+          child: GestureDetector(
+              child: Hero(
+                tag: id,
+                child: Stack(
+                  children: [
+                    Container(
+                      decoration: BoxDecoration(
+                        color: color,
+                        borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(bubbleRadius),
+                          topRight: Radius.circular(bubbleRadius),
+                          bottomLeft: Radius.circular(tail
+                              ? isSender
+                                  ? bubbleRadius
+                                  : 0
+                              : BUBBLE_RADIUS_IMAGE),
+                          bottomRight: Radius.circular(tail
+                              ? isSender
+                                  ? 0
+                                  : bubbleRadius
+                              : BUBBLE_RADIUS_IMAGE),
                         ),
                       ),
-                      stateIcon != null && stateTick
-                          ? Positioned(
-                              bottom: 4,
-                              right: 6,
-                              child: stateIcon,
-                            )
-                          : SizedBox(
-                              width: 1,
-                            ),
-                    ],
-                  ),
+                      child: Padding(
+                        padding: const EdgeInsets.all(4.0),
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(bubbleRadius),
+                          child: image,
+                        ),
+                      ),
+                    ),
+                    stateIcon != null && stateTick
+                        ? Positioned(
+                            bottom: 4,
+                            right: 6,
+                            child: stateIcon,
+                          )
+                        : SizedBox(
+                            width: 1,
+                          ),
+                  ],
                 ),
-                onTap: onTap ??
-                    () {
-                      Navigator.push(context, MaterialPageRoute(builder: (_) {
-                        return _DetailScreen(
-                          tag: id,
-                          image: image,
-                        );
-                      }));
-                    }),
-          ),
-        )
+              ),
+              onLongPress: onLongPress,
+              onTap: onTap ??
+                  () {
+                    Navigator.push(context, MaterialPageRoute(builder: (_) {
+                      return _DetailScreen(
+                        tag: id,
+                        image: image,
+                      );
+                    }));
+                  }),
+        ),
+        if (isSender && trailing != null) SizedBox.shrink(),
       ],
     );
   }
