@@ -46,6 +46,7 @@ class MessageBar extends StatelessWidget {
   final Color sendButtonColor;
   final Decoration? messageBarDecoration;
   final InputDecoration? inputDecoration;
+  final EdgeInsets? messageBarPadding;
   final ButtonStyle? buttonStyle;
   final void Function(String)? onTextChanged;
   final void Function(String)? onSend;
@@ -68,6 +69,7 @@ class MessageBar extends StatelessWidget {
     this.textFieldTextStyle = const TextStyle(color: Colors.black),
     this.inputDecoration,
     this.messageBarDecoration,
+    this.messageBarPadding,
     this.buttonStyle,
     this.onTextChanged,
     this.onSend,
@@ -126,10 +128,8 @@ class MessageBar extends StatelessWidget {
             Container(
               color: messageBarColor,
               decoration: messageBarDecoration,
-              padding: const EdgeInsets.symmetric(
-                vertical: 5,
-                horizontal: 16,
-              ),
+              padding: messageBarPadding ??
+                  EdgeInsetsDirectional.fromSTEB(16, 5, 5, 8),
               child: Row(
                 children: [
                   ...actions,
