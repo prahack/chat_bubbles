@@ -44,6 +44,9 @@ class MessageBar extends StatelessWidget {
   final TextStyle messageBarHintStyle;
   final TextStyle textFieldTextStyle;
   final Color sendButtonColor;
+  final Decoration? messageBarDecoration;
+  final InputDecoration? inputDecoration;
+  final ButtonStyle? buttonStyle;
   final void Function(String)? onTextChanged;
   final void Function(String)? onSend;
   final void Function()? onTapCloseReply;
@@ -59,10 +62,13 @@ class MessageBar extends StatelessWidget {
     this.replyIconColor = Colors.blue,
     this.replyCloseColor = Colors.black12,
     this.messageBarColor = const Color(0xffF4F4F5),
-    this.sendButtonColor = Colors.blue,
+    this.sendButtonColor = Colors.red,
     this.messageBarHintText = "Type your message here",
     this.messageBarHintStyle = const TextStyle(fontSize: 16),
     this.textFieldTextStyle = const TextStyle(color: Colors.black),
+    this.inputDecoration,
+    this.messageBarDecoration,
+    this.buttonStyle,
     this.onTextChanged,
     this.onSend,
     this.onTapCloseReply,
@@ -119,12 +125,13 @@ class MessageBar extends StatelessWidget {
                 : Container(),
             Container(
               color: messageBarColor,
+              decoration: messageBarDecoration,
               padding: const EdgeInsets.symmetric(
-                vertical: 8,
+                vertical: 5,
                 horizontal: 16,
               ),
               child: Row(
-                children: <Widget>[
+                children: [
                   ...actions,
                   Expanded(
                     child: Container(
@@ -136,49 +143,55 @@ class MessageBar extends StatelessWidget {
                         maxLines: 3,
                         onChanged: onTextChanged,
                         style: textFieldTextStyle,
-                        decoration: InputDecoration(
-                          hintText: messageBarHintText,
-                          hintMaxLines: 1,
-                          contentPadding: const EdgeInsets.symmetric(
-                              horizontal: 8.0, vertical: 10),
-                          hintStyle: messageBarHintStyle,
-                          fillColor: Colors.white,
-                          filled: true,
-                          enabledBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(30.0),
-                            borderSide: const BorderSide(
-                              color: Colors.white,
-                              width: 0.2,
+                        decoration: inputDecoration ??
+                            InputDecoration(
+                              hintText: messageBarHintText,
+                              hintMaxLines: 1,
+                              contentPadding: const EdgeInsets.symmetric(
+                                  horizontal: 8.0, vertical: 10),
+                              hintStyle: messageBarHintStyle,
+                              fillColor: Colors.white,
+                              filled: true,
+                              enabledBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(30.0),
+                                borderSide: const BorderSide(
+                                  color: Colors.white,
+                                  width: 0.2,
+                                ),
+                              ),
+                              focusedBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(30.0),
+                                borderSide: const BorderSide(
+                                  color: Colors.black26,
+                                  width: 0.2,
+                                ),
+                              ),
                             ),
-                          ),
-                          focusedBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(30.0),
-                            borderSide: const BorderSide(
-                              color: Colors.black26,
-                              width: 0.2,
-                            ),
-                          ),
-                        ),
                       ),
                     ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 16),
-                    child: InkWell(
+                  TextButton(
+                    style: buttonStyle ??
+                        TextButton.styleFrom(
+                          padding: EdgeInsets.zero,
+                          shape: RoundedRectangleBorder(),
+                        ),
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(vertical: 11),
                       child: Icon(
                         Icons.send,
                         color: sendButtonColor,
                         size: 24,
                       ),
-                      onTap: () {
-                        if (_textController.text.trim() != '') {
-                          if (onSend != null) {
-                            onSend!(_textController.text.trim());
-                          }
-                          _textController.text = '';
-                        }
-                      },
                     ),
+                    onPressed: () {
+                      if (_textController.text.trim() != '') {
+                        if (onSend != null) {
+                          onSend!(_textController.text.trim());
+                        }
+                        _textController.text = '';
+                      }
+                    },
                   ),
                 ],
               ),
