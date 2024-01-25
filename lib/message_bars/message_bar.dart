@@ -35,7 +35,7 @@ class MessageBar extends StatelessWidget {
   final bool replying;
   final String replyingTo;
   final List<Widget> actions;
-  final TextEditingController _textController = TextEditingController();
+  final TextEditingController textController;
   final Color replyWidgetColor;
   final Color replyIconColor;
   final Color replyCloseColor;
@@ -63,12 +63,13 @@ class MessageBar extends StatelessWidget {
     this.replyIconColor = Colors.blue,
     this.replyCloseColor = Colors.black12,
     this.messageBarColor = const Color(0xffF4F4F5),
-    this.sendButtonColor = Colors.red,
+    this.sendButtonColor = Colors.blue,
     this.messageBarHintText = "Type your message here",
     this.messageBarHintStyle = const TextStyle(fontSize: 16),
     this.textFieldTextStyle = const TextStyle(color: Colors.black),
     this.inputDecoration,
     this.messageBarDecoration,
+    required this.textController,
     this.messageBarPadding,
     this.buttonStyle,
     this.onTextChanged,
@@ -136,7 +137,7 @@ class MessageBar extends StatelessWidget {
                   Expanded(
                     child: Container(
                       child: TextField(
-                        controller: _textController,
+                        controller: textController,
                         keyboardType: TextInputType.multiline,
                         textCapitalization: TextCapitalization.sentences,
                         minLines: 1,
@@ -185,11 +186,11 @@ class MessageBar extends StatelessWidget {
                       ),
                     ),
                     onPressed: () {
-                      if (_textController.text.trim() != '') {
+                      if (textController.text.trim() != '') {
                         if (onSend != null) {
-                          onSend!(_textController.text.trim());
+                          onSend!(textController.text.trim());
                         }
-                        _textController.text = '';
+                        textController.text = '';
                       }
                     },
                   ),
