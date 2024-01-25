@@ -46,7 +46,7 @@ class MessageBar extends StatelessWidget {
   final Color sendButtonColor;
   final Decoration? messageBarDecoration;
   final InputDecoration? inputDecoration;
-  final EdgeInsets? messageBarPadding;
+  final EdgeInsetsGeometry? messageBarPadding;
   final ButtonStyle? buttonStyle;
   final void Function(String)? onTextChanged;
   final void Function(String)? onSend;

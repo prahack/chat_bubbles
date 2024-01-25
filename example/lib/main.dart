@@ -3,40 +3,44 @@ import 'package:chat_bubbles/chat_bubbles.dart';
 import 'package:audioplayers/audioplayers.dart';
 import "package:cached_network_image/cached_network_image.dart";
 
-void main() => runApp(MyApp());
+void main() => runApp(const MyApp());
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'chat bubble example',
       theme: ThemeData(
         primarySwatch: Colors.blue,
+        useMaterial3: false,
       ),
-      home: MyHomePage(title: 'chat bubble example'),
+      home: const MyHomePage(title: 'chat bubble example'),
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
   final String title;
-  MyHomePage({Key? key, required this.title}) : super(key: key);
+  const MyHomePage({Key? key, required this.title}) : super(key: key);
 
   @override
   _MyHomePageState createState() => _MyHomePageState();
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  AudioPlayer audioPlayer = new AudioPlayer();
-  Duration duration = new Duration();
-  Duration position = new Duration();
+  AudioPlayer audioPlayer = AudioPlayer();
+  Duration duration = const Duration();
+  Duration position = const Duration();
   bool isPlaying = false;
   bool isLoading = false;
   bool isPause = false;
 
   @override
   Widget build(BuildContext context) {
-    final now = new DateTime.now();
+    final now = DateTime.now();
+
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
@@ -54,7 +58,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   delivered: true,
                 ),
                 BubbleNormalAudio(
-                  color: Color(0xFFE8E8EE),
+                  color: const Color(0xFFE8E8EE),
                   duration: duration.inSeconds.toDouble(),
                   position: position.inSeconds.toDouble(),
                   isPlaying: isPlaying,
@@ -67,9 +71,9 @@ class _MyHomePageState extends State<MyHomePage> {
                 BubbleNormal(
                   text: 'bubble normal with tail',
                   isSender: false,
-                  color: Color(0xFF1B97F3),
+                  color: const Color(0xFF1B97F3),
                   tail: true,
-                  textStyle: TextStyle(
+                  textStyle: const TextStyle(
                     fontSize: 20,
                     color: Colors.white,
                   ),
@@ -77,32 +81,32 @@ class _MyHomePageState extends State<MyHomePage> {
                 BubbleNormal(
                   text: 'bubble normal with tail',
                   isSender: true,
-                  color: Color(0xFFE8E8EE),
+                  color: const Color(0xFFE8E8EE),
                   tail: true,
                   sent: true,
                 ),
                 DateChip(
-                  date: new DateTime(now.year, now.month, now.day - 2),
+                  date: DateTime(now.year, now.month, now.day - 2),
                 ),
                 BubbleNormal(
                   text: 'bubble normal without tail',
                   isSender: false,
-                  color: Color(0xFF1B97F3),
+                  color: const Color(0xFF1B97F3),
                   tail: false,
-                  textStyle: TextStyle(
+                  textStyle: const TextStyle(
                     fontSize: 20,
                     color: Colors.white,
                   ),
                 ),
                 BubbleNormal(
                   text: 'bubble normal without tail',
-                  color: Color(0xFFE8E8EE),
+                  color: const Color(0xFFE8E8EE),
                   tail: false,
                   sent: true,
                   seen: true,
                   delivered: true,
                 ),
-                BubbleSpecialOne(
+                const BubbleSpecialOne(
                   text: 'bubble special one with tail',
                   isSender: false,
                   color: Color(0xFF1B97F3),
@@ -112,14 +116,14 @@ class _MyHomePageState extends State<MyHomePage> {
                   ),
                 ),
                 DateChip(
-                  date: new DateTime(now.year, now.month, now.day - 1),
+                  date: DateTime(now.year, now.month, now.day - 1),
                 ),
-                BubbleSpecialOne(
+                const BubbleSpecialOne(
                   text: 'bubble special one with tail',
                   color: Color(0xFFE8E8EE),
                   seen: true,
                 ),
-                BubbleSpecialOne(
+                const BubbleSpecialOne(
                   text: 'bubble special one without tail',
                   isSender: false,
                   tail: false,
@@ -129,13 +133,13 @@ class _MyHomePageState extends State<MyHomePage> {
                     color: Colors.black,
                   ),
                 ),
-                BubbleSpecialOne(
+                const BubbleSpecialOne(
                   text: 'bubble special one without tail',
                   tail: false,
                   color: Color(0xFFE8E8EE),
                   sent: true,
                 ),
-                BubbleSpecialTwo(
+                const BubbleSpecialTwo(
                   text: 'bubble special tow with tail',
                   isSender: false,
                   color: Color(0xFF1B97F3),
@@ -147,13 +151,13 @@ class _MyHomePageState extends State<MyHomePage> {
                 DateChip(
                   date: now,
                 ),
-                BubbleSpecialTwo(
+                const BubbleSpecialTwo(
                   text: 'bubble special tow with tail',
                   isSender: true,
                   color: Color(0xFFE8E8EE),
                   sent: true,
                 ),
-                BubbleSpecialTwo(
+                const BubbleSpecialTwo(
                   text: 'bubble special tow without tail',
                   isSender: false,
                   tail: false,
@@ -163,37 +167,37 @@ class _MyHomePageState extends State<MyHomePage> {
                     color: Colors.black,
                   ),
                 ),
-                BubbleSpecialTwo(
+                const BubbleSpecialTwo(
                   text: 'bubble special tow without tail',
                   tail: false,
                   color: Color(0xFFE8E8EE),
                   delivered: true,
                 ),
-                BubbleSpecialThree(
+                const BubbleSpecialThree(
                   text: 'bubble special three without tail',
                   color: Color(0xFF1B97F3),
                   tail: false,
                   textStyle: TextStyle(color: Colors.white, fontSize: 16),
                 ),
-                BubbleSpecialThree(
+                const BubbleSpecialThree(
                   text: 'bubble special three with tail',
                   color: Color(0xFF1B97F3),
                   tail: true,
                   textStyle: TextStyle(color: Colors.white, fontSize: 16),
                 ),
-                BubbleSpecialThree(
+                const BubbleSpecialThree(
                   text: "bubble special three without tail",
                   color: Color(0xFFE8E8EE),
                   tail: false,
                   isSender: false,
                 ),
-                BubbleSpecialThree(
+                const BubbleSpecialThree(
                   text: "bubble special three with tail",
                   color: Color(0xFFE8E8EE),
                   tail: true,
                   isSender: false,
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 100,
                 )
               ],
@@ -201,9 +205,16 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
           MessageBar(
             onSend: (_) => print(_),
+            // inputDecoration: const InputDecoration(
+            //   hintMaxLines: 1,
+            //   contentPadding:
+            //       EdgeInsets.symmetric(horizontal: 8.0, vertical: 15),
+            //   fillColor: Colors.white,
+            //   filled: true,
+            // ),
             actions: [
               InkWell(
-                child: Icon(
+                child: const Icon(
                   Icons.add,
                   color: Colors.black,
                   size: 24,
@@ -211,9 +222,9 @@ class _MyHomePageState extends State<MyHomePage> {
                 onTap: () {},
               ),
               Padding(
-                padding: EdgeInsets.only(left: 8, right: 8),
+                padding: const EdgeInsets.only(left: 8, right: 8),
                 child: InkWell(
-                  child: Icon(
+                  child: const Icon(
                     Icons.camera_alt,
                     color: Colors.green,
                     size: 24,
@@ -231,7 +242,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   Widget _image() {
     return Container(
-      constraints: BoxConstraints(
+      constraints: const BoxConstraints(
         minHeight: 20.0,
         minWidth: 20.0,
       ),
@@ -246,13 +257,13 @@ class _MyHomePageState extends State<MyHomePage> {
 
   void _changeSeek(double value) {
     setState(() {
-      audioPlayer.seek(new Duration(seconds: value.toInt()));
+      audioPlayer.seek(Duration(seconds: value.toInt()));
     });
   }
 
   void _playAudio() async {
-    final url =
-        'https://file-examples.com/storage/fef1706276640fa2f99a5a4/2017/11/file_example_MP3_700KB.mp3';
+    const url =
+        'https://commondatastorage.googleapis.com/codeskulptor-assets/Epoq-Lepidoptera.ogg';
     if (isPause) {
       await audioPlayer.resume();
       setState(() {
@@ -289,8 +300,8 @@ class _MyHomePageState extends State<MyHomePage> {
     audioPlayer.onPlayerComplete.listen((event) {
       setState(() {
         isPlaying = false;
-        duration = new Duration();
-        position = new Duration();
+        duration = const Duration();
+        position = const Duration();
       });
     });
   }
