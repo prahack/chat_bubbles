@@ -51,6 +51,7 @@ class MessageBar extends StatelessWidget {
   final void Function(String)? onSubmittedTextFiled;
   final void Function()? onEditingCompleteTextFiled;
   final TextInputAction? textInputAction;
+  final FocusNode? focusNode;
   final void Function(String)? onTextChanged;
   final void Function(String)? onSend;
   final void Function()? onTapCloseReply;
@@ -81,6 +82,7 @@ class MessageBar extends StatelessWidget {
     this.onTapCloseReply,
     this.onSubmittedTextFiled,
     this.onEditingCompleteTextFiled,
+    this.focusNode,
   });
 
   /// [MessageBar] builder method
@@ -149,6 +151,7 @@ class MessageBar extends StatelessWidget {
                         textInputAction: textInputAction,
                         keyboardType: TextInputType.multiline,
                         textCapitalization: TextCapitalization.sentences,
+                        focusNode: focusNode,
                         minLines: 1,
                         maxLines: 3,
                         onChanged: onTextChanged,
