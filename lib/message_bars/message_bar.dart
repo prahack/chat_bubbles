@@ -48,6 +48,7 @@ class MessageBar extends StatelessWidget {
   final InputDecoration? inputDecoration;
   final EdgeInsetsGeometry? messageBarPadding;
   final ButtonStyle? buttonStyle;
+  final TextInputAction? textInputAction;
   final void Function(String)? onTextChanged;
   final void Function(String)? onSend;
   final void Function()? onTapCloseReply;
@@ -71,6 +72,7 @@ class MessageBar extends StatelessWidget {
     this.messageBarDecoration,
     required this.textController,
     this.messageBarPadding,
+    this.textInputAction,
     this.buttonStyle,
     this.onTextChanged,
     this.onSend,
@@ -138,6 +140,7 @@ class MessageBar extends StatelessWidget {
                     child: Container(
                       child: TextField(
                         controller: textController,
+                        textInputAction: textInputAction,
                         keyboardType: TextInputType.multiline,
                         textCapitalization: TextCapitalization.sentences,
                         minLines: 1,
