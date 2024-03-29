@@ -20,6 +20,10 @@ import 'package:flutter/material.dart';
 /// [replyWidgetColor] is the reply widget color
 /// [replyIconColor] is the reply icon color on the left side of reply widget
 /// [replyCloseColor] is the close icon color on the right side of the reply
+/// [textFieldColor] is the fill color of the message textfield
+/// [textFieldBorderColor] is the  border color of the message textfield
+/// [textFieldBorderRadius] is the  border radius of the message textfield
+/// [textFieldDecoration] is the input decoration for the message text field
 /// widget
 /// [messageBarColor] is the color of the message bar
 /// [sendButtonColor] is the color of the send button
@@ -44,6 +48,10 @@ class MessageBar extends StatelessWidget {
   final TextStyle messageBarHintStyle;
   final TextStyle textFieldTextStyle;
   final Color sendButtonColor;
+  final Color textFieldColor;
+  final Color textFieldBorderColor;
+  final double textFieldBorderRadius;
+  final InputDecoration? textFieldDecoration;
   final void Function(String)? onTextChanged;
   final void Function(String)? onSend;
   final void Function()? onTapCloseReply;
@@ -63,6 +71,10 @@ class MessageBar extends StatelessWidget {
     this.messageBarHintText = "Type your message here",
     this.messageBarHintStyle = const TextStyle(fontSize: 16),
     this.textFieldTextStyle = const TextStyle(color: Colors.black),
+    this.textFieldColor = Colors.white,
+    this.textFieldBorderColor = Colors.white,
+    this.textFieldBorderRadius = 30,
+    this.textFieldDecoration,
     this.onTextChanged,
     this.onSend,
     this.onTapCloseReply,
@@ -95,7 +107,7 @@ class MessageBar extends StatelessWidget {
                         Expanded(
                           child: Container(
                             child: Text(
-                              'Re : ' + replyingTo,
+                              'Re : $replyingTo',
                               overflow: TextOverflow.ellipsis,
                             ),
                           ),
@@ -136,29 +148,31 @@ class MessageBar extends StatelessWidget {
                         maxLines: 3,
                         onChanged: onTextChanged,
                         style: textFieldTextStyle,
-                        decoration: InputDecoration(
-                          hintText: messageBarHintText,
-                          hintMaxLines: 1,
-                          contentPadding: const EdgeInsets.symmetric(
-                              horizontal: 8.0, vertical: 10),
-                          hintStyle: messageBarHintStyle,
-                          fillColor: Colors.white,
-                          filled: true,
-                          enabledBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(30.0),
-                            borderSide: const BorderSide(
-                              color: Colors.white,
-                              width: 0.2,
+                        decoration: textFieldDecoration ??
+                            InputDecoration(
+                              hintText: messageBarHintText,
+                              hintMaxLines: 1,
+                              contentPadding: const EdgeInsets.symmetric(
+                                  horizontal: 15, vertical: 10),
+                              hintStyle: messageBarHintStyle,
+                              fillColor: textFieldColor,
+                              filled: true,
+                              enabledBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(
+                                    textFieldBorderRadius),
+                                borderSide: BorderSide(
+                                  color: textFieldBorderColor,
+                                  width: 0.2,
+                                ),
+                              ),
+                              focusedBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(30.0),
+                                borderSide: const BorderSide(
+                                  color: Colors.black26,
+                                  width: 0.2,
+                                ),
+                              ),
                             ),
-                          ),
-                          focusedBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(30.0),
-                            borderSide: const BorderSide(
-                              color: Colors.black26,
-                              width: 0.2,
-                            ),
-                          ),
-                        ),
                       ),
                     ),
                   ),
