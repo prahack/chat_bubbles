@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:chat_bubbles/chat_bubbles.dart';
 import 'package:audioplayers/audioplayers.dart';
@@ -26,7 +28,7 @@ class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key, required this.title}) : super(key: key);
 
   @override
-  _MyHomePageState createState() => _MyHomePageState();
+  State<MyHomePage> createState() => _MyHomePageState();
 }
 
 class _MyHomePageState extends State<MyHomePage> {
@@ -204,7 +206,7 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
           ),
           MessageBar(
-            onSend: (_) => print(_),
+            onSend: (_) => log(_),
             // inputDecoration: const InputDecoration(
             //   hintMaxLines: 1,
             //   contentPadding:
@@ -212,6 +214,7 @@ class _MyHomePageState extends State<MyHomePage> {
             //   fillColor: Colors.white,
             //   filled: true,
             // ),
+            textController: TextEditingController(),
             actions: [
               InkWell(
                 child: const Icon(
