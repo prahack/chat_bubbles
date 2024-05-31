@@ -35,7 +35,7 @@ class MessageBar extends StatelessWidget {
   final bool replying;
   final String replyingTo;
   final List<Widget> actions;
-  final TextEditingController _textController = TextEditingController();
+  final TextEditingController textController;
   final Color replyWidgetColor;
   final Color replyIconColor;
   final Color replyCloseColor;
@@ -44,6 +44,14 @@ class MessageBar extends StatelessWidget {
   final TextStyle messageBarHintStyle;
   final TextStyle textFieldTextStyle;
   final Color sendButtonColor;
+  final Decoration? messageBarDecoration;
+  final InputDecoration? inputDecoration;
+  final EdgeInsetsGeometry? messageBarPadding;
+  final ButtonStyle? buttonStyle;
+  final void Function(String)? onSubmittedTextFiled;
+  final void Function()? onEditingCompleteTextFiled;
+  final TextInputAction? textInputAction;
+  final FocusNode? focusNode;
   final void Function(String)? onTextChanged;
   final void Function(String)? onSend;
   final void Function()? onTapCloseReply;
@@ -63,9 +71,18 @@ class MessageBar extends StatelessWidget {
     this.messageBarHintText = "Type your message here",
     this.messageBarHintStyle = const TextStyle(fontSize: 16),
     this.textFieldTextStyle = const TextStyle(color: Colors.black),
+    this.inputDecoration,
+    this.messageBarDecoration,
+    required this.textController,
+    this.messageBarPadding,
+    this.textInputAction,
+    this.buttonStyle,
     this.onTextChanged,
     this.onSend,
     this.onTapCloseReply,
+    this.onSubmittedTextFiled,
+    this.onEditingCompleteTextFiled,
+    this.focusNode,
   });
 
   /// [MessageBar] builder method
@@ -119,66 +136,75 @@ class MessageBar extends StatelessWidget {
                 : Container(),
             Container(
               color: messageBarColor,
-              padding: const EdgeInsets.symmetric(
-                vertical: 8,
-                horizontal: 16,
-              ),
+              decoration: messageBarDecoration,
+              padding: messageBarPadding ??
+                  EdgeInsetsDirectional.fromSTEB(16, 5, 5, 8),
               child: Row(
-                children: <Widget>[
+                children: [
                   ...actions,
                   Expanded(
                     child: Container(
                       child: TextField(
-                        controller: _textController,
+                        onSubmitted: onSubmittedTextFiled,
+                        onEditingComplete: onEditingCompleteTextFiled,
+                        controller: textController,
+                        textInputAction: textInputAction,
                         keyboardType: TextInputType.multiline,
                         textCapitalization: TextCapitalization.sentences,
+                        focusNode: focusNode,
                         minLines: 1,
                         maxLines: 3,
                         onChanged: onTextChanged,
                         style: textFieldTextStyle,
-                        decoration: InputDecoration(
-                          hintText: messageBarHintText,
-                          hintMaxLines: 1,
-                          contentPadding: const EdgeInsets.symmetric(
-                              horizontal: 8.0, vertical: 10),
-                          hintStyle: messageBarHintStyle,
-                          fillColor: Colors.white,
-                          filled: true,
-                          enabledBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(30.0),
-                            borderSide: const BorderSide(
-                              color: Colors.white,
-                              width: 0.2,
+                        decoration: inputDecoration ??
+                            InputDecoration(
+                              hintText: messageBarHintText,
+                              hintMaxLines: 1,
+                              contentPadding: const EdgeInsets.symmetric(
+                                  horizontal: 8.0, vertical: 10),
+                              hintStyle: messageBarHintStyle,
+                              fillColor: Colors.white,
+                              filled: true,
+                              enabledBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(30.0),
+                                borderSide: const BorderSide(
+                                  color: Colors.white,
+                                  width: 0.2,
+                                ),
+                              ),
+                              focusedBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(30.0),
+                                borderSide: const BorderSide(
+                                  color: Colors.black26,
+                                  width: 0.2,
+                                ),
+                              ),
                             ),
-                          ),
-                          focusedBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(30.0),
-                            borderSide: const BorderSide(
-                              color: Colors.black26,
-                              width: 0.2,
-                            ),
-                          ),
-                        ),
                       ),
                     ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 16),
-                    child: InkWell(
+                  TextButton(
+                    style: buttonStyle ??
+                        TextButton.styleFrom(
+                          padding: EdgeInsets.zero,
+                          shape: RoundedRectangleBorder(),
+                        ),
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(vertical: 11),
                       child: Icon(
                         Icons.send,
                         color: sendButtonColor,
                         size: 24,
                       ),
-                      onTap: () {
-                        if (_textController.text.trim() != '') {
-                          if (onSend != null) {
-                            onSend!(_textController.text.trim());
-                          }
-                          _textController.text = '';
-                        }
-                      },
                     ),
+                    onPressed: () {
+                      if (textController.text.trim() != '') {
+                        if (onSend != null) {
+                          onSend!(textController.text.trim());
+                        }
+                        textController.text = '';
+                      }
+                    },
                   ),
                 ],
               ),
