@@ -5,17 +5,29 @@ const double BUBBLE_RADIUS_AUDIO = 16;
 ///basic chat bubble type audio message widget
 ///
 /// [onSeekChanged] double pass function to take actions on seek changes
+///
 /// [onPlayPauseButtonClick] void function to handle play pause button click
+///
 /// [isPlaying],[isPause] parameters to handle playing state
+///
 ///[duration] is the duration of the audio message in seconds
-///[position is the current position of the audio message playing in seconds
+///
+///[position] is the current position of the audio message playing in seconds
+///
 ///[isLoading] is the loading state of the audio
+///
 ///ex:- fetching from internet or loading from local storage
+///
 ///chat bubble [BorderRadius] can be customized using [bubbleRadius]
+///
 ///chat bubble color can be customized using [color]
+///
 ///chat bubble tail can be customized  using [tail]
+///
 ///message sender can be changed using [isSender]
+///
 ///[sent],[delivered] and [seen] can be used to display the message state
+///
 ///chat bubble [TextStyle] can be customized using [textStyle]
 
 class BubbleNormalAudio extends StatelessWidget {

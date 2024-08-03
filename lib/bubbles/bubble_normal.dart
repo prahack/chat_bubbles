@@ -7,15 +7,20 @@ const double BUBBLE_RADIUS = 16;
 /// The [BorderRadius] can be customized using [bubbleRadius]
 ///
 /// [margin] and [padding] can be used to add space around or within
-/// the bubble respectively
+/// the bubble respectively.
+///
+/// Default [margin] value is [EdgeInsets.zero] and
+/// default padding value is [EdgeInsets.symmetric(horizontal: 16, vertical: 2)]
 ///
 /// Color can be customized using [color]
 ///
-/// [tail] boolean is used to add or remove a tail accoring to the sender type
+/// [tail] boolean is used to add or remove a tail according to the sender type
 ///
 /// Display message can be changed using [text]
 ///
 /// [text] is the only required parameter
+///
+/// [text] is now selectable
 ///
 /// Message sender can be changed using [isSender]
 ///
