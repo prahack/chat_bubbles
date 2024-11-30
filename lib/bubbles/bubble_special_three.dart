@@ -15,9 +15,13 @@ class BubbleSpecialThree extends StatelessWidget {
   final bool tail;
   final Color color;
   final bool sent;
+  final Color sentColor;
   final bool delivered;
+  final Color deliveredColor;
   final bool seen;
+  final Color seenColor;
   final TextStyle textStyle;
+  final TextAlign textAlign;
   final BoxConstraints? constraints;
 
   const BubbleSpecialThree({
@@ -28,12 +32,16 @@ class BubbleSpecialThree extends StatelessWidget {
     this.color = Colors.white70,
     this.tail = true,
     this.sent = false,
+    this.sentColor = const Color(0xFF97AD8E),
     this.delivered = false,
+    this.deliveredColor = const Color(0xFF97AD8E),
     this.seen = false,
+    this.seenColor = const Color(0xFF92DEDA),
     this.textStyle = const TextStyle(
       color: Colors.black87,
       fontSize: 16,
     ),
+    this.textAlign = TextAlign.left,
   }) : super(key: key);
 
   ///chat bubble builder method
@@ -43,26 +51,26 @@ class BubbleSpecialThree extends StatelessWidget {
     Icon? stateIcon;
     if (sent) {
       stateTick = true;
-      stateIcon = const Icon(
+      stateIcon = Icon(
         Icons.done,
         size: 18,
-        color: Color(0xFF97AD8E),
+        color: sentColor,
       );
     }
     if (delivered) {
       stateTick = true;
-      stateIcon = const Icon(
+      stateIcon = Icon(
         Icons.done_all,
         size: 18,
-        color: Color(0xFF97AD8E),
+        color: deliveredColor,
       );
     }
     if (seen) {
       stateTick = true;
-      stateIcon = const Icon(
+      stateIcon = Icon(
         Icons.done_all,
         size: 18,
-        color: Color(0xFF92DEDA),
+        color: seenColor,
       );
     }
 
@@ -94,7 +102,7 @@ class BubbleSpecialThree extends StatelessWidget {
                   child: Text(
                     text,
                     style: textStyle,
-                    textAlign: TextAlign.left,
+                    textAlign: textAlign,
                   ),
                 ),
                 stateIcon != null && stateTick
