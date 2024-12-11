@@ -72,6 +72,7 @@ class BubbleNormalImage extends StatelessWidget {
     this.delivered = false,
     this.seen = false,
     this.onTap,
+    this.onLongPress,
     this.constraints,
   }) : super(key: key);
 
