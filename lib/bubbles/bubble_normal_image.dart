@@ -54,6 +54,7 @@ class BubbleNormalImage extends StatelessWidget {
   final Widget? trailing;
   final EdgeInsets? margin;
   final EdgeInsets? padding;
+  final BoxConstraints? constraints;
 
   const BubbleNormalImage({
     Key? key,
@@ -72,6 +73,7 @@ class BubbleNormalImage extends StatelessWidget {
     this.seen = false,
     this.onTap,
     this.onLongPress,
+    this.constraints,
   }) : super(key: key);
 
   /// image bubble builder method
@@ -116,10 +118,11 @@ class BubbleNormalImage extends StatelessWidget {
         Container(
           padding: padding,
           margin: margin,
-          constraints: BoxConstraints(
-            maxWidth: MediaQuery.of(context).size.width * .5,
-            maxHeight: MediaQuery.of(context).size.width * .5,
-          ),
+          constraints: constraints ??
+              BoxConstraints(
+                maxWidth: MediaQuery.of(context).size.width * .5,
+                maxHeight: MediaQuery.of(context).size.width * .5,
+              ),
           child: GestureDetector(
               child: Hero(
                 tag: id,
