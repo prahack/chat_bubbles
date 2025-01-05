@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:chat_bubbles/chat_bubbles.dart';
 import 'package:audioplayers/audioplayers.dart';
@@ -28,11 +30,36 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   AudioPlayer audioPlayer = new AudioPlayer();
-  Duration duration = new Duration();
-  Duration position = new Duration();
+  Duration? duration = new Duration();
+  Duration? position = new Duration();
   bool isPlaying = false;
   bool isLoading = false;
   bool isPause = false;
+
+  @override
+  void initState() {
+    super.initState();
+    audioPlayer.onDurationChanged.listen((Duration d) {
+      setState(() {
+        duration = d;
+        isLoading = false;
+      });
+    });
+    audioPlayer.onPositionChanged.listen((Duration p) {
+      if (isPlaying) {
+        setState(() {
+          position = p;
+        });
+      }
+    });
+    audioPlayer.onPlayerComplete.listen((event) {
+      setState(() {
+        isPlaying = false;
+        duration = new Duration();
+        position = new Duration();
+      });
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -55,8 +82,10 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
                 BubbleNormalAudio(
                   color: Color(0xFFE8E8EE),
-                  duration: duration.inSeconds.toDouble(),
-                  position: position.inSeconds.toDouble(),
+                  duration:
+                      duration == null ? 0.0 : duration!.inSeconds.toDouble(),
+                  position:
+                      position == null ? 0.0 : position!.inSeconds.toDouble(),
                   isPlaying: isPlaying,
                   isLoading: isLoading,
                   isPause: isPause,
@@ -251,8 +280,7 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   void _playAudio() async {
-    final url =
-        'https://file-examples.com/storage/fef1706276640fa2f99a5a4/2017/11/file_example_MP3_700KB.mp3';
+    final url = 'https://download.samplelib.com/mp3/sample-15s.mp3';
     if (isPause) {
       await audioPlayer.resume();
       setState(() {
@@ -266,32 +294,28 @@ class _MyHomePageState extends State<MyHomePage> {
         isPause = true;
       });
     } else {
+      log('play: loading');
       setState(() {
         isLoading = true;
       });
       await audioPlayer.play(UrlSource(url));
+      log('play: loaded');
       setState(() {
+        audioPlayer.getDuration().then(
+              (value) => setState(() {
+                log('init duration: $value');
+                duration = value;
+                isLoading = false;
+              }),
+            );
+        audioPlayer.getCurrentPosition().then(
+              (value) => setState(() {
+                log('init position: $value');
+                position = value;
+              }),
+            );
         isPlaying = true;
       });
     }
-
-    audioPlayer.onDurationChanged.listen((Duration d) {
-      setState(() {
-        duration = d;
-        isLoading = false;
-      });
-    });
-    audioPlayer.onPositionChanged.listen((Duration p) {
-      setState(() {
-        position = p;
-      });
-    });
-    audioPlayer.onPlayerComplete.listen((event) {
-      setState(() {
-        isPlaying = false;
-        duration = new Duration();
-        position = new Duration();
-      });
-    });
   }
 }

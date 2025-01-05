@@ -29,8 +29,8 @@ dev_dependencies:
     sdk: flutter
   chat_bubbles:
     path: ../
-  audioplayers: ^3.0.1
-  cached_network_image: ^3.2.3
+  audioplayers: ^6.0.0
+  cached_network_image: ^3.4.0
 
 
 # For information on the generic Dart part of this file, see the
