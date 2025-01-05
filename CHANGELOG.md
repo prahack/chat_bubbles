@@ -1,3 +1,9 @@
+## [1.7.0] - 05/01/2025
+
+* support up-to-date dependencies
+* update the example
+* update the documentation
+
 ## [1.6.0] - 20/01/2024
 
 ### For Message Bar
