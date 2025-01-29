@@ -31,18 +31,16 @@ import 'package:flutter/material.dart';
 /// [onTapCloseReply] is the close button action of the close button on the
 /// reply widget usually change [replying] attribute to `false`
 
-class MessageBar extends StatelessWidget {
+class MessageBar extends StatefulWidget {
   final bool replying;
   final String replyingTo;
   final List<Widget> actions;
-  final TextEditingController _textController = TextEditingController();
   final Color replyWidgetColor;
   final Color replyIconColor;
   final Color replyCloseColor;
   final Color messageBarColor;
-  final String messageBarHintText;
+  final String messageBarHitText;
   final TextStyle messageBarHintStyle;
-  final TextStyle textFieldTextStyle;
   final Color sendButtonColor;
   final void Function(String)? onTextChanged;
   final void Function(String)? onSend;
@@ -60,13 +58,19 @@ class MessageBar extends StatelessWidget {
     this.replyCloseColor = Colors.black12,
     this.messageBarColor = const Color(0xffF4F4F5),
     this.sendButtonColor = Colors.blue,
-    this.messageBarHintText = "Type your message here",
+    this.messageBarHitText = "Type your message here",
     this.messageBarHintStyle = const TextStyle(fontSize: 16),
-    this.textFieldTextStyle = const TextStyle(color: Colors.black),
     this.onTextChanged,
     this.onSend,
     this.onTapCloseReply,
   });
+
+  @override
+  State<MessageBar> createState() => _MessageBarState();
+}
+
+class _MessageBarState extends State<MessageBar> {
+  final TextEditingController _textController = TextEditingController();
 
   /// [MessageBar] builder method
   ///
@@ -78,54 +82,54 @@ class MessageBar extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
-            replying
+            widget.replying
                 ? Container(
-                    color: replyWidgetColor,
-                    padding: const EdgeInsets.symmetric(
-                      vertical: 8,
-                      horizontal: 16,
+                color: widget.replyWidgetColor,
+                padding: const EdgeInsets.symmetric(
+                  vertical: 8,
+                  horizontal: 16,
+                ),
+                child: Row(
+                  children: [
+                    Icon(
+                      Icons.reply,
+                      color: widget.replyIconColor,
+                      size: 24,
                     ),
-                    child: Row(
-                      children: [
-                        Icon(
-                          Icons.reply,
-                          color: replyIconColor,
-                          size: 24,
+                    Expanded(
+                      child: Container(
+                        child: Text(
+                          'Re : ' + widget.replyingTo,
+                          overflow: TextOverflow.ellipsis,
                         ),
-                        Expanded(
-                          child: Container(
-                            child: Text(
-                              'Re : ' + replyingTo,
-                              overflow: TextOverflow.ellipsis,
-                            ),
-                          ),
-                        ),
-                        InkWell(
-                          onTap: onTapCloseReply,
-                          child: Icon(
-                            Icons.close,
-                            color: replyCloseColor,
-                            size: 24,
-                          ),
-                        ),
-                      ],
-                    ))
+                      ),
+                    ),
+                    InkWell(
+                      onTap: widget.onTapCloseReply,
+                      child: Icon(
+                        Icons.close,
+                        color: widget.replyCloseColor,
+                        size: 24,
+                      ),
+                    ),
+                  ],
+                ))
                 : Container(),
-            replying
+            widget.replying
                 ? Container(
-                    height: 1,
-                    color: Colors.grey.shade300,
-                  )
+              height: 1,
+              color: Colors.grey.shade300,
+            )
                 : Container(),
             Container(
-              color: messageBarColor,
+              color: widget.messageBarColor,
               padding: const EdgeInsets.symmetric(
                 vertical: 8,
                 horizontal: 16,
               ),
               child: Row(
                 children: <Widget>[
-                  ...actions,
+                  ...widget.actions,
                   Expanded(
                     child: Container(
                       child: TextField(
@@ -134,14 +138,13 @@ class MessageBar extends StatelessWidget {
                         textCapitalization: TextCapitalization.sentences,
                         minLines: 1,
                         maxLines: 3,
-                        onChanged: onTextChanged,
-                        style: textFieldTextStyle,
+                        onChanged: widget.onTextChanged,
                         decoration: InputDecoration(
-                          hintText: messageBarHintText,
+                          hintText: widget.messageBarHitText,
                           hintMaxLines: 1,
                           contentPadding: const EdgeInsets.symmetric(
                               horizontal: 8.0, vertical: 10),
-                          hintStyle: messageBarHintStyle,
+                          hintStyle: widget.messageBarHintStyle,
                           fillColor: Colors.white,
                           filled: true,
                           enabledBorder: OutlineInputBorder(
@@ -167,13 +170,13 @@ class MessageBar extends StatelessWidget {
                     child: InkWell(
                       child: Icon(
                         Icons.send,
-                        color: sendButtonColor,
+                        color: widget.sendButtonColor,
                         size: 24,
                       ),
                       onTap: () {
                         if (_textController.text.trim() != '') {
-                          if (onSend != null) {
-                            onSend!(_textController.text.trim());
+                          if (widget.onSend != null) {
+                            widget.onSend!(_textController.text.trim());
                           }
                           _textController.text = '';
                         }
