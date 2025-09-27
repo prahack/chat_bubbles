@@ -11,6 +11,7 @@ dependencies:
   flutter:
     sdk: flutter
   intl: ^0.20.1
+  flutter_widget_from_html: ^0.16.0 #**1of3 add dependency..
 
 dev_dependencies:
   flutter_test:

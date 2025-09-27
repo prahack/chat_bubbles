@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_widget_from_html/flutter_widget_from_html.dart'; //**2of3 import it..
 
 ///WhatsApp's chat bubble type
 ///
@@ -91,10 +92,15 @@ class BubbleSpecialOne extends StatelessWidget {
                   padding: stateTick
                       ? EdgeInsets.only(right: 20)
                       : EdgeInsets.symmetric(vertical: 0, horizontal: 0),
-                  child: Text(
+                  // child: Text(
+                  //   text,
+                  //   style: textStyle,
+                  //   textAlign: TextAlign.left,
+                  // ),
+                  // **3of3 edit! 
+                  // if version changes from chat_bubbles ^1.7.0 changes, sync fork by discarding everything and repeating this portion, ))
+                  child: HtmlWidget(
                     text,
-                    style: textStyle,
-                    textAlign: TextAlign.left,
                   ),
                 ),
                 stateIcon != null && stateTick
