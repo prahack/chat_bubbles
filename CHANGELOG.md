@@ -1,3 +1,42 @@
+## [1.8.0] - 17/01/2026
+
+### New Features
+
+#### BubbleReply Widget
+* Added `BubbleReply` widget for displaying quoted/replied messages
+* WhatsApp-style reply bubbles with original message preview
+* Customizable reply indicator line color and background
+* Support for sender name and message preview
+* Tap callbacks for reply section interaction
+
+#### TypingIndicator Widgets
+* Added `TypingIndicator` widget with animated dots
+* Added `TypingIndicatorWave` widget with wave animation style
+* Customizable animation duration and colors
+* Toggle visibility with `showIndicator` parameter
+* Smooth animations optimized for performance
+
+#### BubbleLinkPreview Widget
+* Added `BubbleLinkPreview` widget for URL previews
+* Display link metadata (title, description, image)
+* Optional preview image with error handling
+* Customizable preview card styling
+* Support for messages with or without accompanying text
+
+#### Reaction System
+* Added `BubbleReaction` widget for emoji reactions
+* Added `Reaction` data model for reaction state
+* Added `ReactionPicker` widget for selecting reactions
+* Added `ReactionOverlay` widget for long-press reaction selection
+* Support for multiple reactions per message
+* User reaction highlighting
+* Customizable reaction chip styling
+
+### Improvements
+* Updated example app to showcase all new v1.8.0 features
+* Added comprehensive documentation for new widgets
+* Improved widget organization with new directories (indicators/, reactions/)
+
 ## [1.7.1] - 17/01/2026
 
 ### Breaking Changes
