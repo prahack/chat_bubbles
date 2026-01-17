@@ -106,13 +106,12 @@ packages:
     source: hosted
     version: "1.4.0"
   chat_bubbles:
-    dependency: "direct main"
+    dependency: "direct dev"
     description:
-      name: chat_bubbles
-      sha256: "902bc84e22f9ce6b993d015457067a37d37eb7478bd7b5b185712d5c5329b866"
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.7.0"
+      path: ".."
+      relative: true
+    source: path
+    version: "1.8.0"
   clock:
     dependency: transitive
     description:

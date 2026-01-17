@@ -6,7 +6,7 @@
 ![GitHub Repo stars](https://img.shields.io/github/stars/prahack/chat_bubbles)
 ![GitHub last commit](https://img.shields.io/github/last-commit/prahack/chat_bubbles)
 ![likes](https://img.shields.io/pub/likes/chat_bubbles?logo=dart)
-![popularity](https://img.shields.io/pub/popularity/chat_bubbles?logo=dart)
+![downloads](https://img.shields.io/pub/dm/chat_bubbles?logo=dart)
 ![pub points](https://img.shields.io/pub/points/chat_bubbles?logo=dart)
 
 Flutter chat bubble widgets, similar to the Whatsapp and more shapes. Audio and Image chat bubble widgets are also included. Easy to use and implement chat bubbles.
@@ -17,7 +17,7 @@ Add this to your package's `pubspec.yaml` file:
 
 ```yaml
 dependencies:
-  chat_bubbles: ^1.7.1
+  chat_bubbles: ^1.8.0
 ```
 
 ## Usage
@@ -172,6 +172,83 @@ MessageBar(
       ),
     ],
   ),
+```
+
+## New in v1.8.0
+
+### Reply/Quote Bubble example
+
+```dart
+BubbleReply(
+  repliedMessage: 'This is the original message',
+  repliedMessageSender: 'John Doe',
+  text: 'This is my reply!',
+  isSender: false,
+  color: Color(0xFF1B97F3),
+  replyBorderColor: Colors.white,
+  textStyle: TextStyle(color: Colors.white, fontSize: 16),
+  sent: true,
+),
+```
+
+### Typing Indicator example
+
+```dart
+TypingIndicator(
+  showIndicator: true,
+  bubbleColor: Color(0xFFE8E8EE),
+  dotColor: Colors.black54,
+),
+
+// Alternative wave animation style
+TypingIndicatorWave(
+  showIndicator: true,
+  bubbleColor: Color(0xFFE8E8EE),
+  dotColor: Colors.black54,
+),
+```
+
+### Link Preview Bubble example
+
+```dart
+BubbleLinkPreview(
+  url: 'https://flutter.dev',
+  title: 'Flutter - Build apps for any screen',
+  description: 'Flutter transforms the app development process.',
+  imageUrl: 'https://storage.googleapis.com/cms-storage-bucket/70760bf1e88b184bb1bc.png',
+  text: 'Check out this awesome framework!',
+  isSender: false,
+  color: Color(0xFF1B97F3),
+  textStyle: TextStyle(color: Colors.white, fontSize: 16),
+),
+```
+
+### Bubble Reactions example
+
+```dart
+Column(
+  crossAxisAlignment: CrossAxisAlignment.start,
+  children: [
+    BubbleNormal(
+      text: 'Great work! 🎉',
+      isSender: false,
+      color: Color(0xFF1B97F3),
+    ),
+    BubbleReaction(
+      reactions: [
+        Reaction(emoji: '👍', count: 3, isUserReacted: true),
+        Reaction(emoji: '❤️', count: 2),
+        Reaction(emoji: '🎉', count: 1),
+      ],
+      onReactionTap: (reaction) {
+        print('Tapped on ${reaction.emoji}');
+      },
+      onAddReactionTap: () {
+        print('Add reaction tapped');
+      },
+    ),
+  ],
+),
 ```
 
 ### Main example (Chat View)

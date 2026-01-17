@@ -224,6 +224,104 @@ class _MyHomePageState extends State<MyHomePage> {
                   tail: true,
                   isSender: false,
                 ),
+                DateChip(
+                  date: now,
+                ),
+                // New v1.8.0 Features
+                BubbleReply(
+                  repliedMessage: 'This is the original message being replied to',
+                  repliedMessageSender: 'John Doe',
+                  text: 'This is my reply to your message!',
+                  isSender: false,
+                  color: Color(0xFF1B97F3),
+                  replyBorderColor: Colors.white,
+                  textStyle: TextStyle(color: Colors.white, fontSize: 16),
+                  sent: true,
+                ),
+                BubbleReply(
+                  repliedMessage: 'Thanks for the info',
+                  repliedMessageSender: 'Me',
+                  text: 'You\'re welcome! Happy to help.',
+                  isSender: true,
+                  color: Color(0xFFE8E8EE),
+                  replyBorderColor: Color(0xFF1B97F3),
+                  delivered: true,
+                ),
+                TypingIndicator(
+                  showIndicator: true,
+                  bubbleColor: Color(0xFFE8E8EE),
+                  dotColor: Colors.black54,
+                ),
+                BubbleLinkPreview(
+                  url: 'https://flutter.dev',
+                  title: 'Flutter - Build apps for any screen',
+                  description: 'Flutter transforms the app development process. Build, test, and deploy beautiful mobile, web, desktop, and embedded apps from a single codebase.',
+                  imageUrl: 'https://storage.googleapis.com/cms-storage-bucket/70760bf1e88b184bb1bc.png',
+                  text: 'Check out this awesome framework!',
+                  isSender: false,
+                  color: Color(0xFF1B97F3),
+                  textStyle: TextStyle(color: Colors.white, fontSize: 16),
+                ),
+                BubbleLinkPreview(
+                  url: 'https://pub.dev/packages/chat_bubbles',
+                  title: 'chat_bubbles | Flutter Package',
+                  description: 'Flutter chat bubble widgets, similar to Whatsapp and more shapes. Easy to use and implement chat bubbles.',
+                  text: 'Our package on pub.dev!',
+                  isSender: true,
+                  color: Color(0xFFE8E8EE),
+                  showImage: false,
+                  sent: true,
+                ),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    BubbleNormal(
+                      text: 'Great work on this project! 🎉',
+                      isSender: false,
+                      color: Color(0xFF1B97F3),
+                      textStyle: TextStyle(color: Colors.white, fontSize: 16),
+                    ),
+                    BubbleReaction(
+                      reactions: [
+                        Reaction(emoji: '👍', count: 3, isUserReacted: true),
+                        Reaction(emoji: '❤️', count: 2),
+                        Reaction(emoji: '🎉', count: 1),
+                      ],
+                      onReactionTap: (reaction) {
+                        print('Tapped on ${reaction.emoji}');
+                      },
+                      onAddReactionTap: () {
+                        print('Add reaction tapped');
+                      },
+                      alignRight: false,
+                    ),
+                  ],
+                ),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    BubbleNormal(
+                      text: 'Thanks everyone! 😊',
+                      isSender: true,
+                      color: Color(0xFFE8E8EE),
+                      delivered: true,
+                    ),
+                    BubbleReaction(
+                      reactions: [
+                        Reaction(emoji: '❤️', count: 5, isUserReacted: false),
+                      ],
+                      onReactionTap: (reaction) {
+                        print('Tapped on ${reaction.emoji}');
+                      },
+                      alignRight: true,
+                    ),
+                  ],
+                ),
+                TypingIndicatorWave(
+                  showIndicator: true,
+                  bubbleColor: Color(0xFFE8E8EE),
+                  dotColor: Colors.black54,
+                ),
                 SizedBox(
                   height: 100,
                 )
