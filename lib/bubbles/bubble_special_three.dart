@@ -10,16 +10,26 @@ import 'package:flutter/material.dart';
 ///chat bubble [TextStyle] can be customized using [textStyle]
 
 class BubbleSpecialThree extends StatelessWidget {
+  /// message sender
   final bool isSender;
+  /// message text
   final String text;
+  /// chat bubble tail
   final bool tail;
+  /// chat bubble color
   final Color color;
+  /// message state - whether the message has been sent
   final bool sent;
+  /// message state - whether the message has been delivered
   final bool delivered;
+  /// message state - whether the message has been seen
   final bool seen;
+  /// text style for the message
   final TextStyle textStyle;
+  /// constraints for the chat bubble
   final BoxConstraints? constraints;
 
+  /// Creates a [BubbleSpecialThree] widget
   const BubbleSpecialThree({
     Key? key,
     this.isSender = true,

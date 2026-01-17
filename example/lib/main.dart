@@ -8,6 +8,8 @@ import "package:cached_network_image/cached_network_image.dart";
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -22,16 +24,16 @@ class MyApp extends StatelessWidget {
 
 class MyHomePage extends StatefulWidget {
   final String title;
-  MyHomePage({Key? key, required this.title}) : super(key: key);
+  const MyHomePage({Key? key, required this.title}) : super(key: key);
 
   @override
   _MyHomePageState createState() => _MyHomePageState();
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  AudioPlayer audioPlayer = new AudioPlayer();
-  Duration? duration = new Duration();
-  Duration? position = new Duration();
+  AudioPlayer audioPlayer = AudioPlayer();
+  Duration? duration = Duration();
+  Duration? position = Duration();
   bool isPlaying = false;
   bool isLoading = false;
   bool isPause = false;
@@ -55,15 +57,15 @@ class _MyHomePageState extends State<MyHomePage> {
     audioPlayer.onPlayerComplete.listen((event) {
       setState(() {
         isPlaying = false;
-        duration = new Duration();
-        position = new Duration();
+        duration = Duration();
+        position = Duration();
       });
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    final now = new DateTime.now();
+    final now = DateTime.now();
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
@@ -111,7 +113,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   sent: true,
                 ),
                 DateChip(
-                  date: new DateTime(now.year, now.month, now.day - 2),
+                  date: DateTime(now.year, now.month, now.day - 2),
                 ),
                 BubbleNormal(
                   text: 'bubble normal without tail',
@@ -141,7 +143,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   ),
                 ),
                 DateChip(
-                  date: new DateTime(now.year, now.month, now.day - 1),
+                  date: DateTime(now.year, now.month, now.day - 1),
                 ),
                 BubbleSpecialOne(
                   text: 'bubble special one with tail',
@@ -275,7 +277,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   void _changeSeek(double value) {
     setState(() {
-      audioPlayer.seek(new Duration(seconds: value.toInt()));
+      audioPlayer.seek(Duration(seconds: value.toInt()));
     });
   }
 

@@ -1,3 +1,20 @@
+## [1.7.1] - 17/01/2026
+
+### Breaking Changes
+* **BREAKING:** Renamed public constants to follow lowerCamelCase naming convention:
+  - `BUBBLE_RADIUS` → `defaultBubbleRadius`
+  - `BUBBLE_RADIUS_IMAGE` → `defaultBubbleRadiusImage`
+  - `BUBBLE_RADIUS_AUDIO` → `defaultBubbleRadiusAudio`
+  
+  If you were using these constants directly in your code, you'll need to update the references.
+
+### Code Quality Improvements
+* Added comprehensive documentation comments for all public members
+* Removed unnecessary Container widgets in MessageBar
+* Added `analysis_options.yaml` with `public_member_api_docs` lint rule
+* Fixed all auto-fixable lint issues (removed unnecessary `new`, `this.`, etc.)
+* Improved code formatting and style consistency
+
 ## [1.7.0] - 05/01/2025
 
 * support up-to-date dependencies

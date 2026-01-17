@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
-const double BUBBLE_RADIUS = 16;
+/// chat bubble default [BorderRadius]
+const double defaultBubbleRadius = 16;
 
 /// Basic chat bubble
 ///
@@ -37,31 +38,49 @@ const double BUBBLE_RADIUS = 16;
 /// [onTap], [onDoubleTap], [onLongPress] are callbacks used to register tap gestures
 
 class BubbleNormal extends StatelessWidget {
+  /// chat bubble [BorderRadius]
   final double bubbleRadius;
+  /// message sender
   final bool isSender;
+  /// chat bubble color
   final Color color;
+  /// message text
   final String text;
+  /// chat bubble tail
   final bool tail;
+  /// message state - whether the message has been sent
   final bool sent;
+  /// message state - whether the message has been delivered
   final bool delivered;
+  /// message state - whether the message has been seen
   final bool seen;
+  /// text style for the message
   final TextStyle textStyle;
+  /// constraints for the chat bubble
   final BoxConstraints? constraints;
+  /// widget displayed before the bubble for non-senders
   final Widget? leading;
+  /// widget displayed after the bubble for senders
   final Widget? trailing;
+  /// outer margin of the bubble
   final EdgeInsets margin;
+  /// inner padding of the bubble
   final EdgeInsets padding;
+  /// callback function when the bubble is tapped
   final VoidCallback? onTap;
+  /// callback function when the bubble is double tapped
   final VoidCallback? onDoubleTap;
+  /// callback function when the bubble is long pressed
   final VoidCallback? onLongPress;
 
-  BubbleNormal({
+  /// Creates a [BubbleNormal] widget
+  const BubbleNormal({
     Key? key,
     required this.text,
     this.constraints,
     this.margin = EdgeInsets.zero,
     this.padding = const EdgeInsets.symmetric(horizontal: 16, vertical: 2),
-    this.bubbleRadius = BUBBLE_RADIUS,
+    this.bubbleRadius = defaultBubbleRadius,
     this.isSender = true,
     this.color = Colors.white70,
     this.tail = true,
@@ -138,12 +157,12 @@ class BubbleNormal extends StatelessWidget {
                       ? isSender
                           ? bubbleRadius
                           : 0
-                      : BUBBLE_RADIUS),
+                      : defaultBubbleRadius),
                   bottomRight: Radius.circular(tail
                       ? isSender
                           ? 0
                           : bubbleRadius
-                      : BUBBLE_RADIUS),
+                      : defaultBubbleRadius),
                 ),
               ),
               child: Stack(
