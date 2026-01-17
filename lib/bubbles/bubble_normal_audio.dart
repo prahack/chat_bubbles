@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
-const double BUBBLE_RADIUS_AUDIO = 16;
+///chat bubble default [BorderRadius]
+const double defaultBubbleRadiusAudio = 16;
 
 ///basic chat bubble type audio message widget
 ///
@@ -31,24 +32,41 @@ const double BUBBLE_RADIUS_AUDIO = 16;
 ///chat bubble [TextStyle] can be customized using [textStyle]
 
 class BubbleNormalAudio extends StatelessWidget {
+  /// [onSeekChanged] double pass function to take actions on seek changes
   final void Function(double value) onSeekChanged;
+  /// [onPlayPauseButtonClick] void function to handle play pause button click
   final void Function() onPlayPauseButtonClick;
+  /// [isPlaying],[isPause] parameters to handle playing state
   final bool isPlaying;
+  /// [isPlaying],[isPause] parameters to handle playing state
   final bool isPause;
+  ///[duration] is the duration of the audio message in seconds
   final double? duration;
+  ///[position] is the current position of the audio message playing in seconds
   final double? position;
+  /// Whether the audio is currently loading
   final bool isLoading;
+  ///chat bubble [BorderRadius] can be customized using [bubbleRadius]
   final double bubbleRadius;
+  /// Determines if the message is from the sender ([true]) or receiver ([false])
   final bool isSender;
+  /// The background color of the chat bubble
   final Color color;
+  /// Whether to show the tail of the chat bubble
   final bool tail;
+  /// Whether the message has been sent (shows one tick)
   final bool sent;
+  /// Whether the message has been delivered (shows two ticks)
   final bool delivered;
+  /// Whether the message has been seen (shows two blue ticks)
   final bool seen;
+  /// Custom text style for the duration and position text
   final TextStyle textStyle;
+  /// Constraints for the chat bubble
   final BoxConstraints? constraints;
 
-  BubbleNormalAudio({
+  /// Constructor
+  const BubbleNormalAudio({
     Key? key,
     required this.onSeekChanged,
     required this.onPlayPauseButtonClick,
@@ -58,7 +76,7 @@ class BubbleNormalAudio extends StatelessWidget {
     this.duration,
     this.position,
     this.isLoading = true,
-    this.bubbleRadius = BUBBLE_RADIUS_AUDIO,
+    this.bubbleRadius = defaultBubbleRadiusAudio,
     this.isSender = true,
     this.color = Colors.white70,
     this.tail = true,
@@ -128,12 +146,12 @@ class BubbleNormalAudio extends StatelessWidget {
                       ? isSender
                           ? bubbleRadius
                           : 0
-                      : BUBBLE_RADIUS_AUDIO),
+                      : defaultBubbleRadiusAudio),
                   bottomRight: Radius.circular(tail
                       ? isSender
                           ? 0
                           : bubbleRadius
-                      : BUBBLE_RADIUS_AUDIO),
+                      : defaultBubbleRadiusAudio),
                 ),
               ),
               child: Stack(
@@ -144,6 +162,8 @@ class BubbleNormalAudio extends StatelessWidget {
                         onPressed: onPlayPauseButtonClick,
                         elevation: 1.0,
                         fillColor: Colors.white,
+                        padding: EdgeInsets.all(0.0),
+                        shape: CircleBorder(),
                         child: !isPlaying
                             ? Icon(
                                 Icons.play_arrow,
@@ -160,8 +180,6 @@ class BubbleNormalAudio extends StatelessWidget {
                                         Icons.pause,
                                         size: 30.0,
                                       ),
-                        padding: EdgeInsets.all(0.0),
-                        shape: CircleBorder(),
                       ),
                       Expanded(
                         child: Slider(
@@ -177,7 +195,7 @@ class BubbleNormalAudio extends StatelessWidget {
                     bottom: 8,
                     right: 25,
                     child: Text(
-                      '${audioTimer(duration ?? 0.0, position ?? 0.0)}',
+                      audioTimer(duration ?? 0.0, position ?? 0.0),
                       style: textStyle,
                     ),
                   ),
@@ -199,6 +217,7 @@ class BubbleNormalAudio extends StatelessWidget {
     );
   }
 
+  ///[audioTimer] to get the audio duration and position
   String audioTimer(double duration, double position) {
     return '${(duration ~/ 60).toInt()}:${(duration % 60).toInt().toString().padLeft(2, '0')}/${position ~/ 60}:${(position % 60).toInt().toString().padLeft(2, '0')}';
   }

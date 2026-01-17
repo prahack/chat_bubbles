@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
-const double BUBBLE_RADIUS_IMAGE = 16;
+///chat bubble default [BorderRadius]
+const double defaultBubbleRadiusImage = 16;
 
 /// Basic image bubble
 ///
@@ -35,31 +36,48 @@ const double BUBBLE_RADIUS_IMAGE = 16;
 /// [onTap], [onLongPress] are callbacks used to register tap gestures
 
 class BubbleNormalImage extends StatelessWidget {
+  /// basic loading widget
   static const loadingWidget = Center(
     child: CircularProgressIndicator(),
   );
 
+  /// widget id for Hero animation
   final String id;
+  /// image widget
   final Widget image;
+  /// chat bubble [BorderRadius]
   final double bubbleRadius;
+  /// message sender
   final bool isSender;
+  /// chat bubble color
   final Color color;
+  /// chat bubble tail
   final bool tail;
+  /// message state - whether the message has been sent
   final bool sent;
+  /// message state - whether the message has been delivered
   final bool delivered;
+  /// message state - whether the message has been seen
   final bool seen;
+  /// callback function when the bubble is tapped
   final VoidCallback? onTap;
+  /// callback function when the bubble is long pressed
   final VoidCallback? onLongPress;
+  /// widget displayed before the bubble for non-senders
   final Widget? leading;
+  /// widget displayed after the bubble for senders
   final Widget? trailing;
+  /// outer margin of the bubble
   final EdgeInsets? margin;
+  /// inner padding of the bubble
   final EdgeInsets? padding;
 
+  /// Creates a [BubbleNormalImage] widget
   const BubbleNormalImage({
     Key? key,
     required this.id,
     required this.image,
-    this.bubbleRadius = BUBBLE_RADIUS_IMAGE,
+    this.bubbleRadius = defaultBubbleRadiusImage,
     this.margin = EdgeInsets.zero,
     this.padding = const EdgeInsets.fromLTRB(16, 8, 16, 8),
     this.leading,
@@ -121,6 +139,16 @@ class BubbleNormalImage extends StatelessWidget {
             maxHeight: MediaQuery.of(context).size.width * .5,
           ),
           child: GestureDetector(
+              onLongPress: onLongPress,
+              onTap: onTap ??
+                  () {
+                    Navigator.push(context, MaterialPageRoute(builder: (_) {
+                      return _DetailScreen(
+                        tag: id,
+                        image: image,
+                      );
+                    }));
+                  },
               child: Hero(
                 tag: id,
                 child: Stack(
@@ -135,12 +163,12 @@ class BubbleNormalImage extends StatelessWidget {
                               ? isSender
                                   ? bubbleRadius
                                   : 0
-                              : BUBBLE_RADIUS_IMAGE),
+                              : defaultBubbleRadiusImage),
                           bottomRight: Radius.circular(tail
                               ? isSender
                                   ? 0
                                   : bubbleRadius
-                              : BUBBLE_RADIUS_IMAGE),
+                              : defaultBubbleRadiusImage),
                         ),
                       ),
                       child: Padding(
@@ -163,16 +191,7 @@ class BubbleNormalImage extends StatelessWidget {
                   ],
                 ),
               ),
-              onLongPress: onLongPress,
-              onTap: onTap ??
-                  () {
-                    Navigator.push(context, MaterialPageRoute(builder: (_) {
-                      return _DetailScreen(
-                        tag: id,
-                        image: image,
-                      );
-                    }));
-                  }),
+            ),
         ),
         if (isSender && trailing != null) SizedBox.shrink(),
       ],

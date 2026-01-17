@@ -32,26 +32,41 @@ import 'package:flutter/material.dart';
 /// reply widget usually change [replying] attribute to `false`
 
 class MessageBar extends StatelessWidget {
+  /// whether the message bar is in reply mode
   final bool replying;
+  /// the name or text of the message being replied to
   final String replyingTo;
+  /// additional action buttons like camera and file select
   final List<Widget> actions;
+  /// text controller for the message input field
   final TextEditingController _textController = TextEditingController();
+  /// background color of the reply widget
   final Color replyWidgetColor;
+  /// color of the reply icon
   final Color replyIconColor;
+  /// color of the close icon in reply widget
   final Color replyCloseColor;
+  /// background color of the message bar
   final Color messageBarColor;
+  /// hint text for the message input field
   final String messageBarHintText;
+  /// text style for the hint text
   final TextStyle messageBarHintStyle;
+  /// text style for the input text
   final TextStyle textFieldTextStyle;
+  /// color of the send button
   final Color sendButtonColor;
+  /// callback function triggered on text change
   final void Function(String)? onTextChanged;
+  /// callback function triggered when send button is pressed
   final void Function(String)? onSend;
+  /// callback function triggered when close reply button is pressed
   final void Function()? onTapCloseReply;
 
   /// [MessageBar] constructor
   ///
   ///
-  MessageBar({
+  MessageBar({Key? key, 
     this.replying = false,
     this.replyingTo = "",
     this.actions = const [],
@@ -66,7 +81,7 @@ class MessageBar extends StatelessWidget {
     this.onTextChanged,
     this.onSend,
     this.onTapCloseReply,
-  });
+  }) : super(key: key);
 
   /// [MessageBar] builder method
   ///
@@ -74,10 +89,9 @@ class MessageBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Align(
       alignment: Alignment.bottomCenter,
-      child: Container(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.end,
-          children: [
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.end,
+        children: [
             replying
                 ? Container(
                     color: replyWidgetColor,
@@ -93,11 +107,9 @@ class MessageBar extends StatelessWidget {
                           size: 24,
                         ),
                         Expanded(
-                          child: Container(
-                            child: Text(
-                              'Re : ' + replyingTo,
-                              overflow: TextOverflow.ellipsis,
-                            ),
+                          child: Text(
+                            'Re : $replyingTo',
+                            overflow: TextOverflow.ellipsis,
                           ),
                         ),
                         InkWell(
@@ -127,8 +139,7 @@ class MessageBar extends StatelessWidget {
                 children: <Widget>[
                   ...actions,
                   Expanded(
-                    child: Container(
-                      child: TextField(
+                    child: TextField(
                         controller: _textController,
                         keyboardType: TextInputType.multiline,
                         textCapitalization: TextCapitalization.sentences,
@@ -159,7 +170,6 @@ class MessageBar extends StatelessWidget {
                             ),
                           ),
                         ),
-                      ),
                     ),
                   ),
                   Padding(
@@ -184,7 +194,6 @@ class MessageBar extends StatelessWidget {
               ),
             ),
           ],
-        ),
       ),
     );
   }

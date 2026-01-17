@@ -7,12 +7,12 @@ import 'package:flutter/material.dart';
 ///
 ///
 class DateChip extends StatelessWidget {
+  /// the date to display on the chip
   final DateTime date;
+  /// the background color of the chip
   final Color color;
 
-  ///
-  ///
-  ///
+  /// Creates a [DateChip] widget
   const DateChip({
     Key? key,
     required this.date,

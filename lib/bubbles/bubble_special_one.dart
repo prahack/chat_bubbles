@@ -10,16 +10,26 @@ import 'package:flutter/material.dart';
 ///chat bubble [TextStyle] can be customized using [textStyle]
 
 class BubbleSpecialOne extends StatelessWidget {
+  /// message sender
   final bool isSender;
+  /// message text
   final String text;
+  /// chat bubble tail
   final bool tail;
+  /// chat bubble color
   final Color color;
+  /// message state - whether the message has been sent
   final bool sent;
+  /// message state - whether the message has been delivered
   final bool delivered;
+  /// message state - whether the message has been seen
   final bool seen;
+  /// text style for the message
   final TextStyle textStyle;
+  /// constraints for the chat bubble
   final BoxConstraints? constraints;
 
+  /// Creates a [BubbleSpecialOne] widget
   const BubbleSpecialOne({
     Key? key,
     this.isSender = true,
@@ -130,8 +140,8 @@ class _SpecialChatBubbleOne extends CustomPainter {
     required this.tail,
   });
 
-  double _radius = 10.0;
-  double _x = 10.0;
+  final double _radius = 10.0;
+  final double _x = 10.0;
 
   @override
   void paint(Canvas canvas, Size size) {
@@ -148,9 +158,9 @@ class _SpecialChatBubbleOne extends CustomPainter {
               topLeft: Radius.circular(_radius),
             ),
             Paint()
-              ..color = this.color
+              ..color = color
               ..style = PaintingStyle.fill);
-        var path = new Path();
+        var path = Path();
         path.moveTo(size.width - _x, 0);
         path.lineTo(size.width - _x, 10);
         path.lineTo(size.width, 0);
@@ -164,7 +174,7 @@ class _SpecialChatBubbleOne extends CustomPainter {
               topRight: Radius.circular(3),
             ),
             Paint()
-              ..color = this.color
+              ..color = color
               ..style = PaintingStyle.fill);
       } else {
         canvas.drawRRect(
@@ -179,7 +189,7 @@ class _SpecialChatBubbleOne extends CustomPainter {
               topRight: Radius.circular(_radius),
             ),
             Paint()
-              ..color = this.color
+              ..color = color
               ..style = PaintingStyle.fill);
       }
     } else {
@@ -195,9 +205,9 @@ class _SpecialChatBubbleOne extends CustomPainter {
               bottomLeft: Radius.circular(_radius),
             ),
             Paint()
-              ..color = this.color
+              ..color = color
               ..style = PaintingStyle.fill);
-        var path = new Path();
+        var path = Path();
         path.moveTo(_x, 0);
         path.lineTo(_x, 10);
         path.lineTo(0, 0);
@@ -211,7 +221,7 @@ class _SpecialChatBubbleOne extends CustomPainter {
               topLeft: Radius.circular(3),
             ),
             Paint()
-              ..color = this.color
+              ..color = color
               ..style = PaintingStyle.fill);
       } else {
         canvas.drawRRect(
@@ -226,7 +236,7 @@ class _SpecialChatBubbleOne extends CustomPainter {
               topLeft: Radius.circular(_radius),
             ),
             Paint()
-              ..color = this.color
+              ..color = color
               ..style = PaintingStyle.fill);
       }
     }
