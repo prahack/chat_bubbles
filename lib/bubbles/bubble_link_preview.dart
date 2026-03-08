@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import '../utils/bubble_forwarded_header.dart';
+import '../utils/bubble_status_row.dart';
 
 /// Default border radius for link preview bubble
 const double defaultBubbleRadiusLinkPreview = 16;
@@ -23,6 +25,14 @@ const double defaultBubbleRadiusLinkPreview = 16;
 /// [isSender] determines if the message is from the sender or receiver
 ///
 /// [color] can be customized for the bubble background
+///
+/// [timestamp] is an optional string shown at the bottom-right of the bubble
+///
+/// [isEdited] shows an "Edited" label next to the status area when true
+///
+/// [isForwarded] shows a "Forwarded" banner at the top of the bubble when true
+///
+/// [messageId] is an optional identifier for tracking purposes
 class BubbleLinkPreview extends StatelessWidget {
   /// the URL being previewed
   final String url;
@@ -105,6 +115,18 @@ class BubbleLinkPreview extends StatelessWidget {
   /// whether to show the preview image
   final bool showImage;
 
+  /// optional timestamp string shown at the bottom-right (e.g. "12:34 PM")
+  final String? timestamp;
+
+  /// shows an "Edited" label next to the status area when true
+  final bool isEdited;
+
+  /// shows a "Forwarded" banner at the top of the bubble when true
+  final bool isForwarded;
+
+  /// optional identifier for tracking the message
+  final String? messageId;
+
   /// Creates a [BubbleLinkPreview] widget
   const BubbleLinkPreview({
     Key? key,
@@ -138,6 +160,10 @@ class BubbleLinkPreview extends StatelessWidget {
     this.onLinkTap,
     this.imageHeight = 150,
     this.showImage = true,
+    this.timestamp,
+    this.isEdited = false,
+    this.isForwarded = false,
+    this.messageId,
   }) : super(key: key);
 
   @override
@@ -169,6 +195,10 @@ class BubbleLinkPreview extends StatelessWidget {
         color: Color(0xFF92DEDA),
       );
     }
+
+    final bool showStatusArea = stateTick || timestamp != null || isEdited;
+    final Color forwardedColor =
+        (textStyle.color ?? Colors.black87).withOpacity(0.6);
 
     final defaultTitleStyle = TextStyle(
       color: Colors.black87,
@@ -225,6 +255,12 @@ class BubbleLinkPreview extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  // Forwarded banner
+                  if (isForwarded)
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(8, 8, 8, 0),
+                      child: BubbleForwardedHeader(color: forwardedColor),
+                    ),
                   // Message text (if provided)
                   if (text != null && text!.isNotEmpty)
                     Padding(
@@ -243,10 +279,10 @@ class BubbleLinkPreview extends StatelessWidget {
                         color: previewBackgroundColor ??
                             Colors.grey.withOpacity(0.1),
                         borderRadius: BorderRadius.only(
-                          topLeft: text == null || text!.isEmpty
+                          topLeft: (text == null || text!.isEmpty) && !isForwarded
                               ? Radius.circular(bubbleRadius)
                               : Radius.zero,
-                          topRight: text == null || text!.isEmpty
+                          topRight: (text == null || text!.isEmpty) && !isForwarded
                               ? Radius.circular(bubbleRadius)
                               : Radius.zero,
                           bottomLeft: Radius.circular(tail
@@ -268,10 +304,10 @@ class BubbleLinkPreview extends StatelessWidget {
                           if (showImage && imageUrl != null && imageUrl!.isNotEmpty)
                             ClipRRect(
                               borderRadius: BorderRadius.only(
-                                topLeft: text == null || text!.isEmpty
+                                topLeft: (text == null || text!.isEmpty) && !isForwarded
                                     ? Radius.circular(bubbleRadius)
                                     : Radius.zero,
-                                topRight: text == null || text!.isEmpty
+                                topRight: (text == null || text!.isEmpty) && !isForwarded
                                     ? Radius.circular(bubbleRadius)
                                     : Radius.zero,
                               ),
@@ -344,13 +380,18 @@ class BubbleLinkPreview extends StatelessWidget {
                       ),
                     ),
                   ),
-                  // Message status
-                  if (stateIcon != null && stateTick)
+                  // Message status row
+                  if (showStatusArea)
                     Padding(
-                      padding: EdgeInsets.only(right: 8, bottom: 4),
+                      padding: const EdgeInsets.only(right: 8, bottom: 6, top: 4),
                       child: Align(
-                        alignment: Alignment.bottomRight,
-                        child: stateIcon,
+                        alignment: Alignment.centerRight,
+                        child: BubbleStatusRow(
+                          stateIcon: stateTick ? stateIcon : null,
+                          isEdited: isEdited,
+                          timestamp: timestamp,
+                          textColor: textStyle.color ?? Colors.black87,
+                        ),
                       ),
                     ),
                 ],

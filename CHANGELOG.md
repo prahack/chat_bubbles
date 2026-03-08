@@ -1,3 +1,43 @@
+## [1.9.0] - 02/03/2026
+
+### New Features
+
+#### Message Status Enhancements
+* Added `timestamp` parameter to all bubble widgets for displaying message send time
+* Added `isEdited` flag that shows an italic "Edited" label next to the status area
+* Added `isForwarded` flag that shows a "Forwarded" banner at the top of the bubble
+* Added `messageId` parameter for programmatic message tracking
+* New internal `BubbleStatusRow` helper widget for consistent status row rendering
+* New internal `BubbleForwardedHeader` helper widget for the forwarded banner
+
+#### SwipeableBubble Widget
+* Added `SwipeableBubble` wrapper widget for swipe gesture support on any bubble
+* Swipe-right gesture (configurable icon + color) for reply actions
+* Swipe-left gesture (configurable icon + color) for delete actions
+* Configurable `swipeThreshold` (default: 64 logical pixels)
+* Smooth spring-back animation when threshold is not met
+* Optional haptic feedback via `enableHaptics`
+* Circular action icon revealed behind the bubble during swipe
+
+#### Message Groups / Clustering
+* Added `BubbleGroupBuilder` widget for automatic consecutive-sender grouping
+* Added `MessageGroupHelper.compute()` utility for deriving grouping info from a flat list
+* Added `GroupInfo` data class with `showTail`, `showAvatar`, `isGroupStart`, `isGroupEnd`, `isAlone`
+* Configurable `groupingThreshold` (default: 1 minute) to split groups on time gaps
+* Configurable `itemSpacing` and `groupSpacing` for fine-grained vertical rhythm
+
+#### Voice Message Waveform
+* `BubbleNormalAudio` now accepts `waveformData` (`List<double>`) for bar-chart waveform visualization
+* Interactive waveform scrubbing via tap or horizontal drag
+* `waveformActiveColor` and `waveformInactiveColor` for played/unplayed portions
+* Playback speed toggle button (1x / 1.5x / 2x) via `showPlaybackSpeed`, `playbackSpeed`, and `onPlaybackSpeedChanged`
+* Falls back gracefully to the existing `Slider` when `waveformData` is null
+
+### Improvements
+* Updated example app with demo sections for all v1.9.0 features
+* Updated `README.md` with v1.9.0 usage examples and parameter tables
+* Updated exports in `chat_bubbles.dart` for `SwipeableBubble`, `BubbleGroupBuilder`, `MessageGroupHelper`, and `GroupInfo`
+
 ## [1.8.0] - 17/01/2026
 
 ### New Features

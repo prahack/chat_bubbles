@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import '../utils/bubble_forwarded_header.dart';
+import '../utils/bubble_status_row.dart';
 
 ///chat bubble default [BorderRadius]
 const double defaultBubbleRadiusImage = 16;
@@ -34,6 +36,12 @@ const double defaultBubbleRadiusImage = 16;
 /// is true.
 ///
 /// [onTap], [onLongPress] are callbacks used to register tap gestures
+///
+/// [timestamp] is an optional string overlaid at the bottom-right of the image
+///
+/// [isForwarded] shows a "Forwarded" banner overlaid at the top of the image
+///
+/// [messageId] is an optional identifier for tracking purposes
 
 class BubbleNormalImage extends StatelessWidget {
   /// basic loading widget
@@ -71,6 +79,12 @@ class BubbleNormalImage extends StatelessWidget {
   final EdgeInsets? margin;
   /// inner padding of the bubble
   final EdgeInsets? padding;
+  /// optional timestamp string overlaid at the bottom-right of the image
+  final String? timestamp;
+  /// shows a "Forwarded" banner overlaid at the top of the image when true
+  final bool isForwarded;
+  /// optional identifier for tracking the message
+  final String? messageId;
 
   /// Creates a [BubbleNormalImage] widget
   const BubbleNormalImage({
@@ -90,6 +104,9 @@ class BubbleNormalImage extends StatelessWidget {
     this.seen = false,
     this.onTap,
     this.onLongPress,
+    this.timestamp,
+    this.isForwarded = false,
+    this.messageId,
   }) : super(key: key);
 
   /// image bubble builder method
@@ -121,6 +138,8 @@ class BubbleNormalImage extends StatelessWidget {
         color: Color(0xFF92DEDA),
       );
     }
+
+    final bool showStatusArea = stateTick || timestamp != null;
 
     return Row(
       children: <Widget>[
@@ -179,15 +198,39 @@ class BubbleNormalImage extends StatelessWidget {
                         ),
                       ),
                     ),
-                    stateIcon != null && stateTick
-                        ? Positioned(
-                            bottom: 4,
-                            right: 6,
-                            child: stateIcon,
-                          )
-                        : SizedBox(
-                            width: 1,
+                    if (isForwarded)
+                      Positioned(
+                        top: 8,
+                        left: 8,
+                        child: Container(
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 6, vertical: 2),
+                          decoration: BoxDecoration(
+                            color: Colors.black.withOpacity(0.45),
+                            borderRadius: BorderRadius.circular(8),
                           ),
+                          child: const BubbleForwardedHeader(
+                              color: Colors.white),
+                        ),
+                      ),
+                    if (showStatusArea)
+                      Positioned(
+                        bottom: 8,
+                        right: 8,
+                        child: Container(
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 4, vertical: 2),
+                          decoration: BoxDecoration(
+                            color: Colors.black.withOpacity(0.45),
+                            borderRadius: BorderRadius.circular(8),
+                          ),
+                          child: BubbleStatusRow(
+                            stateIcon: stateTick ? stateIcon : null,
+                            timestamp: timestamp,
+                            textColor: Colors.white,
+                          ),
+                        ),
+                      ),
                   ],
                 ),
               ),

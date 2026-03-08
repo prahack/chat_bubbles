@@ -17,7 +17,7 @@ Add this to your package's `pubspec.yaml` file:
 
 ```yaml
 dependencies:
-  chat_bubbles: ^1.8.0
+  chat_bubbles: ^1.9.0
 ```
 
 ## Usage
@@ -458,6 +458,130 @@ Widget build(BuildContext context) {
   );
 }
 ```
+
+## New in v1.9.0
+
+### Message Status Enhancements
+
+All bubble widgets now accept `timestamp`, `isEdited`, `isForwarded`, and `messageId` parameters.
+
+```dart
+BubbleNormal(
+  text: 'This message was edited',
+  isSender: true,
+  color: Color(0xFFE8E8EE),
+  tail: true,
+  seen: true,
+  timestamp: '12:34 PM',
+  isEdited: true,
+),
+
+BubbleNormal(
+  text: 'Forwarded from another chat',
+  isSender: false,
+  color: Color(0xFF1B97F3),
+  tail: true,
+  textStyle: TextStyle(color: Colors.white, fontSize: 16),
+  isForwarded: true,
+  timestamp: '12:35 PM',
+),
+```
+
+### Swipe Actions
+
+Wrap any bubble with `SwipeableBubble` to add swipe-to-reply and swipe-to-delete gestures.
+
+```dart
+SwipeableBubble(
+  onSwipeRight: () => print('Reply triggered'),
+  onSwipeLeft: () => print('Delete triggered'),
+  swipeThreshold: 64.0,
+  enableHaptics: true,
+  child: BubbleNormal(
+    text: 'Swipe me!',
+    isSender: false,
+    color: Color(0xFF1B97F3),
+    tail: true,
+    textStyle: TextStyle(color: Colors.white, fontSize: 16),
+  ),
+),
+```
+
+| Parameter | Type | Default | Description |
+|---|---|---|---|
+| `child` | `Widget` | required | The bubble to wrap |
+| `onSwipeRight` | `VoidCallback?` | null | Called on swipe-right (reply) |
+| `onSwipeLeft` | `VoidCallback?` | null | Called on swipe-left (delete) |
+| `swipeThreshold` | `double` | 64.0 | Drag distance to trigger |
+| `enableHaptics` | `bool` | true | Haptic feedback on threshold |
+| `rightActionColor` | `Color` | Colors.blue | Background for right swipe |
+| `leftActionColor` | `Color` | Colors.red | Background for left swipe |
+| `rightActionIcon` | `Icon` | Icons.reply | Icon for right swipe |
+| `leftActionIcon` | `Icon` | Icons.delete | Icon for left swipe |
+
+### Message Groups / Clustering
+
+Use `BubbleGroupBuilder` to automatically group consecutive messages from the same sender. Only the last message in each group shows a tail.
+
+```dart
+final messages = ['Hello!', 'How are you?', 'Good, thanks!'];
+final senders  = ['alice', 'alice', 'bob'];
+
+BubbleGroupBuilder(
+  itemCount: messages.length,
+  senderIdOf: (i) => senders[i],
+  itemBuilder: (context, i, info) => BubbleNormal(
+    text: messages[i],
+    isSender: senders[i] == 'bob',
+    tail: info.showTail,
+    color: senders[i] == 'bob'
+        ? const Color(0xFFE8E8EE)
+        : const Color(0xFF1B97F3),
+  ),
+)
+```
+
+For advanced control, use `MessageGroupHelper.compute()` directly to get `GroupInfo` for each message:
+
+```dart
+final List<GroupInfo> groups = MessageGroupHelper.compute(
+  senderIds: senders,
+  timestamps: timestamps,  // optional
+  threshold: const Duration(minutes: 2),
+);
+
+// groups[i].showTail  — whether to show the tail
+// groups[i].showAvatar — whether to show the avatar
+// groups[i].isGroupStart — first message in group (add extra top spacing)
+```
+
+### Voice Message Waveform
+
+`BubbleNormalAudio` now supports waveform visualization and playback speed control.
+
+```dart
+BubbleNormalAudio(
+  color: Color(0xFFE8E8EE),
+  duration: duration.inSeconds.toDouble(),
+  position: position.inSeconds.toDouble(),
+  isPlaying: isPlaying,
+  isLoading: isLoading,
+  isPause: isPause,
+  onSeekChanged: _changeSeek,
+  onPlayPauseButtonClick: _playAudio,
+  sent: true,
+  // Waveform visualization
+  waveformData: [0.2, 0.8, 0.5, 0.9, 0.4, 0.7, 0.6, 0.3, 0.8, 0.5],
+  waveformActiveColor: Color(0xFF1B97F3),
+  waveformInactiveColor: Colors.grey,
+  // Playback speed
+  showPlaybackSpeed: true,
+  playbackSpeed: _playbackSpeed,
+  onPlaybackSpeedChanged: (speed) => setState(() => _playbackSpeed = speed),
+),
+```
+
+`waveformData` is a `List<double>` of normalized bar heights (0.0–1.0). Tapping or dragging on the waveform seeks to that position. The speed button cycles 1x → 1.5x → 2x → 1x.
 
 ## Issues
 

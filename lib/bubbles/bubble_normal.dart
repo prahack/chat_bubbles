@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import '../utils/bubble_forwarded_header.dart';
+import '../utils/bubble_status_row.dart';
 
 /// chat bubble default [BorderRadius]
 const double defaultBubbleRadius = 16;
@@ -36,6 +38,14 @@ const double defaultBubbleRadius = 16;
 /// is true.
 ///
 /// [onTap], [onDoubleTap], [onLongPress] are callbacks used to register tap gestures
+///
+/// [timestamp] is an optional string shown at the bottom-right of the bubble
+///
+/// [isEdited] shows an "Edited" label next to the timestamp when true
+///
+/// [isForwarded] shows a "Forwarded" banner at the top of the bubble when true
+///
+/// [messageId] is an optional identifier for tracking purposes
 
 class BubbleNormal extends StatelessWidget {
   /// chat bubble [BorderRadius]
@@ -72,6 +82,14 @@ class BubbleNormal extends StatelessWidget {
   final VoidCallback? onDoubleTap;
   /// callback function when the bubble is long pressed
   final VoidCallback? onLongPress;
+  /// optional timestamp string shown at the bottom-right (e.g. "12:34 PM")
+  final String? timestamp;
+  /// shows an "Edited" label next to the status area when true
+  final bool isEdited;
+  /// shows a "Forwarded" banner at the top of the bubble when true
+  final bool isForwarded;
+  /// optional identifier for tracking the message
+  final String? messageId;
 
   /// Creates a [BubbleNormal] widget
   const BubbleNormal({
@@ -96,6 +114,10 @@ class BubbleNormal extends StatelessWidget {
       color: Colors.black87,
       fontSize: 16,
     ),
+    this.timestamp,
+    this.isEdited = false,
+    this.isForwarded = false,
+    this.messageId,
   }) : super(key: key);
 
   ///chat bubble builder method
@@ -127,6 +149,10 @@ class BubbleNormal extends StatelessWidget {
         color: Color(0xFF92DEDA),
       );
     }
+
+    final bool showStatusArea = stateTick || timestamp != null || isEdited;
+    final Color forwardedColor =
+        (textStyle.color ?? Colors.black87).withOpacity(0.6);
 
     return Row(
       children: <Widget>[
@@ -165,28 +191,35 @@ class BubbleNormal extends StatelessWidget {
                       : defaultBubbleRadius),
                 ),
               ),
-              child: Stack(
-                children: <Widget>[
-                  Padding(
-                    padding: stateTick
-                        ? EdgeInsets.fromLTRB(12, 6, 28, 6)
-                        : EdgeInsets.symmetric(vertical: 6, horizontal: 12),
-                    child: SelectableText(
+              child: Padding(
+                padding:
+                    const EdgeInsets.symmetric(vertical: 6, horizontal: 12),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    if (isForwarded)
+                      BubbleForwardedHeader(color: forwardedColor),
+                    SelectableText(
                       text,
                       style: textStyle,
                       textAlign: TextAlign.left,
                     ),
-                  ),
-                  stateIcon != null && stateTick
-                      ? Positioned(
-                          bottom: 4,
-                          right: 6,
-                          child: stateIcon,
-                        )
-                      : SizedBox(
-                          width: 1,
+                    if (showStatusArea)
+                      Align(
+                        alignment: Alignment.centerRight,
+                        child: Padding(
+                          padding: const EdgeInsets.only(top: 2),
+                          child: BubbleStatusRow(
+                            stateIcon: stateTick ? stateIcon : null,
+                            isEdited: isEdited,
+                            timestamp: timestamp,
+                            textColor: textStyle.color ?? Colors.black87,
+                          ),
                         ),
-                ],
+                      ),
+                  ],
+                ),
               ),
             ),
           ),

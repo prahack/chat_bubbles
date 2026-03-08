@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import '../utils/bubble_forwarded_header.dart';
+import '../utils/bubble_status_row.dart';
 
 /// Default border radius for reply bubble
 const double defaultBubbleRadiusReply = 16;
@@ -25,6 +27,14 @@ const double defaultBubbleRadiusReply = 16;
 /// [tail] boolean is used to add or remove a tail according to the sender type
 ///
 /// [sent], [delivered] and [seen] can be used to display the message state
+///
+/// [timestamp] is an optional string shown at the bottom-right of the bubble
+///
+/// [isEdited] shows an "Edited" label next to the status area when true
+///
+/// [isForwarded] shows a "Forwarded" banner at the top of the bubble when true
+///
+/// [messageId] is an optional identifier for tracking purposes
 class BubbleReply extends StatelessWidget {
   /// the text of the message being replied to
   final String repliedMessage;
@@ -95,6 +105,18 @@ class BubbleReply extends StatelessWidget {
   /// callback function when the reply section is tapped
   final VoidCallback? onReplyTap;
 
+  /// optional timestamp string shown at the bottom-right (e.g. "12:34 PM")
+  final String? timestamp;
+
+  /// shows an "Edited" label next to the status area when true
+  final bool isEdited;
+
+  /// shows a "Forwarded" banner at the top of the bubble when true
+  final bool isForwarded;
+
+  /// optional identifier for tracking the message
+  final String? messageId;
+
   /// Creates a [BubbleReply] widget
   const BubbleReply({
     Key? key,
@@ -124,6 +146,10 @@ class BubbleReply extends StatelessWidget {
     this.onTap,
     this.onLongPress,
     this.onReplyTap,
+    this.timestamp,
+    this.isEdited = false,
+    this.isForwarded = false,
+    this.messageId,
   }) : super(key: key);
 
   @override
@@ -155,6 +181,10 @@ class BubbleReply extends StatelessWidget {
         color: Color(0xFF92DEDA),
       );
     }
+
+    final bool showStatusArea = stateTick || timestamp != null || isEdited;
+    final Color forwardedColor =
+        (textStyle.color ?? Colors.black87).withOpacity(0.6);
 
     final defaultRepliedSenderStyle = TextStyle(
       color: isSender ? Colors.white : replyBorderColor,
@@ -206,6 +236,13 @@ class BubbleReply extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  // Forwarded banner (shown above the reply section)
+                  if (isForwarded)
+                    Padding(
+                      padding:
+                          const EdgeInsets.fromLTRB(12, 8, 12, 0),
+                      child: BubbleForwardedHeader(color: forwardedColor),
+                    ),
                   // Reply section
                   GestureDetector(
                     onTap: onReplyTap,
@@ -216,8 +253,10 @@ class BubbleReply extends StatelessWidget {
                                 ? Colors.black.withOpacity(0.1)
                                 : Colors.grey.withOpacity(0.1)),
                         borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(bubbleRadius),
-                          topRight: Radius.circular(bubbleRadius),
+                          topLeft: Radius.circular(
+                              isForwarded ? 0 : bubbleRadius),
+                          topRight: Radius.circular(
+                              isForwarded ? 0 : bubbleRadius),
                         ),
                       ),
                       padding: EdgeInsets.all(8),
@@ -261,21 +300,28 @@ class BubbleReply extends StatelessWidget {
                   ),
                   // Current message section
                   Padding(
-                    padding: stateTick
-                        ? EdgeInsets.fromLTRB(8, 8, 28, 8)
-                        : EdgeInsets.all(8),
-                    child: Stack(
+                    padding: const EdgeInsets.all(8),
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         SelectableText(
                           text,
                           style: textStyle,
                           textAlign: TextAlign.left,
                         ),
-                        if (stateIcon != null && stateTick)
-                          Positioned(
-                            bottom: 0,
-                            right: -20,
-                            child: stateIcon,
+                        if (showStatusArea)
+                          Align(
+                            alignment: Alignment.centerRight,
+                            child: Padding(
+                              padding: const EdgeInsets.only(top: 2),
+                              child: BubbleStatusRow(
+                                stateIcon: stateTick ? stateIcon : null,
+                                isEdited: isEdited,
+                                timestamp: timestamp,
+                                textColor: textStyle.color ?? Colors.black87,
+                              ),
+                            ),
                           ),
                       ],
                     ),

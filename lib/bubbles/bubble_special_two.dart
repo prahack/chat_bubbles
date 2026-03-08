@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import '../utils/bubble_forwarded_header.dart';
+import '../utils/bubble_status_row.dart';
 
 ///New special chat bubble type
 ///
@@ -8,6 +10,14 @@ import 'package:flutter/material.dart';
 ///[text] is the only required parameter
 ///message sender can be changed using [isSender]
 ///chat bubble [TextStyle] can be customized using [textStyle]
+///
+/// [timestamp] is an optional string shown at the bottom-right of the bubble
+///
+/// [isEdited] shows an "Edited" label next to the status area when true
+///
+/// [isForwarded] shows a "Forwarded" banner at the top of the bubble when true
+///
+/// [messageId] is an optional identifier for tracking purposes
 
 class BubbleSpecialTwo extends StatelessWidget {
   /// message sender
@@ -28,6 +38,14 @@ class BubbleSpecialTwo extends StatelessWidget {
   final TextStyle textStyle;
   /// constraints for the chat bubble
   final BoxConstraints? constraints;
+  /// optional timestamp string shown at the bottom-right (e.g. "12:34 PM")
+  final String? timestamp;
+  /// shows an "Edited" label next to the status area when true
+  final bool isEdited;
+  /// shows a "Forwarded" banner at the top of the bubble when true
+  final bool isForwarded;
+  /// optional identifier for tracking the message
+  final String? messageId;
 
   /// Creates a [BubbleSpecialTwo] widget
   const BubbleSpecialTwo({
@@ -44,6 +62,10 @@ class BubbleSpecialTwo extends StatelessWidget {
       color: Colors.black87,
       fontSize: 16,
     ),
+    this.timestamp,
+    this.isEdited = false,
+    this.isForwarded = false,
+    this.messageId,
   }) : super(key: key);
 
   ///chat bubble builder method
@@ -76,6 +98,10 @@ class BubbleSpecialTwo extends StatelessWidget {
       );
     }
 
+    final bool showStatusArea = stateTick || timestamp != null || isEdited;
+    final Color forwardedColor =
+        (textStyle.color ?? Colors.black87).withOpacity(0.6);
+
     return Align(
       alignment: isSender ? Alignment.topRight : Alignment.topLeft,
       child: Padding(
@@ -91,31 +117,31 @@ class BubbleSpecialTwo extends StatelessWidget {
                   maxWidth: MediaQuery.of(context).size.width * .8,
                 ),
             margin: isSender
-                ? stateTick
-                    ? EdgeInsets.fromLTRB(7, 7, 14, 7)
-                    : EdgeInsets.fromLTRB(7, 7, 17, 7)
-                : EdgeInsets.fromLTRB(17, 7, 7, 7),
-            child: Stack(
-              children: <Widget>[
-                Padding(
-                  padding: stateTick
-                      ? EdgeInsets.only(right: 20)
-                      : EdgeInsets.symmetric(vertical: 0, horizontal: 0),
-                  child: Text(
-                    text,
-                    style: textStyle,
-                    textAlign: TextAlign.left,
-                  ),
+                ? const EdgeInsets.fromLTRB(7, 7, 14, 7)
+                : const EdgeInsets.fromLTRB(17, 7, 7, 7),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                if (isForwarded) BubbleForwardedHeader(color: forwardedColor),
+                Text(
+                  text,
+                  style: textStyle,
+                  textAlign: TextAlign.left,
                 ),
-                stateIcon != null && stateTick
-                    ? Positioned(
-                        bottom: 0,
-                        right: 0,
-                        child: stateIcon,
-                      )
-                    : SizedBox(
-                        width: 1,
+                if (showStatusArea)
+                  Align(
+                    alignment: Alignment.centerRight,
+                    child: Padding(
+                      padding: const EdgeInsets.only(top: 2),
+                      child: BubbleStatusRow(
+                        stateIcon: stateTick ? stateIcon : null,
+                        isEdited: isEdited,
+                        timestamp: timestamp,
+                        textColor: textStyle.color ?? Colors.black87,
                       ),
+                    ),
+                  ),
               ],
             ),
           ),
