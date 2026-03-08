@@ -32,11 +32,11 @@ This document outlines planned improvements and feature additions for the chat_b
 
 ### Medium Priority
 
-#### 5. **Voice Message Waveform**
-- [ ] Enhance `BubbleNormalAudio` with waveform visualization
-- [ ] Interactive waveform scrubbing
-- [ ] Playback speed control (1x, 1.5x, 2x)
-- [ ] Recording duration display
+#### 5. **Voice Message Waveform** ✅
+- [x] Enhance `BubbleNormalAudio` with waveform visualization
+- [x] Interactive waveform scrubbing
+- [x] Playback speed control (1x, 1.5x, 2x)
+- [x] Recording duration display
 
 #### 6. **Video Bubble Widget**
 - [ ] Add `BubbleNormalVideo` for video messages
@@ -56,27 +56,27 @@ This document outlines planned improvements and feature additions for the chat_b
 - [ ] Address text display
 - [ ] "Open in Maps" action button
 
-## Version 1.9.0 - Advanced Features
+## Version 1.9.0 - Advanced Features ✅ COMPLETED
 
 ### High Priority
 
-#### 9. **Message Status Enhancements**
-- [ ] Add timestamp display options
-- [ ] "Edited" indicator for modified messages
-- [ ] "Forwarded" indicator
-- [ ] Message ID for tracking
+#### 9. **Message Status Enhancements** ✅
+- [x] Add timestamp display options
+- [x] "Edited" indicator for modified messages
+- [x] "Forwarded" indicator
+- [x] Message ID for tracking
 
-#### 10. **Swipe Actions**
-- [ ] Swipe-to-reply gesture
-- [ ] Swipe-to-delete gesture
-- [ ] Customizable swipe thresholds
-- [ ] Haptic feedback support
+#### 10. **Swipe Actions** ✅
+- [x] Swipe-to-reply gesture
+- [x] Swipe-to-delete gesture
+- [x] Customizable swipe thresholds
+- [x] Haptic feedback support
 
-#### 11. **Message Groups/Clustering**
-- [ ] Automatic grouping of consecutive messages from same sender
-- [ ] Smart tail positioning (only on last message in group)
-- [ ] Configurable time threshold for grouping
-- [ ] Avatar display optimization
+#### 11. **Message Groups/Clustering** ✅
+- [x] Automatic grouping of consecutive messages from same sender
+- [x] Smart tail positioning (only on last message in group)
+- [x] Configurable time threshold for grouping
+- [x] Avatar display optimization
 
 #### 12. **Search & Highlight**
 - [ ] Message search functionality
@@ -234,11 +234,11 @@ This document outlines planned improvements and feature additions for the chat_b
 3. ✅ Link Preview
 4. ✅ Reaction System
 
-### Immediate (v1.9.0 - Next 3-6 months)
-5. Message Status Enhancements
-6. Swipe Actions
-7. Message Groups/Clustering
-8. Voice Waveform
+### ✅ Completed (v1.9.0)
+5. ✅ Message Status Enhancements
+6. ✅ Swipe Actions
+7. ✅ Message Groups/Clustering
+8. ✅ Voice Waveform
 
 ### Short-term (v2.0.0 - 6-12 months)
 9. Message Builder Pattern
@@ -269,6 +269,6 @@ Have suggestions not listed here? Please:
 
 ---
 
-**Last Updated:** January 17, 2026  
-**Current Version:** 1.8.0  
-**Status:** v1.8.0 Released ✅
+**Last Updated:** March 2, 2026  
+**Current Version:** 1.9.0  
+**Status:** v1.9.0 Released ✅

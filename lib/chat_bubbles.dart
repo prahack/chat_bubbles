@@ -27,6 +27,15 @@ library chat_bubbles;
 /// [Reaction]
 /// [ReactionPicker]
 /// [ReactionOverlay]
+///
+/// SWIPE ACTIONS
+/// [SwipeableBubble]
+///
+/// MESSAGE GROUPS
+/// [BubbleGroupBuilder]
+/// [MessageGroupHelper]
+/// [GroupInfo]
+///
 /// widgets UI components are currently available
 ///
 ///
@@ -43,3 +52,6 @@ export 'date_chips/date_chip.dart';
 export 'message_bars/message_bar.dart';
 export 'indicators/typing_indicator.dart';
 export 'reactions/bubble_reaction.dart';
+export 'swipe/swipeable_bubble.dart';
+export 'groups/bubble_group_builder.dart';
+export 'groups/message_group_helper.dart';
