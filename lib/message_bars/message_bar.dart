@@ -155,8 +155,8 @@ class MessageBar extends StatelessWidget {
                         controller: _textController,
                         keyboardType: messageBarStyle.keyboardType,
                         textCapitalization: messageBarStyle.textCapitalization,
-                        minLines: 1,
-                        maxLines: 3,
+                        minLines: messageBarStyle.minLines,
+                        maxLines: messageBarStyle.maxLines,
                         onChanged: onTextChanged,
                         style: textFieldTextStyle,
                         decoration: InputDecoration(

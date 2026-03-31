@@ -23,6 +23,12 @@ class MessageBarStyle {
   /// Background color of the input field.
   final Color fillColor;
 
+  /// minimum number of lines of the input field.
+  final int minLines;
+
+  /// maximum number of lines of the input field.
+  final int maxLines;
+
   /// Creates a `MessageBarStyle`.
   ///
   /// All parameters are optional and default to the standard `MessageBar` style.
@@ -46,5 +52,7 @@ class MessageBarStyle {
     this.contentPadding =
         const EdgeInsets.symmetric(horizontal: 8.0, vertical: 10),
     this.fillColor = Colors.white,
+    this.minLines = 1,
+    this.maxLines = 3,
   });
 }
