@@ -1,3 +1,4 @@
+import 'package:chat_bubbles/message_bars/message_bar_style.dart';
 import 'package:flutter/material.dart';
 
 ///Normal Message bar with more actions
@@ -62,11 +63,16 @@ class MessageBar extends StatelessWidget {
   final void Function(String)? onSend;
   /// callback function triggered when close reply button is pressed
   final void Function()? onTapCloseReply;
+  /// config to control appearance of the MessageBar textfield
+  final MessageBarStyle messageBarStyle;
+  /// optional custom widget to use as a send button
+  final Widget? sendButton;
 
   /// [MessageBar] constructor
   ///
   ///
-  MessageBar({Key? key, 
+  MessageBar({
+    Key? key,
     this.replying = false,
     this.replyingTo = "",
     this.actions = const [],
@@ -81,6 +87,8 @@ class MessageBar extends StatelessWidget {
     this.onTextChanged,
     this.onSend,
     this.onTapCloseReply,
+    this.messageBarStyle = const MessageBarStyle(),
+    this.sendButton,
   }) : super(key: key);
 
   /// [MessageBar] builder method
@@ -92,108 +100,96 @@ class MessageBar extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
-            replying
-                ? Container(
-                    color: replyWidgetColor,
-                    padding: const EdgeInsets.symmetric(
-                      vertical: 8,
-                      horizontal: 16,
-                    ),
-                    child: Row(
-                      children: [
-                        Icon(
-                          Icons.reply,
-                          color: replyIconColor,
-                          size: 24,
-                        ),
-                        Expanded(
-                          child: Text(
-                            'Re : $replyingTo',
-                            overflow: TextOverflow.ellipsis,
-                          ),
-                        ),
-                        InkWell(
-                          onTap: onTapCloseReply,
-                          child: Icon(
-                            Icons.close,
-                            color: replyCloseColor,
-                            size: 24,
-                          ),
-                        ),
-                      ],
-                    ))
-                : Container(),
-            replying
-                ? Container(
-                    height: 1,
-                    color: Colors.grey.shade300,
-                  )
-                : Container(),
-            Container(
-              color: messageBarColor,
-              padding: const EdgeInsets.symmetric(
-                vertical: 8,
-                horizontal: 16,
-              ),
-              child: Row(
-                children: <Widget>[
-                  ...actions,
-                  Expanded(
-                    child: TextField(
-                        controller: _textController,
-                        keyboardType: TextInputType.multiline,
-                        textCapitalization: TextCapitalization.sentences,
-                        minLines: 1,
-                        maxLines: 3,
-                        onChanged: onTextChanged,
-                        style: textFieldTextStyle,
-                        decoration: InputDecoration(
-                          hintText: messageBarHintText,
-                          hintMaxLines: 1,
-                          contentPadding: const EdgeInsets.symmetric(
-                              horizontal: 8.0, vertical: 10),
-                          hintStyle: messageBarHintStyle,
-                          fillColor: Colors.white,
-                          filled: true,
-                          enabledBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(30.0),
-                            borderSide: const BorderSide(
-                              color: Colors.white,
-                              width: 0.2,
-                            ),
-                          ),
-                          focusedBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(30.0),
-                            borderSide: const BorderSide(
-                              color: Colors.black26,
-                              width: 0.2,
-                            ),
-                          ),
-                        ),
-                    ),
+          replying
+              ? Container(
+                  color: replyWidgetColor,
+                  padding: const EdgeInsets.symmetric(
+                    vertical: 8,
+                    horizontal: 16,
                   ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 16),
-                    child: InkWell(
-                      child: Icon(
-                        Icons.send,
-                        color: sendButtonColor,
+                  child: Row(
+                    children: [
+                      Icon(
+                        Icons.reply,
+                        color: replyIconColor,
                         size: 24,
                       ),
-                      onTap: () {
-                        if (_textController.text.trim() != '') {
-                          if (onSend != null) {
-                            onSend!(_textController.text.trim());
-                          }
-                          _textController.text = '';
-                        }
-                      },
+                      Expanded(
+                        child: Text(
+                          'Re : $replyingTo',
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                      ),
+                      InkWell(
+                        onTap: onTapCloseReply,
+                        child: Icon(
+                          Icons.close,
+                          color: replyCloseColor,
+                          size: 24,
+                        ),
+                      ),
+                    ],
+                  ))
+              : Container(),
+          replying
+              ? Container(
+                  height: 1,
+                  color: Colors.grey.shade300,
+                )
+              : Container(),
+          Container(
+            color: messageBarColor,
+            padding: const EdgeInsets.symmetric(
+              vertical: 8,
+              horizontal: 16,
+            ),
+            child: Row(
+              children: <Widget>[
+                ...actions,
+                Expanded(
+                  child: TextField(
+                    controller: _textController,
+                    keyboardType: messageBarStyle.textInputType,
+                    textCapitalization: messageBarStyle.textCapitalization,
+                    minLines: 1,
+                    maxLines: 3,
+                    onChanged: onTextChanged,
+                    style: textFieldTextStyle,
+                    decoration: InputDecoration(
+                      hintText: messageBarHintText,
+                      hintMaxLines: 1,
+                      contentPadding: messageBarStyle.contentPadding,
+                      hintStyle: messageBarHintStyle,
+                      fillColor: messageBarStyle.fillColor,
+                      filled: true,
+                      enabledBorder: messageBarStyle.enabledBorder,
+                      focusedBorder: messageBarStyle.focusedBorder,
                     ),
                   ),
-                ],
-              ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 16),
+                  child: InkWell(
+                    child: sendButton ??
+                        Icon(
+                          Icons.send,
+                          color: sendButtonColor,
+                          size: 24,
+                        ),
+                    onTap: () {
+                      if (_textController.text.trim() != '') {
+                        if (onSend != null) {
+                          onSend!(_textController.text.trim());
+                        }
+                        _textController.text = '';
+                      }
+                    },
+                  ),
+                ),
+              ],
             ),
-          ],
+          ),
+        ],
       ),
     );
   }
