@@ -153,8 +153,8 @@ class MessageBar extends StatelessWidget {
                   Expanded(
                     child: TextField(
                         controller: _textController,
-                        keyboardType: TextInputType.multiline,
-                        textCapitalization: TextCapitalization.sentences,
+                        keyboardType: messageBarStyle.keyboardType,
+                        textCapitalization: messageBarStyle.textCapitalization,
                         minLines: 1,
                         maxLines: 3,
                         onChanged: onTextChanged,
@@ -162,32 +162,19 @@ class MessageBar extends StatelessWidget {
                         decoration: InputDecoration(
                           hintText: messageBarHintText,
                           hintMaxLines: 1,
-                          contentPadding: const EdgeInsets.symmetric(
-                              horizontal: 8.0, vertical: 10),
+                          contentPadding: messageBarStyle.contentPadding,
                           hintStyle: messageBarHintStyle,
-                          fillColor: Colors.white,
+                          fillColor: messageBarStyle.fillColor,
                           filled: true,
-                          enabledBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(30.0),
-                            borderSide: const BorderSide(
-                              color: Colors.white,
-                              width: 0.2,
-                            ),
-                          ),
-                          focusedBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(30.0),
-                            borderSide: const BorderSide(
-                              color: Colors.black26,
-                              width: 0.2,
-                            ),
-                          ),
+                          enabledBorder: messageBarStyle.enabledBorder,
+                          focusedBorder: messageBarStyle.focusedBorder,
                         ),
                     ),
                   ),
                   Padding(
                     padding: const EdgeInsets.only(left: 16),
                     child: InkWell(
-                      child: Icon(
+                      child: sendButton ?? Icon(
                         Icons.send,
                         color: sendButtonColor,
                         size: 24,
