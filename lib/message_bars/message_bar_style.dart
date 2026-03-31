@@ -12,7 +12,7 @@ class MessageBarStyle {
   final InputBorder focusedBorder;
 
   /// Keyboard type for the input field.
-  final TextInputType textInputType;
+  final TextInputType keyboardType;
 
   /// Text capitalization behavior.
   final TextCapitalization textCapitalization;
@@ -41,7 +41,7 @@ class MessageBarStyle {
         width: 0.2,
       ),
     ),
-    this.textInputType = TextInputType.multiline,
+    this.keyboardType = TextInputType.multiline,
     this.textCapitalization = TextCapitalization.sentences,
     this.contentPadding =
         const EdgeInsets.symmetric(horizontal: 8.0, vertical: 10),
