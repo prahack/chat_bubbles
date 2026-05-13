@@ -1,3 +1,8 @@
+## [1.9.2] - 13/05/2026
+
+### Maintenance
+* Re-published from `master` after syncing the `develop` branch (synced full features)
+
 ## [1.9.1] - 13/05/2026
 
 ### Fixes
