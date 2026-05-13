@@ -1,0 +1,27 @@
+# Build artifacts and tool caches (the actual culprit for the 1.9.0 pana timeout)
+**/build/
+**/.dart_tool/
+**/.flutter-plugins
+**/.flutter-plugins-dependencies
+**/.packages
+**/pubspec.lock
+
+# OS / editor
+**/.DS_Store
+**/.idea/
+**/.vscode/
+**/*.iml
+
+# Example app: keep source, drop platform folders & generated files
+example/android/
+example/ios/
+example/linux/
+example/macos/
+example/windows/
+example/web/
+example/.metadata
+
+# Git / CI
+.git/
+.github/
+.gitignore
