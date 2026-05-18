@@ -172,7 +172,7 @@ class BubbleNormalAudio extends StatelessWidget {
 
   /// Constructor
   const BubbleNormalAudio({
-    Key? key,
+    super.key,
     required this.onSeekChanged,
     required this.onPlayPauseButtonClick,
     this.isPlaying = false,
@@ -202,7 +202,7 @@ class BubbleNormalAudio extends StatelessWidget {
     this.showPlaybackSpeed = false,
     this.playbackSpeed = 1.0,
     this.onPlaybackSpeedChanged,
-  }) : super(key: key);
+  });
 
   ///chat bubble builder method
   @override
@@ -236,7 +236,7 @@ class BubbleNormalAudio extends StatelessWidget {
 
     final bool showStatusArea = stateTick || timestamp != null || isEdited;
     final Color forwardedColor =
-        (textStyle.color ?? Colors.black87).withOpacity(0.6);
+        (textStyle.color ?? Colors.black87).withValues(alpha: 0.6);
 
     final double dur = duration ?? 0.0;
     final double pos = position ?? 0.0;

@@ -62,7 +62,7 @@ class BubbleGroupBuilder extends StatelessWidget {
 
   /// Creates a [BubbleGroupBuilder] widget
   const BubbleGroupBuilder({
-    Key? key,
+    super.key,
     required this.itemCount,
     required this.senderIdOf,
     required this.itemBuilder,
@@ -70,7 +70,7 @@ class BubbleGroupBuilder extends StatelessWidget {
     this.groupingThreshold = const Duration(minutes: 1),
     this.itemSpacing = 2.0,
     this.groupSpacing = 8.0,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

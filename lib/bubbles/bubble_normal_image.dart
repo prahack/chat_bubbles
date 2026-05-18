@@ -88,7 +88,7 @@ class BubbleNormalImage extends StatelessWidget {
 
   /// Creates a [BubbleNormalImage] widget
   const BubbleNormalImage({
-    Key? key,
+    super.key,
     required this.id,
     required this.image,
     this.bubbleRadius = defaultBubbleRadiusImage,
@@ -107,7 +107,7 @@ class BubbleNormalImage extends StatelessWidget {
     this.timestamp,
     this.isForwarded = false,
     this.messageId,
-  }) : super(key: key);
+  });
 
   /// image bubble builder method
   @override
@@ -206,7 +206,7 @@ class BubbleNormalImage extends StatelessWidget {
                           padding: const EdgeInsets.symmetric(
                               horizontal: 6, vertical: 2),
                           decoration: BoxDecoration(
-                            color: Colors.black.withOpacity(0.45),
+                            color: Colors.black.withValues(alpha: 0.45),
                             borderRadius: BorderRadius.circular(8),
                           ),
                           child: const BubbleForwardedHeader(
@@ -221,7 +221,7 @@ class BubbleNormalImage extends StatelessWidget {
                           padding: const EdgeInsets.symmetric(
                               horizontal: 4, vertical: 2),
                           decoration: BoxDecoration(
-                            color: Colors.black.withOpacity(0.45),
+                            color: Colors.black.withValues(alpha: 0.45),
                             borderRadius: BorderRadius.circular(8),
                           ),
                           child: BubbleStatusRow(
@@ -247,8 +247,7 @@ class _DetailScreen extends StatefulWidget {
   final String tag;
   final Widget image;
 
-  const _DetailScreen({Key? key, required this.tag, required this.image})
-      : super(key: key);
+  const _DetailScreen({required this.tag, required this.image});
 
   @override
   _DetailScreenState createState() => _DetailScreenState();

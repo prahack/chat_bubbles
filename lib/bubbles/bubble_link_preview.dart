@@ -129,7 +129,7 @@ class BubbleLinkPreview extends StatelessWidget {
 
   /// Creates a [BubbleLinkPreview] widget
   const BubbleLinkPreview({
-    Key? key,
+    super.key,
     required this.url,
     this.title,
     this.description,
@@ -164,7 +164,7 @@ class BubbleLinkPreview extends StatelessWidget {
     this.isEdited = false,
     this.isForwarded = false,
     this.messageId,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -198,7 +198,7 @@ class BubbleLinkPreview extends StatelessWidget {
 
     final bool showStatusArea = stateTick || timestamp != null || isEdited;
     final Color forwardedColor =
-        (textStyle.color ?? Colors.black87).withOpacity(0.6);
+        (textStyle.color ?? Colors.black87).withValues(alpha: 0.6);
 
     final defaultTitleStyle = TextStyle(
       color: Colors.black87,
@@ -277,7 +277,7 @@ class BubbleLinkPreview extends StatelessWidget {
                     child: Container(
                       decoration: BoxDecoration(
                         color: previewBackgroundColor ??
-                            Colors.grey.withOpacity(0.1),
+                            Colors.grey.withValues(alpha: 0.1),
                         borderRadius: BorderRadius.only(
                           topLeft: (text == null || text!.isEmpty) && !isForwarded
                               ? Radius.circular(bubbleRadius)

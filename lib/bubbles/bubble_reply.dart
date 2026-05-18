@@ -119,7 +119,7 @@ class BubbleReply extends StatelessWidget {
 
   /// Creates a [BubbleReply] widget
   const BubbleReply({
-    Key? key,
+    super.key,
     required this.repliedMessage,
     required this.repliedMessageSender,
     required this.text,
@@ -150,7 +150,7 @@ class BubbleReply extends StatelessWidget {
     this.isEdited = false,
     this.isForwarded = false,
     this.messageId,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -184,7 +184,7 @@ class BubbleReply extends StatelessWidget {
 
     final bool showStatusArea = stateTick || timestamp != null || isEdited;
     final Color forwardedColor =
-        (textStyle.color ?? Colors.black87).withOpacity(0.6);
+        (textStyle.color ?? Colors.black87).withValues(alpha: 0.6);
 
     final defaultRepliedSenderStyle = TextStyle(
       color: isSender ? Colors.white : replyBorderColor,
@@ -250,8 +250,8 @@ class BubbleReply extends StatelessWidget {
                       decoration: BoxDecoration(
                         color: replyBackgroundColor ??
                             (isSender
-                                ? Colors.black.withOpacity(0.1)
-                                : Colors.grey.withOpacity(0.1)),
+                                ? Colors.black.withValues(alpha: 0.1)
+                                : Colors.grey.withValues(alpha: 0.1)),
                         borderRadius: BorderRadius.only(
                           topLeft: Radius.circular(
                               isForwarded ? 0 : bubbleRadius),

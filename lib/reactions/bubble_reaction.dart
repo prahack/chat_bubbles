@@ -71,7 +71,7 @@ class BubbleReaction extends StatelessWidget {
 
   /// Creates a [BubbleReaction] widget
   const BubbleReaction({
-    Key? key,
+    super.key,
     required this.reactions,
     this.onReactionTap,
     this.onAddReactionTap,
@@ -85,7 +85,7 @@ class BubbleReaction extends StatelessWidget {
     this.spacing = 4,
     this.borderRadius = 12,
     this.alignRight = false,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -260,7 +260,7 @@ class ReactionPicker extends StatelessWidget {
 
   /// Creates a [ReactionPicker] widget
   const ReactionPicker({
-    Key? key,
+    super.key,
     this.reactions = const ['❤️', '👍', '😂', '😮', '😢', '🙏'],
     this.onReactionSelected,
     this.backgroundColor = Colors.white,
@@ -268,7 +268,7 @@ class ReactionPicker extends StatelessWidget {
     this.padding = const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
     this.borderRadius = 24,
     this.spacing = 8,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -279,7 +279,7 @@ class ReactionPicker extends StatelessWidget {
         borderRadius: BorderRadius.circular(borderRadius),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.1),
+            color: Colors.black.withValues(alpha: 0.1),
             blurRadius: 8,
             offset: Offset(0, 2),
           ),
@@ -330,12 +330,12 @@ class ReactionOverlay extends StatefulWidget {
 
   /// Creates a [ReactionOverlay] widget
   const ReactionOverlay({
-    Key? key,
+    super.key,
     required this.child,
     this.reactions = const ['❤️', '👍', '😂', '😮', '😢', '🙏'],
     this.onReactionSelected,
     this.enabled = true,
-  }) : super(key: key);
+  });
 
   @override
   State<ReactionOverlay> createState() => _ReactionOverlayState();

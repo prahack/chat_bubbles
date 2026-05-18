@@ -61,7 +61,7 @@ class SwipeableBubble extends StatefulWidget {
 
   /// Creates a [SwipeableBubble] widget
   const SwipeableBubble({
-    Key? key,
+    super.key,
     required this.child,
     this.onSwipeRight,
     this.onSwipeLeft,
@@ -71,7 +71,7 @@ class SwipeableBubble extends StatefulWidget {
     this.leftActionColor = Colors.red,
     this.rightActionIcon = const Icon(Icons.reply, color: Colors.white),
     this.leftActionIcon = const Icon(Icons.delete, color: Colors.white),
-  }) : super(key: key);
+  });
 
   @override
   State<SwipeableBubble> createState() => _SwipeableBubbleState();

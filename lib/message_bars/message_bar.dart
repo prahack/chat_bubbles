@@ -66,7 +66,7 @@ class MessageBar extends StatelessWidget {
   /// [MessageBar] constructor
   ///
   ///
-  MessageBar({Key? key, 
+  MessageBar({super.key, 
     this.replying = false,
     this.replyingTo = "",
     this.actions = const [],
@@ -81,7 +81,7 @@ class MessageBar extends StatelessWidget {
     this.onTextChanged,
     this.onSend,
     this.onTapCloseReply,
-  }) : super(key: key);
+  });
 
   /// [MessageBar] builder method
   ///
