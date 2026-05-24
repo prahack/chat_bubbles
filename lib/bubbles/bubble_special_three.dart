@@ -107,7 +107,7 @@ class BubbleSpecialThree extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
         child: CustomPaint(
-          painter: _SpecialChatBubbleThree(
+          painter: SpecialChatBubbleThree(
               color: color,
               alignment: isSender ? Alignment.topRight : Alignment.topLeft,
               tail: tail),
@@ -158,12 +158,12 @@ class BubbleSpecialThree extends StatelessWidget {
 ///
 /// [color],[alignment] and [tail] can be changed
 
-class _SpecialChatBubbleThree extends CustomPainter {
+class SpecialChatBubbleThree extends CustomPainter {
   final Color color;
   final Alignment alignment;
   final bool tail;
 
-  _SpecialChatBubbleThree({
+  SpecialChatBubbleThree({
     required this.color,
     required this.alignment,
     required this.tail,

@@ -107,7 +107,7 @@ class BubbleSpecialTwo extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
         child: CustomPaint(
-          painter: _SpecialChatBubbleTwo(
+          painter: SpecialChatBubbleTwo(
               color: color,
               alignment: isSender ? Alignment.topRight : Alignment.topLeft,
               tail: tail),
@@ -155,12 +155,12 @@ class BubbleSpecialTwo extends StatelessWidget {
 ///
 /// [color],[alignment] and [tail] can be changed
 
-class _SpecialChatBubbleTwo extends CustomPainter {
+class SpecialChatBubbleTwo extends CustomPainter {
   final Color color;
   final Alignment alignment;
   final bool tail;
 
-  _SpecialChatBubbleTwo({
+  SpecialChatBubbleTwo({
     required this.color,
     required this.alignment,
     required this.tail,
