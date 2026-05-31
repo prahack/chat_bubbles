@@ -31,10 +31,10 @@ import 'package:flutter/material.dart';
 /// [onTextChanged] is the function which triggers after text every text change
 /// [onSend] is the send button action
 /// [onTapCloseReply] is the close button action of the close button on the
+/// reply widget; usually change [replying] attribute to false
 /// 
 /// # CLASSES
 /// [messageBarStyle] contains styling information for the textfield
-/// reply widget usually change [replying] attribute to `false`
 
 class MessageBar extends StatelessWidget {
   /// whether the message bar is in reply mode
@@ -76,7 +76,7 @@ class MessageBar extends StatelessWidget {
   ///
   ///
   MessageBar({
-    Key? key,
+    super.key,
     this.replying = false,
     this.replyingTo = "",
     this.actions = const [],
@@ -93,7 +93,7 @@ class MessageBar extends StatelessWidget {
     this.onTapCloseReply,
     this.messageBarStyle = const MessageBarStyle(),
     this.sendButton,
-  }) : super(key: key);
+  });
 
   /// [MessageBar] builder method
   ///
