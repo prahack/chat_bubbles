@@ -1,3 +1,14 @@
+## [1.9.2] - 13/05/2026
+
+### Maintenance
+* Re-published from `master` after syncing the `develop` branch (synced full features)
+
+## [1.9.1] - 13/05/2026
+
+### Fixes
+* Added `.pubignore` to exclude `build/`, `.dart_tool/`, and other generated artifacts from the published archive
+* Resolves pana analysis timeout on pub.dev caused by an oversized 1.9.0 package
+
 ## [1.9.0] - 02/03/2026
 
 ### New Features
