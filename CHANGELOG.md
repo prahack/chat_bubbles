@@ -1,3 +1,12 @@
+## [1.10.0] - 31/05/2026
+
+### New Features
+* `MessageBarStyle` — new class that consolidates `MessageBar` appearance and input config: `enabledBorder`, `focusedBorder`, `keyboardType`, `textCapitalization`, `contentPadding`, `fillColor`, `minLines`, `maxLines` (thanks @herrytco, #64)
+* `MessageBar.sendButton` — optional widget parameter to replace the default send icon with any custom widget (thanks @herrytco, #64)
+
+### Fixes
+* Exported `MessageBarStyle` from `chat_bubbles.dart` so it is reachable by package consumers
+
 ## [1.9.3] - 13/05/2026
 
 ### Breaking

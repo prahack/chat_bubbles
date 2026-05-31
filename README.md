@@ -17,7 +17,7 @@ Add this to your package's `pubspec.yaml` file:
 
 ```yaml
 dependencies:
-  chat_bubbles: ^1.9.3
+  chat_bubbles: ^1.10.0
 ```
 
 ## Usage
