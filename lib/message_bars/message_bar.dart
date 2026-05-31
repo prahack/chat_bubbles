@@ -1,3 +1,4 @@
+import 'package:chat_bubbles/message_bars/message_bar_style.dart';
 import 'package:flutter/material.dart';
 
 ///Normal Message bar with more actions
@@ -24,12 +25,16 @@ import 'package:flutter/material.dart';
 /// [messageBarColor] is the color of the message bar
 /// [sendButtonColor] is the color of the send button
 /// [messageBarHintStyle] is the style of the message bar hint
+/// [sendButton] provides an optional widget for the send button
 ///
 /// # METHODS
 /// [onTextChanged] is the function which triggers after text every text change
 /// [onSend] is the send button action
 /// [onTapCloseReply] is the close button action of the close button on the
-/// reply widget usually change [replying] attribute to `false`
+/// reply widget; usually change [replying] attribute to false
+/// 
+/// # CLASSES
+/// [messageBarStyle] contains styling information for the textfield
 
 class MessageBar extends StatelessWidget {
   /// whether the message bar is in reply mode
@@ -62,11 +67,16 @@ class MessageBar extends StatelessWidget {
   final void Function(String)? onSend;
   /// callback function triggered when close reply button is pressed
   final void Function()? onTapCloseReply;
+  /// config to control appearance of the MessageBar textfield
+  final MessageBarStyle messageBarStyle;
+  /// optional custom widget to use as a send button
+  final Widget? sendButton;
 
   /// [MessageBar] constructor
   ///
   ///
-  MessageBar({Key? key, 
+  MessageBar({
+    super.key,
     this.replying = false,
     this.replyingTo = "",
     this.actions = const [],
@@ -81,7 +91,9 @@ class MessageBar extends StatelessWidget {
     this.onTextChanged,
     this.onSend,
     this.onTapCloseReply,
-  }) : super(key: key);
+    this.messageBarStyle = const MessageBarStyle(),
+    this.sendButton,
+  });
 
   /// [MessageBar] builder method
   ///
@@ -141,41 +153,28 @@ class MessageBar extends StatelessWidget {
                   Expanded(
                     child: TextField(
                         controller: _textController,
-                        keyboardType: TextInputType.multiline,
-                        textCapitalization: TextCapitalization.sentences,
-                        minLines: 1,
-                        maxLines: 3,
+                        keyboardType: messageBarStyle.keyboardType,
+                        textCapitalization: messageBarStyle.textCapitalization,
+                        minLines: messageBarStyle.minLines,
+                        maxLines: messageBarStyle.maxLines,
                         onChanged: onTextChanged,
                         style: textFieldTextStyle,
                         decoration: InputDecoration(
                           hintText: messageBarHintText,
                           hintMaxLines: 1,
-                          contentPadding: const EdgeInsets.symmetric(
-                              horizontal: 8.0, vertical: 10),
+                          contentPadding: messageBarStyle.contentPadding,
                           hintStyle: messageBarHintStyle,
-                          fillColor: Colors.white,
+                          fillColor: messageBarStyle.fillColor,
                           filled: true,
-                          enabledBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(30.0),
-                            borderSide: const BorderSide(
-                              color: Colors.white,
-                              width: 0.2,
-                            ),
-                          ),
-                          focusedBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(30.0),
-                            borderSide: const BorderSide(
-                              color: Colors.black26,
-                              width: 0.2,
-                            ),
-                          ),
+                          enabledBorder: messageBarStyle.enabledBorder,
+                          focusedBorder: messageBarStyle.focusedBorder,
                         ),
                     ),
                   ),
                   Padding(
                     padding: const EdgeInsets.only(left: 16),
                     child: InkWell(
-                      child: Icon(
+                      child: sendButton ?? Icon(
                         Icons.send,
                         color: sendButtonColor,
                         size: 24,

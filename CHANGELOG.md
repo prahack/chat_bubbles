@@ -1,7 +1,20 @@
-## [1.9.2] - 13/05/2026
+## [1.10.0] - 31/05/2026
 
-### Maintenance
-* Re-published from `master` after syncing the `develop` branch (synced full features)
+### New Features
+* `MessageBarStyle` — new class that consolidates `MessageBar` appearance and input config: `enabledBorder`, `focusedBorder`, `keyboardType`, `textCapitalization`, `contentPadding`, `fillColor`, `minLines`, `maxLines` (thanks @herrytco, #64)
+* `MessageBar.sendButton` — optional widget parameter to replace the default send icon with any custom widget (thanks @herrytco, #64)
+
+### Fixes
+* Exported `MessageBarStyle` from `chat_bubbles.dart` so it is reachable by package consumers
+
+## [1.9.3] - 13/05/2026
+
+### Breaking
+* Minimum supported SDK bumped to Dart 3.6 / Flutter 3.27 (required for `Color.withValues()`)
+
+### Fixes
+* Replaced deprecated `Color.withOpacity()` with `Color.withValues(alpha: ...)` across all bubble widgets to clear pana static-analysis warnings
+* Migrated constructors to super-parameters (`{super.key}`) and removed an unnecessary `library` directive — clears 21 additional analyzer infos
 
 ## [1.9.1] - 13/05/2026
 

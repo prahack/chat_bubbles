@@ -21,12 +21,12 @@ class BubbleStatusRow extends StatelessWidget {
 
   /// Creates a [BubbleStatusRow] widget
   const BubbleStatusRow({
-    Key? key,
+    super.key,
     this.stateIcon,
     this.isEdited = false,
     this.timestamp,
     this.textColor = Colors.black54,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +44,7 @@ class BubbleStatusRow extends StatelessWidget {
             style: TextStyle(
               fontSize: 11,
               fontStyle: FontStyle.italic,
-              color: textColor.withOpacity(0.7),
+              color: textColor.withValues(alpha: 0.7),
             ),
           ),
           const SizedBox(width: 4),
@@ -54,7 +54,7 @@ class BubbleStatusRow extends StatelessWidget {
             timestamp!,
             style: TextStyle(
               fontSize: 11,
-              color: textColor.withOpacity(0.7),
+              color: textColor.withValues(alpha: 0.7),
             ),
           ),
           if (stateIcon != null) const SizedBox(width: 3),

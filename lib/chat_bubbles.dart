@@ -1,4 +1,4 @@
-library chat_bubbles;
+library;
 
 ///
 /// all the widgets of the package export here
@@ -17,6 +17,7 @@ library chat_bubbles;
 ///
 /// MESSAGE BARS
 /// [MessageBar]
+/// [MessageBarStyle]
 ///
 /// INDICATORS
 /// [TypingIndicator]
@@ -50,6 +51,7 @@ export 'bubbles/bubble_reply.dart';
 export 'bubbles/bubble_link_preview.dart';
 export 'date_chips/date_chip.dart';
 export 'message_bars/message_bar.dart';
+export 'message_bars/message_bar_style.dart';
 export 'indicators/typing_indicator.dart';
 export 'reactions/bubble_reaction.dart';
 export 'swipe/swipeable_bubble.dart';

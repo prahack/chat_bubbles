@@ -44,7 +44,7 @@ class TypingIndicator extends StatefulWidget {
 
   /// Creates a [TypingIndicator] widget
   const TypingIndicator({
-    Key? key,
+    super.key,
     this.bubbleColor = const Color(0xFFE8E8EE),
     this.dotColor = Colors.black54,
     this.showIndicator = true,
@@ -54,7 +54,7 @@ class TypingIndicator extends StatefulWidget {
     this.dotSpacing = 4.0,
     this.padding = const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
     this.borderRadius = 20.0,
-  }) : super(key: key);
+  });
 
   @override
   State<TypingIndicator> createState() => _TypingIndicatorState();
@@ -221,7 +221,7 @@ class TypingIndicatorWave extends StatefulWidget {
 
   /// Creates a [TypingIndicatorWave] widget
   const TypingIndicatorWave({
-    Key? key,
+    super.key,
     this.bubbleColor = const Color(0xFFE8E8EE),
     this.dotColor = Colors.black54,
     this.showIndicator = true,
@@ -229,7 +229,7 @@ class TypingIndicatorWave extends StatefulWidget {
     this.dotSize = 8.0,
     this.padding = const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
     this.borderRadius = 20.0,
-  }) : super(key: key);
+  });
 
   @override
   State<TypingIndicatorWave> createState() => _TypingIndicatorWaveState();
