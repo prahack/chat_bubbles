@@ -1,7 +1,11 @@
-## [1.9.2] - 13/05/2026
+## [1.9.3] - 13/05/2026
 
-### Maintenance
-* Re-published from `master` after syncing the `develop` branch (synced full features)
+### Breaking
+* Minimum supported SDK bumped to Dart 3.6 / Flutter 3.27 (required for `Color.withValues()`)
+
+### Fixes
+* Replaced deprecated `Color.withOpacity()` with `Color.withValues(alpha: ...)` across all bubble widgets to clear pana static-analysis warnings
+* Migrated constructors to super-parameters (`{super.key}`) and removed an unnecessary `library` directive — clears 21 additional analyzer infos
 
 ## [1.9.1] - 13/05/2026
 

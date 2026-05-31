@@ -11,9 +11,9 @@ class BubbleForwardedHeader extends StatelessWidget {
 
   /// Creates a [BubbleForwardedHeader] widget
   const BubbleForwardedHeader({
-    Key? key,
+    super.key,
     this.color = Colors.black54,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

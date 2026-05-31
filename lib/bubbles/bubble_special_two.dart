@@ -49,7 +49,7 @@ class BubbleSpecialTwo extends StatelessWidget {
 
   /// Creates a [BubbleSpecialTwo] widget
   const BubbleSpecialTwo({
-    Key? key,
+    super.key,
     this.isSender = true,
     this.constraints,
     required this.text,
@@ -66,7 +66,7 @@ class BubbleSpecialTwo extends StatelessWidget {
     this.isEdited = false,
     this.isForwarded = false,
     this.messageId,
-  }) : super(key: key);
+  });
 
   ///chat bubble builder method
   @override
@@ -100,7 +100,7 @@ class BubbleSpecialTwo extends StatelessWidget {
 
     final bool showStatusArea = stateTick || timestamp != null || isEdited;
     final Color forwardedColor =
-        (textStyle.color ?? Colors.black87).withOpacity(0.6);
+        (textStyle.color ?? Colors.black87).withValues(alpha: 0.6);
 
     return Align(
       alignment: isSender ? Alignment.topRight : Alignment.topLeft,

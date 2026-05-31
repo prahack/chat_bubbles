@@ -14,10 +14,10 @@ class DateChip extends StatelessWidget {
 
   /// Creates a [DateChip] widget
   const DateChip({
-    Key? key,
+    super.key,
     required this.date,
     this.color = const Color(0x558AD3D5),
-  }) : super(key: key);
+  });
   @override
   Widget build(BuildContext context) {
     return Center(

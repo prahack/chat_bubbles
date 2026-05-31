@@ -93,7 +93,7 @@ class BubbleNormal extends StatelessWidget {
 
   /// Creates a [BubbleNormal] widget
   const BubbleNormal({
-    Key? key,
+    super.key,
     required this.text,
     this.constraints,
     this.margin = EdgeInsets.zero,
@@ -118,7 +118,7 @@ class BubbleNormal extends StatelessWidget {
     this.isEdited = false,
     this.isForwarded = false,
     this.messageId,
-  }) : super(key: key);
+  });
 
   ///chat bubble builder method
   @override
@@ -152,7 +152,7 @@ class BubbleNormal extends StatelessWidget {
 
     final bool showStatusArea = stateTick || timestamp != null || isEdited;
     final Color forwardedColor =
-        (textStyle.color ?? Colors.black87).withOpacity(0.6);
+        (textStyle.color ?? Colors.black87).withValues(alpha: 0.6);
 
     return Row(
       children: <Widget>[
