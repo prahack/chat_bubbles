@@ -119,8 +119,9 @@ Semver guidance for this package:
 3. Add a `[YourWidget]` line to the dartdoc comment block at the top of `lib/chat_bubbles.dart` under the matching category header.
 4. Add a demo section to `example/lib/main.dart`.
 5. Document parameters with `///` (the `public_member_api_docs` lint will fail otherwise).
-6. Add an entry to [llms.txt](llms.txt) under the matching section so AI agents using the package can discover it.
-7. If the widget has non-obvious usage, add a recipe to [doc/recipes.md](doc/recipes.md).
+6. **Add tests under `test/<subfolder>/<name>_test.dart`.** At minimum: a "renders without crashing" smoke test plus a callback assertion for every public callback param. Use the `pumpInApp(tester, widget)` helper from [test/test_utils.dart](test/test_utils.dart). CI will fail without this — `flutter test` is part of the workflow. Modifying an existing widget? Add or update tests for the new behavior.
+7. Add an entry to [llms.txt](llms.txt) under the matching section so AI agents using the package can discover it.
+8. If the widget has non-obvious usage, add a recipe to [doc/recipes.md](doc/recipes.md).
 
 ## Things that have bitten us
 

@@ -1,3 +1,16 @@
+## [1.10.1] - 06/06/2026
+
+### Documentation
+* Added `llms.txt` (AI-agent entry point following the llmstxt.org standard) and `doc/recipes.md` (8 copy-paste recipes for common scenarios) — both ship with the package so consumer-side AI tooling can discover the API
+* Expanded `CONTRIBUTING.md` with development setup, test-suite instructions, and a PR checklist
+* Added `CLAUDE.md` / `AGENTS.md` (symlink) covering common commands, layout, and gotchas for contributors
+
+### CI / tooling
+* Added GitHub Actions workflow that runs `dart format` check, `dart analyze --fatal-infos`, `flutter test`, and `flutter pub publish --dry-run` on every push and PR to `master`/`develop`
+* Added 47 widget and unit tests covering every public widget plus `MessageGroupHelper` and `Algo.dateChipText`
+* Added `scripts/release.sh` to codify the publish flow into a single command
+* Reformatted `lib/` to match `dart format` defaults
+
 ## [1.10.0] - 31/05/2026
 
 ### New Features
