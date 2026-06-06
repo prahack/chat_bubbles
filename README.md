@@ -1,6 +1,7 @@
 # chat_bubbles plugin
 
 ![Pub Version](https://img.shields.io/pub/v/chat_bubbles?color=blue)
+[![CI](https://github.com/prahack/chat_bubbles/actions/workflows/ci.yml/badge.svg)](https://github.com/prahack/chat_bubbles/actions/workflows/ci.yml)
 ![GitHub](https://img.shields.io/github/license/prahack/chat_bubbles)
 ![GitHub forks](https://img.shields.io/github/forks/prahack/chat_bubbles)
 ![GitHub Repo stars](https://img.shields.io/github/stars/prahack/chat_bubbles)

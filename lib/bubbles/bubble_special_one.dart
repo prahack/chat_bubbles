@@ -22,28 +22,40 @@ import '../utils/bubble_status_row.dart';
 class BubbleSpecialOne extends StatelessWidget {
   /// message sender
   final bool isSender;
+
   /// message text
   final String text;
+
   /// chat bubble tail
   final bool tail;
+
   /// chat bubble color
   final Color color;
+
   /// message state - whether the message has been sent
   final bool sent;
+
   /// message state - whether the message has been delivered
   final bool delivered;
+
   /// message state - whether the message has been seen
   final bool seen;
+
   /// text style for the message
   final TextStyle textStyle;
+
   /// constraints for the chat bubble
   final BoxConstraints? constraints;
+
   /// optional timestamp string shown at the bottom-right (e.g. "12:34 PM")
   final String? timestamp;
+
   /// shows an "Edited" label next to the status area when true
   final bool isEdited;
+
   /// shows a "Forwarded" banner at the top of the bubble when true
   final bool isForwarded;
+
   /// optional identifier for tracking the message
   final String? messageId;
 

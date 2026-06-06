@@ -112,8 +112,7 @@ class _SwipeableBubbleState extends State<SwipeableBubble>
       _dragX = newDragX;
     });
 
-    final bool thresholdCrossed =
-        _dragX.abs() >= widget.swipeThreshold;
+    final bool thresholdCrossed = _dragX.abs() >= widget.swipeThreshold;
 
     if (thresholdCrossed && !_hapticFired && widget.enableHaptics) {
       HapticFeedback.mediumImpact();

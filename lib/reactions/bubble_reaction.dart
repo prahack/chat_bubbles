@@ -4,10 +4,10 @@ import 'package:flutter/material.dart';
 class Reaction {
   /// the emoji or reaction icon
   final String emoji;
-  
+
   /// count of users who reacted with this emoji
   final int count;
-  
+
   /// whether the current user has reacted with this emoji
   final bool isUserReacted;
 
@@ -32,40 +32,40 @@ class Reaction {
 class BubbleReaction extends StatelessWidget {
   /// list of reactions to display
   final List<Reaction> reactions;
-  
+
   /// callback when a reaction is tapped
   final Function(Reaction)? onReactionTap;
-  
+
   /// callback when add reaction button is tapped
   final VoidCallback? onAddReactionTap;
-  
+
   /// whether to show the add reaction button
   final bool showAddButton;
-  
+
   /// background color of reaction chips
   final Color backgroundColor;
-  
+
   /// background color of user's own reactions
   final Color userReactionColor;
-  
+
   /// text color for reaction count
   final Color textColor;
-  
+
   /// border color for reaction chips
   final Color? borderColor;
-  
+
   /// size of the emoji
   final double emojiSize;
-  
+
   /// padding inside each reaction chip
   final EdgeInsets chipPadding;
-  
+
   /// spacing between reaction chips
   final double spacing;
-  
+
   /// border radius of reaction chips
   final double borderRadius;
-  
+
   /// whether reactions are aligned to the right (for sender messages)
   final bool alignRight;
 
@@ -239,22 +239,22 @@ class _AddReactionButton extends StatelessWidget {
 class ReactionPicker extends StatelessWidget {
   /// list of available emoji reactions
   final List<String> reactions;
-  
+
   /// callback when a reaction is selected
   final Function(String)? onReactionSelected;
-  
+
   /// background color of the picker
   final Color backgroundColor;
-  
+
   /// size of each emoji
   final double emojiSize;
-  
+
   /// padding around the picker
   final EdgeInsets padding;
-  
+
   /// border radius of the picker
   final double borderRadius;
-  
+
   /// spacing between emojis
   final double spacing;
 
@@ -318,13 +318,13 @@ class ReactionPicker extends StatelessWidget {
 class ReactionOverlay extends StatefulWidget {
   /// the child widget (typically a chat bubble)
   final Widget child;
-  
+
   /// list of available reactions
   final List<String> reactions;
-  
+
   /// callback when a reaction is selected
   final Function(String)? onReactionSelected;
-  
+
   /// whether to enable the reaction overlay
   final bool enabled;
 

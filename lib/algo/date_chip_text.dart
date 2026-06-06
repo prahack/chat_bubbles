@@ -20,8 +20,7 @@ class DateChipText {
     final now = DateTime.now();
     if (_formatter.format(now) == _formatter.format(date)) {
       return 'Today';
-    } else if (_formatter
-            .format(DateTime(now.year, now.month, now.day - 1)) ==
+    } else if (_formatter.format(DateTime(now.year, now.month, now.day - 1)) ==
         _formatter.format(date)) {
       return 'Yesterday';
     } else {

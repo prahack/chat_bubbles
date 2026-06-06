@@ -32,8 +32,8 @@ class _WaveformPainter extends CustomPainter {
     final int activeCount = (data.length * progress).round();
 
     for (int i = 0; i < data.length; i++) {
-      final double normalizedHeight =
-          minBarHeightRatio + (1.0 - minBarHeightRatio) * data[i].clamp(0.0, 1.0);
+      final double normalizedHeight = minBarHeightRatio +
+          (1.0 - minBarHeightRatio) * data[i].clamp(0.0, 1.0);
       final double barHeight = size.height * normalizedHeight;
       final double x = i * (barWidth + gap);
       final double top = (size.height - barHeight) / 2;
@@ -111,42 +111,61 @@ class _WaveformPainter extends CustomPainter {
 class BubbleNormalAudio extends StatelessWidget {
   /// [onSeekChanged] double pass function to take actions on seek changes
   final void Function(double value) onSeekChanged;
+
   /// [onPlayPauseButtonClick] void function to handle play pause button click
   final void Function() onPlayPauseButtonClick;
+
   /// [isPlaying],[isPause] parameters to handle playing state
   final bool isPlaying;
+
   /// [isPlaying],[isPause] parameters to handle playing state
   final bool isPause;
+
   ///[duration] is the duration of the audio message in seconds
   final double? duration;
+
   ///[position] is the current position of the audio message playing in seconds
   final double? position;
+
   /// Whether the audio is currently loading
   final bool isLoading;
+
   ///chat bubble [BorderRadius] can be customized using [bubbleRadius]
   final double bubbleRadius;
+
   /// Determines if the message is from the sender ([true]) or receiver ([false])
   final bool isSender;
+
   /// The background color of the chat bubble
   final Color color;
+
   /// Whether to show the tail of the chat bubble
   final bool tail;
+
   /// Whether the message has been sent (shows one tick)
   final bool sent;
+
   /// Whether the message has been delivered (shows two ticks)
   final bool delivered;
+
   /// Whether the message has been seen (shows two blue ticks)
   final bool seen;
+
   /// Custom text style for the duration and position text
   final TextStyle textStyle;
+
   /// Constraints for the chat bubble
   final BoxConstraints? constraints;
+
   /// optional timestamp string shown at the bottom-right (e.g. "12:34 PM")
   final String? timestamp;
+
   /// shows an "Edited" label next to the status area when true
   final bool isEdited;
+
   /// shows a "Forwarded" banner at the top of the bubble when true
   final bool isForwarded;
+
   /// optional identifier for tracking the message
   final String? messageId;
 
@@ -292,12 +311,11 @@ class BubbleNormalAudio extends StatelessWidget {
                         GestureDetector(
                           onTap: onPlaybackSpeedChanged != null
                               ? () {
-                                  final double next =
-                                      playbackSpeed >= 2.0
-                                          ? 1.0
-                                          : playbackSpeed >= 1.5
-                                              ? 2.0
-                                              : 1.5;
+                                  final double next = playbackSpeed >= 2.0
+                                      ? 1.0
+                                      : playbackSpeed >= 1.5
+                                          ? 2.0
+                                          : 1.5;
                                   onPlaybackSpeedChanged!(next);
                                 }
                               : null,

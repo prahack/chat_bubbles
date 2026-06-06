@@ -51,38 +51,55 @@ class BubbleNormalImage extends StatelessWidget {
 
   /// widget id for Hero animation
   final String id;
+
   /// image widget
   final Widget image;
+
   /// chat bubble [BorderRadius]
   final double bubbleRadius;
+
   /// message sender
   final bool isSender;
+
   /// chat bubble color
   final Color color;
+
   /// chat bubble tail
   final bool tail;
+
   /// message state - whether the message has been sent
   final bool sent;
+
   /// message state - whether the message has been delivered
   final bool delivered;
+
   /// message state - whether the message has been seen
   final bool seen;
+
   /// callback function when the bubble is tapped
   final VoidCallback? onTap;
+
   /// callback function when the bubble is long pressed
   final VoidCallback? onLongPress;
+
   /// widget displayed before the bubble for non-senders
   final Widget? leading;
+
   /// widget displayed after the bubble for senders
   final Widget? trailing;
+
   /// outer margin of the bubble
   final EdgeInsets? margin;
+
   /// inner padding of the bubble
   final EdgeInsets? padding;
+
   /// optional timestamp string overlaid at the bottom-right of the image
   final String? timestamp;
+
   /// shows a "Forwarded" banner overlaid at the top of the image when true
   final bool isForwarded;
+
   /// optional identifier for tracking the message
   final String? messageId;
 
@@ -158,83 +175,82 @@ class BubbleNormalImage extends StatelessWidget {
             maxHeight: MediaQuery.of(context).size.width * .5,
           ),
           child: GestureDetector(
-              onLongPress: onLongPress,
-              onTap: onTap ??
-                  () {
-                    Navigator.push(context, MaterialPageRoute(builder: (_) {
-                      return _DetailScreen(
-                        tag: id,
-                        image: image,
-                      );
-                    }));
-                  },
-              child: Hero(
-                tag: id,
-                child: Stack(
-                  children: [
-                    Container(
-                      decoration: BoxDecoration(
-                        color: color,
-                        borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(bubbleRadius),
-                          topRight: Radius.circular(bubbleRadius),
-                          bottomLeft: Radius.circular(tail
-                              ? isSender
-                                  ? bubbleRadius
-                                  : 0
-                              : defaultBubbleRadiusImage),
-                          bottomRight: Radius.circular(tail
-                              ? isSender
-                                  ? 0
-                                  : bubbleRadius
-                              : defaultBubbleRadiusImage),
-                        ),
+            onLongPress: onLongPress,
+            onTap: onTap ??
+                () {
+                  Navigator.push(context, MaterialPageRoute(builder: (_) {
+                    return _DetailScreen(
+                      tag: id,
+                      image: image,
+                    );
+                  }));
+                },
+            child: Hero(
+              tag: id,
+              child: Stack(
+                children: [
+                  Container(
+                    decoration: BoxDecoration(
+                      color: color,
+                      borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(bubbleRadius),
+                        topRight: Radius.circular(bubbleRadius),
+                        bottomLeft: Radius.circular(tail
+                            ? isSender
+                                ? bubbleRadius
+                                : 0
+                            : defaultBubbleRadiusImage),
+                        bottomRight: Radius.circular(tail
+                            ? isSender
+                                ? 0
+                                : bubbleRadius
+                            : defaultBubbleRadiusImage),
                       ),
-                      child: Padding(
-                        padding: const EdgeInsets.all(4.0),
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(bubbleRadius),
-                          child: image,
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.all(4.0),
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(bubbleRadius),
+                        child: image,
+                      ),
+                    ),
+                  ),
+                  if (isForwarded)
+                    Positioned(
+                      top: 8,
+                      left: 8,
+                      child: Container(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 6, vertical: 2),
+                        decoration: BoxDecoration(
+                          color: Colors.black.withValues(alpha: 0.45),
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                        child: const BubbleForwardedHeader(color: Colors.white),
+                      ),
+                    ),
+                  if (showStatusArea)
+                    Positioned(
+                      bottom: 8,
+                      right: 8,
+                      child: Container(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 4, vertical: 2),
+                        decoration: BoxDecoration(
+                          color: Colors.black.withValues(alpha: 0.45),
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                        child: BubbleStatusRow(
+                          stateIcon: stateTick ? stateIcon : null,
+                          timestamp: timestamp,
+                          textColor: Colors.white,
                         ),
                       ),
                     ),
-                    if (isForwarded)
-                      Positioned(
-                        top: 8,
-                        left: 8,
-                        child: Container(
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 6, vertical: 2),
-                          decoration: BoxDecoration(
-                            color: Colors.black.withValues(alpha: 0.45),
-                            borderRadius: BorderRadius.circular(8),
-                          ),
-                          child: const BubbleForwardedHeader(
-                              color: Colors.white),
-                        ),
-                      ),
-                    if (showStatusArea)
-                      Positioned(
-                        bottom: 8,
-                        right: 8,
-                        child: Container(
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 4, vertical: 2),
-                          decoration: BoxDecoration(
-                            color: Colors.black.withValues(alpha: 0.45),
-                            borderRadius: BorderRadius.circular(8),
-                          ),
-                          child: BubbleStatusRow(
-                            stateIcon: stateTick ? stateIcon : null,
-                            timestamp: timestamp,
-                            textColor: Colors.white,
-                          ),
-                        ),
-                      ),
-                  ],
-                ),
+                ],
               ),
             ),
+          ),
         ),
         if (isSender && trailing != null) SizedBox.shrink(),
       ],

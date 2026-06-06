@@ -76,8 +76,7 @@ class BubbleGroupBuilder extends StatelessWidget {
   Widget build(BuildContext context) {
     if (itemCount == 0) return const SizedBox.shrink();
 
-    final List<String> ids =
-        List.generate(itemCount, (i) => senderIdOf(i));
+    final List<String> ids = List.generate(itemCount, (i) => senderIdOf(i));
 
     final List<DateTime>? timestamps = timestampOf != null
         ? List.generate(itemCount, (i) => timestampOf!(i) ?? DateTime(0))

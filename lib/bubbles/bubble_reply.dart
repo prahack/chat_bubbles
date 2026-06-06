@@ -38,70 +38,70 @@ const double defaultBubbleRadiusReply = 16;
 class BubbleReply extends StatelessWidget {
   /// the text of the message being replied to
   final String repliedMessage;
-  
+
   /// the name/identifier of the sender of the replied message
   final String repliedMessageSender;
-  
+
   /// the current message text
   final String text;
-  
+
   /// chat bubble [BorderRadius]
   final double bubbleRadius;
-  
+
   /// message sender
   final bool isSender;
-  
+
   /// chat bubble color
   final Color color;
-  
+
   /// reply indicator line color
   final Color replyBorderColor;
-  
+
   /// background color of the reply section
   final Color? replyBackgroundColor;
-  
+
   /// chat bubble tail
   final bool tail;
-  
+
   /// message state - whether the message has been sent
   final bool sent;
-  
+
   /// message state - whether the message has been delivered
   final bool delivered;
-  
+
   /// message state - whether the message has been seen
   final bool seen;
-  
+
   /// text style for the current message
   final TextStyle textStyle;
-  
+
   /// text style for the replied message
   final TextStyle? repliedMessageTextStyle;
-  
+
   /// text style for the replied message sender name
   final TextStyle? repliedMessageSenderTextStyle;
-  
+
   /// constraints for the chat bubble
   final BoxConstraints? constraints;
-  
+
   /// widget displayed before the bubble for non-senders
   final Widget? leading;
-  
+
   /// widget displayed after the bubble for senders
   final Widget? trailing;
-  
+
   /// outer margin of the bubble
   final EdgeInsets margin;
-  
+
   /// inner padding of the bubble
   final EdgeInsets padding;
-  
+
   /// callback function when the bubble is tapped
   final VoidCallback? onTap;
-  
+
   /// callback function when the bubble is long pressed
   final VoidCallback? onLongPress;
-  
+
   /// callback function when the reply section is tapped
   final VoidCallback? onReplyTap;
 
@@ -156,7 +156,7 @@ class BubbleReply extends StatelessWidget {
   Widget build(BuildContext context) {
     bool stateTick = false;
     Icon? stateIcon;
-    
+
     if (sent) {
       stateTick = true;
       stateIcon = Icon(
@@ -239,8 +239,7 @@ class BubbleReply extends StatelessWidget {
                   // Forwarded banner (shown above the reply section)
                   if (isForwarded)
                     Padding(
-                      padding:
-                          const EdgeInsets.fromLTRB(12, 8, 12, 0),
+                      padding: const EdgeInsets.fromLTRB(12, 8, 12, 0),
                       child: BubbleForwardedHeader(color: forwardedColor),
                     ),
                   // Reply section
@@ -253,10 +252,10 @@ class BubbleReply extends StatelessWidget {
                                 ? Colors.black.withValues(alpha: 0.1)
                                 : Colors.grey.withValues(alpha: 0.1)),
                         borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(
-                              isForwarded ? 0 : bubbleRadius),
-                          topRight: Radius.circular(
-                              isForwarded ? 0 : bubbleRadius),
+                          topLeft:
+                              Radius.circular(isForwarded ? 0 : bubbleRadius),
+                          topRight:
+                              Radius.circular(isForwarded ? 0 : bubbleRadius),
                         ),
                       ),
                       padding: EdgeInsets.all(8),

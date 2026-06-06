@@ -17,28 +17,28 @@ import 'package:flutter/material.dart';
 class TypingIndicator extends StatefulWidget {
   /// background color of the typing bubble
   final Color bubbleColor;
-  
+
   /// color of the animated dots
   final Color dotColor;
-  
+
   /// whether to show the typing indicator
   final bool showIndicator;
-  
+
   /// duration of the animation cycle
   final Duration animationDuration;
-  
+
   /// number of dots to display
   final int numberOfDots;
-  
+
   /// size of each dot
   final double dotSize;
-  
+
   /// spacing between dots
   final double dotSpacing;
-  
+
   /// padding inside the bubble
   final EdgeInsets padding;
-  
+
   /// border radius of the bubble
   final double borderRadius;
 
@@ -200,22 +200,22 @@ class _AnimatedDot extends StatelessWidget {
 class TypingIndicatorWave extends StatefulWidget {
   /// background color of the typing bubble
   final Color bubbleColor;
-  
+
   /// color of the animated dots
   final Color dotColor;
-  
+
   /// whether to show the typing indicator
   final bool showIndicator;
-  
+
   /// duration of the animation cycle
   final Duration animationDuration;
-  
+
   /// size of each dot
   final double dotSize;
-  
+
   /// padding inside the bubble
   final EdgeInsets padding;
-  
+
   /// border radius of the bubble
   final double borderRadius;
 

@@ -32,43 +32,59 @@ import 'package:flutter/material.dart';
 /// [onSend] is the send button action
 /// [onTapCloseReply] is the close button action of the close button on the
 /// reply widget; usually change [replying] attribute to false
-/// 
+///
 /// # CLASSES
 /// [messageBarStyle] contains styling information for the textfield
 
 class MessageBar extends StatelessWidget {
   /// whether the message bar is in reply mode
   final bool replying;
+
   /// the name or text of the message being replied to
   final String replyingTo;
+
   /// additional action buttons like camera and file select
   final List<Widget> actions;
+
   /// text controller for the message input field
   final TextEditingController _textController = TextEditingController();
+
   /// background color of the reply widget
   final Color replyWidgetColor;
+
   /// color of the reply icon
   final Color replyIconColor;
+
   /// color of the close icon in reply widget
   final Color replyCloseColor;
+
   /// background color of the message bar
   final Color messageBarColor;
+
   /// hint text for the message input field
   final String messageBarHintText;
+
   /// text style for the hint text
   final TextStyle messageBarHintStyle;
+
   /// text style for the input text
   final TextStyle textFieldTextStyle;
+
   /// color of the send button
   final Color sendButtonColor;
+
   /// callback function triggered on text change
   final void Function(String)? onTextChanged;
+
   /// callback function triggered when send button is pressed
   final void Function(String)? onSend;
+
   /// callback function triggered when close reply button is pressed
   final void Function()? onTapCloseReply;
+
   /// config to control appearance of the MessageBar textfield
   final MessageBarStyle messageBarStyle;
+
   /// optional custom widget to use as a send button
   final Widget? sendButton;
 
@@ -104,95 +120,96 @@ class MessageBar extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
-            replying
-                ? Container(
-                    color: replyWidgetColor,
-                    padding: const EdgeInsets.symmetric(
-                      vertical: 8,
-                      horizontal: 16,
-                    ),
-                    child: Row(
-                      children: [
-                        Icon(
-                          Icons.reply,
-                          color: replyIconColor,
-                          size: 24,
-                        ),
-                        Expanded(
-                          child: Text(
-                            'Re : $replyingTo',
-                            overflow: TextOverflow.ellipsis,
-                          ),
-                        ),
-                        InkWell(
-                          onTap: onTapCloseReply,
-                          child: Icon(
-                            Icons.close,
-                            color: replyCloseColor,
-                            size: 24,
-                          ),
-                        ),
-                      ],
-                    ))
-                : Container(),
-            replying
-                ? Container(
-                    height: 1,
-                    color: Colors.grey.shade300,
-                  )
-                : Container(),
-            Container(
-              color: messageBarColor,
-              padding: const EdgeInsets.symmetric(
-                vertical: 8,
-                horizontal: 16,
-              ),
-              child: Row(
-                children: <Widget>[
-                  ...actions,
-                  Expanded(
-                    child: TextField(
-                        controller: _textController,
-                        keyboardType: messageBarStyle.keyboardType,
-                        textCapitalization: messageBarStyle.textCapitalization,
-                        minLines: messageBarStyle.minLines,
-                        maxLines: messageBarStyle.maxLines,
-                        onChanged: onTextChanged,
-                        style: textFieldTextStyle,
-                        decoration: InputDecoration(
-                          hintText: messageBarHintText,
-                          hintMaxLines: 1,
-                          contentPadding: messageBarStyle.contentPadding,
-                          hintStyle: messageBarHintStyle,
-                          fillColor: messageBarStyle.fillColor,
-                          filled: true,
-                          enabledBorder: messageBarStyle.enabledBorder,
-                          focusedBorder: messageBarStyle.focusedBorder,
-                        ),
-                    ),
+          replying
+              ? Container(
+                  color: replyWidgetColor,
+                  padding: const EdgeInsets.symmetric(
+                    vertical: 8,
+                    horizontal: 16,
                   ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 16),
-                    child: InkWell(
-                      child: sendButton ?? Icon(
-                        Icons.send,
-                        color: sendButtonColor,
+                  child: Row(
+                    children: [
+                      Icon(
+                        Icons.reply,
+                        color: replyIconColor,
                         size: 24,
                       ),
-                      onTap: () {
-                        if (_textController.text.trim() != '') {
-                          if (onSend != null) {
-                            onSend!(_textController.text.trim());
-                          }
-                          _textController.text = '';
-                        }
-                      },
+                      Expanded(
+                        child: Text(
+                          'Re : $replyingTo',
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                      ),
+                      InkWell(
+                        onTap: onTapCloseReply,
+                        child: Icon(
+                          Icons.close,
+                          color: replyCloseColor,
+                          size: 24,
+                        ),
+                      ),
+                    ],
+                  ))
+              : Container(),
+          replying
+              ? Container(
+                  height: 1,
+                  color: Colors.grey.shade300,
+                )
+              : Container(),
+          Container(
+            color: messageBarColor,
+            padding: const EdgeInsets.symmetric(
+              vertical: 8,
+              horizontal: 16,
+            ),
+            child: Row(
+              children: <Widget>[
+                ...actions,
+                Expanded(
+                  child: TextField(
+                    controller: _textController,
+                    keyboardType: messageBarStyle.keyboardType,
+                    textCapitalization: messageBarStyle.textCapitalization,
+                    minLines: messageBarStyle.minLines,
+                    maxLines: messageBarStyle.maxLines,
+                    onChanged: onTextChanged,
+                    style: textFieldTextStyle,
+                    decoration: InputDecoration(
+                      hintText: messageBarHintText,
+                      hintMaxLines: 1,
+                      contentPadding: messageBarStyle.contentPadding,
+                      hintStyle: messageBarHintStyle,
+                      fillColor: messageBarStyle.fillColor,
+                      filled: true,
+                      enabledBorder: messageBarStyle.enabledBorder,
+                      focusedBorder: messageBarStyle.focusedBorder,
                     ),
                   ),
-                ],
-              ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 16),
+                  child: InkWell(
+                    child: sendButton ??
+                        Icon(
+                          Icons.send,
+                          color: sendButtonColor,
+                          size: 24,
+                        ),
+                    onTap: () {
+                      if (_textController.text.trim() != '') {
+                        if (onSend != null) {
+                          onSend!(_textController.text.trim());
+                        }
+                        _textController.text = '';
+                      }
+                    },
+                  ),
+                ),
+              ],
             ),
-          ],
+          ),
+        ],
       ),
     );
   }

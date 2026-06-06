@@ -36,82 +36,82 @@ const double defaultBubbleRadiusLinkPreview = 16;
 class BubbleLinkPreview extends StatelessWidget {
   /// the URL being previewed
   final String url;
-  
+
   /// the title of the link preview
   final String? title;
-  
+
   /// the description of the link preview
   final String? description;
-  
+
   /// the preview image URL
   final String? imageUrl;
-  
+
   /// optional message text accompanying the link
   final String? text;
-  
+
   /// chat bubble [BorderRadius]
   final double bubbleRadius;
-  
+
   /// message sender
   final bool isSender;
-  
+
   /// chat bubble color
   final Color color;
-  
+
   /// link preview card background color
   final Color? previewBackgroundColor;
-  
+
   /// chat bubble tail
   final bool tail;
-  
+
   /// message state - whether the message has been sent
   final bool sent;
-  
+
   /// message state - whether the message has been delivered
   final bool delivered;
-  
+
   /// message state - whether the message has been seen
   final bool seen;
-  
+
   /// text style for the message text
   final TextStyle textStyle;
-  
+
   /// text style for the link preview title
   final TextStyle? titleTextStyle;
-  
+
   /// text style for the link preview description
   final TextStyle? descriptionTextStyle;
-  
+
   /// text style for the URL
   final TextStyle? urlTextStyle;
-  
+
   /// constraints for the chat bubble
   final BoxConstraints? constraints;
-  
+
   /// widget displayed before the bubble for non-senders
   final Widget? leading;
-  
+
   /// widget displayed after the bubble for senders
   final Widget? trailing;
-  
+
   /// outer margin of the bubble
   final EdgeInsets margin;
-  
+
   /// inner padding of the bubble
   final EdgeInsets padding;
-  
+
   /// callback function when the bubble is tapped
   final VoidCallback? onTap;
-  
+
   /// callback function when the bubble is long pressed
   final VoidCallback? onLongPress;
-  
+
   /// callback function when the link preview is tapped
   final VoidCallback? onLinkTap;
-  
+
   /// height of the preview image
   final double? imageHeight;
-  
+
   /// whether to show the preview image
   final bool showImage;
 
@@ -170,7 +170,7 @@ class BubbleLinkPreview extends StatelessWidget {
   Widget build(BuildContext context) {
     bool stateTick = false;
     Icon? stateIcon;
-    
+
     if (sent) {
       stateTick = true;
       stateIcon = Icon(
@@ -279,12 +279,14 @@ class BubbleLinkPreview extends StatelessWidget {
                         color: previewBackgroundColor ??
                             Colors.grey.withValues(alpha: 0.1),
                         borderRadius: BorderRadius.only(
-                          topLeft: (text == null || text!.isEmpty) && !isForwarded
-                              ? Radius.circular(bubbleRadius)
-                              : Radius.zero,
-                          topRight: (text == null || text!.isEmpty) && !isForwarded
-                              ? Radius.circular(bubbleRadius)
-                              : Radius.zero,
+                          topLeft:
+                              (text == null || text!.isEmpty) && !isForwarded
+                                  ? Radius.circular(bubbleRadius)
+                                  : Radius.zero,
+                          topRight:
+                              (text == null || text!.isEmpty) && !isForwarded
+                                  ? Radius.circular(bubbleRadius)
+                                  : Radius.zero,
                           bottomLeft: Radius.circular(tail
                               ? isSender
                                   ? bubbleRadius
@@ -301,13 +303,17 @@ class BubbleLinkPreview extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           // Preview image
-                          if (showImage && imageUrl != null && imageUrl!.isNotEmpty)
+                          if (showImage &&
+                              imageUrl != null &&
+                              imageUrl!.isNotEmpty)
                             ClipRRect(
                               borderRadius: BorderRadius.only(
-                                topLeft: (text == null || text!.isEmpty) && !isForwarded
+                                topLeft: (text == null || text!.isEmpty) &&
+                                        !isForwarded
                                     ? Radius.circular(bubbleRadius)
                                     : Radius.zero,
-                                topRight: (text == null || text!.isEmpty) && !isForwarded
+                                topRight: (text == null || text!.isEmpty) &&
+                                        !isForwarded
                                     ? Radius.circular(bubbleRadius)
                                     : Radius.zero,
                               ),
@@ -344,11 +350,13 @@ class BubbleLinkPreview extends StatelessWidget {
                                     overflow: TextOverflow.ellipsis,
                                   ),
                                 // Description
-                                if (description != null && description!.isNotEmpty) ...[
+                                if (description != null &&
+                                    description!.isNotEmpty) ...[
                                   SizedBox(height: 4),
                                   Text(
                                     description!,
-                                    style: descriptionTextStyle ?? defaultDescriptionStyle,
+                                    style: descriptionTextStyle ??
+                                        defaultDescriptionStyle,
                                     maxLines: 3,
                                     overflow: TextOverflow.ellipsis,
                                   ),
@@ -383,7 +391,8 @@ class BubbleLinkPreview extends StatelessWidget {
                   // Message status row
                   if (showStatusArea)
                     Padding(
-                      padding: const EdgeInsets.only(right: 8, bottom: 6, top: 4),
+                      padding:
+                          const EdgeInsets.only(right: 8, bottom: 6, top: 4),
                       child: Align(
                         alignment: Alignment.centerRight,
                         child: BubbleStatusRow(
