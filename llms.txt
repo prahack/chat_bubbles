@@ -1,0 +1,45 @@
+# chat_bubbles
+
+> Flutter package providing chat-bubble widgets (WhatsApp-style and other shapes), a message bar, typing indicators, reactions, swipe actions, and message grouping helpers. Pure Dart UI components — no audio/image runtime dependency. Install with `flutter pub add chat_bubbles`.
+
+All public widgets are re-exported from a single barrel file: `import 'package:chat_bubbles/chat_bubbles.dart';`
+
+## Quick recipes
+
+Copy-paste-ready snippets for common scenarios. Each is a complete, runnable widget.
+
+- [docs/recipes.md](docs/recipes.md): cookbook of 8 short examples — basic chat, reply UI, audio with waveform, image bubble, reactions, swipe-to-reply, message grouping, custom message bar
+
+## Widget API reference
+
+Each file's public class has dartdoc on every parameter (enforced by the `public_member_api_docs` lint). The pub.dev page renders the full reference.
+
+- [lib/chat_bubbles.dart](lib/chat_bubbles.dart): public barrel — every exported widget is listed here under a category header
+- [lib/bubbles/bubble_normal.dart](lib/bubbles/bubble_normal.dart): `BubbleNormal` — basic text bubble with tail, timestamp, sent/delivered/seen ticks, edited/forwarded flags
+- [lib/bubbles/bubble_special_one.dart](lib/bubbles/bubble_special_one.dart): `BubbleSpecialOne` — alternate bubble shape
+- [lib/bubbles/bubble_special_two.dart](lib/bubbles/bubble_special_two.dart): `BubbleSpecialTwo` — alternate bubble shape
+- [lib/bubbles/bubble_special_three.dart](lib/bubbles/bubble_special_three.dart): `BubbleSpecialThree` — alternate bubble shape
+- [lib/bubbles/bubble_reply.dart](lib/bubbles/bubble_reply.dart): `BubbleReply` — bubble with quoted reply header (tappable to scroll to original)
+- [lib/bubbles/bubble_normal_audio.dart](lib/bubbles/bubble_normal_audio.dart): `BubbleNormalAudio` — audio bubble with optional `waveformData` bar chart, scrubbing, playback-speed toggle
+- [lib/bubbles/bubble_normal_image.dart](lib/bubbles/bubble_normal_image.dart): `BubbleNormalImage` — image bubble (consumer provides the `Image` widget — Network, Asset, File, etc.)
+- [lib/bubbles/bubble_link_preview.dart](lib/bubbles/bubble_link_preview.dart): `BubbleLinkPreview` — bubble with URL preview card
+- [lib/date_chips/date_chip.dart](lib/date_chips/date_chip.dart): `DateChip` — date separator chip (Today / Yesterday / formatted date)
+- [lib/message_bars/message_bar.dart](lib/message_bars/message_bar.dart): `MessageBar` — bottom input bar with optional reply preview, actions, custom send button
+- [lib/message_bars/message_bar_style.dart](lib/message_bars/message_bar_style.dart): `MessageBarStyle` (v1.10+) — borders, padding, keyboard type, fillColor, min/maxLines for `MessageBar`
+- [lib/indicators/typing_indicator.dart](lib/indicators/typing_indicator.dart): `TypingIndicator`, `TypingIndicatorWave` — animated typing dots/wave
+- [lib/reactions/bubble_reaction.dart](lib/reactions/bubble_reaction.dart): `BubbleReaction`, `Reaction`, `ReactionPicker`, `ReactionOverlay` — emoji reactions attached to a bubble
+- [lib/swipe/swipeable_bubble.dart](lib/swipe/swipeable_bubble.dart): `SwipeableBubble` — wrap any bubble for swipe-right (reply) / swipe-left (delete)
+- [lib/groups/bubble_group_builder.dart](lib/groups/bubble_group_builder.dart): `BubbleGroupBuilder` — auto-cluster consecutive same-sender messages with shared avatar/tail
+- [lib/groups/message_group_helper.dart](lib/groups/message_group_helper.dart): `MessageGroupHelper.compute`, `GroupInfo` — derive grouping info from a flat message list
+
+## Constraints
+
+- Minimum SDK: Dart 3.6, Flutter 3.27
+- Only runtime dependency: `intl ^0.20.1`
+- Use `Color.withValues(alpha: x)`, NOT `Color.withOpacity(x)` (deprecated)
+
+## Optional
+
+- [example/lib/main.dart](example/lib/main.dart): runnable demo app showing every widget
+- [README.md](README.md): installation + the most common widget usage
+- [CHANGELOG.md](CHANGELOG.md): per-version change list (DD/MM/YYYY format)
