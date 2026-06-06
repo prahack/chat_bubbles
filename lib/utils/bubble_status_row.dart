@@ -30,8 +30,7 @@ class BubbleStatusRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final bool hasContent =
-        isEdited || timestamp != null || stateIcon != null;
+    final bool hasContent = isEdited || timestamp != null || stateIcon != null;
     if (!hasContent) return const SizedBox.shrink();
 
     return Row(

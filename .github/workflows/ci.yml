@@ -1,0 +1,41 @@
+name: CI
+
+on:
+  push:
+    branches: [master, develop]
+  pull_request:
+    branches: [master, develop]
+
+jobs:
+  test:
+    name: Analyze, format, test
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          flutter-version: '3.27.0'
+          cache: true
+
+      - name: Print Flutter version
+        run: flutter --version
+
+      - name: Install dependencies
+        run: flutter pub get
+
+      - name: Verify formatting
+        run: dart format --output=none --set-exit-if-changed lib/ test/
+
+      - name: Static analysis
+        run: dart analyze --fatal-infos --fatal-warnings lib/ test/
+
+      - name: Run tests
+        run: flutter test
+
+      - name: Dry-run publish (catches packaging issues)
+        run: flutter pub publish --dry-run

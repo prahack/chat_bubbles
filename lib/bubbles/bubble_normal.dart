@@ -50,44 +50,64 @@ const double defaultBubbleRadius = 16;
 class BubbleNormal extends StatelessWidget {
   /// chat bubble [BorderRadius]
   final double bubbleRadius;
+
   /// message sender
   final bool isSender;
+
   /// chat bubble color
   final Color color;
+
   /// message text
   final String text;
+
   /// chat bubble tail
   final bool tail;
+
   /// message state - whether the message has been sent
   final bool sent;
+
   /// message state - whether the message has been delivered
   final bool delivered;
+
   /// message state - whether the message has been seen
   final bool seen;
+
   /// text style for the message
   final TextStyle textStyle;
+
   /// constraints for the chat bubble
   final BoxConstraints? constraints;
+
   /// widget displayed before the bubble for non-senders
   final Widget? leading;
+
   /// widget displayed after the bubble for senders
   final Widget? trailing;
+
   /// outer margin of the bubble
   final EdgeInsets margin;
+
   /// inner padding of the bubble
   final EdgeInsets padding;
+
   /// callback function when the bubble is tapped
   final VoidCallback? onTap;
+
   /// callback function when the bubble is double tapped
   final VoidCallback? onDoubleTap;
+
   /// callback function when the bubble is long pressed
   final VoidCallback? onLongPress;
+
   /// optional timestamp string shown at the bottom-right (e.g. "12:34 PM")
   final String? timestamp;
+
   /// shows an "Edited" label next to the status area when true
   final bool isEdited;
+
   /// shows a "Forwarded" banner at the top of the bubble when true
   final bool isForwarded;
+
   /// optional identifier for tracking the message
   final String? messageId;
 
