@@ -8,7 +8,7 @@ All public widgets are re-exported from a single barrel file: `import 'package:c
 
 Copy-paste-ready snippets for common scenarios. Each is a complete, runnable widget.
 
-- [docs/recipes.md](docs/recipes.md): cookbook of 8 short examples — basic chat, reply UI, audio with waveform, image bubble, reactions, swipe-to-reply, message grouping, custom message bar
+- [doc/recipes.md](doc/recipes.md): cookbook of 8 short examples — basic chat, reply UI, audio with waveform, image bubble, reactions, swipe-to-reply, message grouping, custom message bar
 
 ## Widget API reference
 
