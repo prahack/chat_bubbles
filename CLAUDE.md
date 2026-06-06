@@ -120,7 +120,7 @@ Semver guidance for this package:
 4. Add a demo section to `example/lib/main.dart`.
 5. Document parameters with `///` (the `public_member_api_docs` lint will fail otherwise).
 6. Add an entry to [llms.txt](llms.txt) under the matching section so AI agents using the package can discover it.
-7. If the widget has non-obvious usage, add a recipe to [docs/recipes.md](docs/recipes.md).
+7. If the widget has non-obvious usage, add a recipe to [doc/recipes.md](doc/recipes.md).
 
 ## Things that have bitten us
 
