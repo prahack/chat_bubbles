@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '../utils/bubble_forwarded_header.dart';
-import '../utils/bubble_status_row.dart';
+import '../utils/timestamped_chat_message.dart';
 
 ///iMessage's chat bubble type
 ///
@@ -83,34 +83,17 @@ class BubbleSpecialThree extends StatelessWidget {
   ///chat bubble builder method
   @override
   Widget build(BuildContext context) {
-    bool stateTick = false;
-    Icon? stateIcon;
-    if (sent) {
-      stateTick = true;
-      stateIcon = const Icon(
-        Icons.done,
-        size: 18,
-        color: Color(0xFF97AD8E),
-      );
-    }
-    if (delivered) {
-      stateTick = true;
-      stateIcon = const Icon(
-        Icons.done_all,
-        size: 18,
-        color: Color(0xFF97AD8E),
-      );
-    }
+    IconData? statusIcon;
+    Color statusIconColor = const Color(0xFF97AD8E);
     if (seen) {
-      stateTick = true;
-      stateIcon = const Icon(
-        Icons.done_all,
-        size: 18,
-        color: Color(0xFF92DEDA),
-      );
+      statusIcon = Icons.done_all;
+      statusIconColor = const Color(0xFF92DEDA);
+    } else if (delivered) {
+      statusIcon = Icons.done_all;
+    } else if (sent) {
+      statusIcon = Icons.done;
     }
 
-    final bool showStatusArea = stateTick || timestamp != null || isEdited;
     final Color forwardedColor =
         (textStyle.color ?? Colors.black87).withValues(alpha: 0.6);
 
@@ -138,25 +121,15 @@ class BubbleSpecialThree extends StatelessWidget {
                 if (isForwarded) BubbleForwardedHeader(color: forwardedColor),
                 Padding(
                   padding: const EdgeInsets.only(left: 4, right: 4),
-                  child: Text(
-                    text,
-                    style: textStyle,
-                    textAlign: TextAlign.left,
+                  child: TimestampedChatMessage(
+                    text: text,
+                    textStyle: textStyle,
+                    timestamp: timestamp,
+                    isEdited: isEdited,
+                    statusIcon: statusIcon,
+                    statusIconColor: statusIconColor,
                   ),
                 ),
-                if (showStatusArea)
-                  Align(
-                    alignment: Alignment.centerRight,
-                    child: Padding(
-                      padding: const EdgeInsets.only(top: 2),
-                      child: BubbleStatusRow(
-                        stateIcon: stateTick ? stateIcon : null,
-                        isEdited: isEdited,
-                        timestamp: timestamp,
-                        textColor: textStyle.color ?? Colors.black87,
-                      ),
-                    ),
-                  ),
               ],
             ),
           ),

@@ -1,4 +1,5 @@
 import 'package:chat_bubbles/chat_bubbles.dart';
+import 'package:chat_bubbles/utils/timestamped_chat_message.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
@@ -6,10 +7,13 @@ import '../test_utils.dart';
 
 void main() {
   group('BubbleNormal', () {
-    testWidgets('renders the provided text', (tester) async {
+    testWidgets('passes its text to the inline-meta render widget',
+        (tester) async {
       await pumpInApp(tester, const BubbleNormal(text: 'Hello world'));
 
-      expect(find.text('Hello world'), findsOneWidget);
+      final w = tester
+          .widget<TimestampedChatMessage>(find.byType(TimestampedChatMessage));
+      expect(w.text, 'Hello world');
     });
 
     testWidgets('adds a leading Expanded spacer when isSender is true',
@@ -34,13 +38,10 @@ void main() {
       expect(find.byType(Expanded), findsNothing);
     });
 
-    testWidgets('fires onTap when tapped outside the SelectableText',
-        (tester) async {
+    testWidgets('fires onTap when tapped', (tester) async {
       var tapped = 0;
       await pumpInApp(
         tester,
-        // isSender: false so the bubble hugs the left edge — sender bubbles
-        // have an Expanded spacer that absorbs a centered tap on the Row.
         BubbleNormal(
           text: 'tap me',
           isSender: false,
@@ -48,23 +49,34 @@ void main() {
         ),
       );
 
-      // The bubble wraps its text in a SelectableText, which consumes taps
-      // for text selection. To exercise the outer GestureDetector.onTap, tap
-      // in the bubble's padding area just above the text.
-      final textRect = tester.getRect(find.byType(SelectableText));
-      await tester.tapAt(Offset(textRect.center.dx, textRect.top - 3));
+      await tester.tapAt(tester.getCenter(find.byType(TimestampedChatMessage)));
       await tester.pump();
 
       expect(tapped, 1);
     });
 
-    testWidgets('renders timestamp when provided', (tester) async {
+    testWidgets('forwards the timestamp string to the render widget',
+        (tester) async {
       await pumpInApp(
         tester,
         const BubbleNormal(text: 'with time', timestamp: '12:30 PM'),
       );
 
-      expect(find.text('12:30 PM'), findsOneWidget);
+      final w = tester
+          .widget<TimestampedChatMessage>(find.byType(TimestampedChatMessage));
+      expect(w.timestamp, '12:30 PM');
+    });
+
+    testWidgets('selects the correct status icon for seen messages',
+        (tester) async {
+      await pumpInApp(
+        tester,
+        const BubbleNormal(text: 'seen msg', sent: true, seen: true),
+      );
+
+      final w = tester
+          .widget<TimestampedChatMessage>(find.byType(TimestampedChatMessage));
+      expect(w.statusIcon, Icons.done_all);
     });
   });
 }

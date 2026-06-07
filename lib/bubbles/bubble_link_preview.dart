@@ -265,7 +265,7 @@ class BubbleLinkPreview extends StatelessWidget {
                   if (text != null && text!.isNotEmpty)
                     Padding(
                       padding: EdgeInsets.all(8),
-                      child: SelectableText(
+                      child: Text(
                         text!,
                         style: textStyle,
                         textAlign: TextAlign.left,

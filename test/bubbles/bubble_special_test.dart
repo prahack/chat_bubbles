@@ -1,27 +1,40 @@
 import 'package:chat_bubbles/chat_bubbles.dart';
+import 'package:chat_bubbles/utils/timestamped_chat_message.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import '../test_utils.dart';
 
 void main() {
   group('BubbleSpecialOne', () {
-    testWidgets('renders text', (tester) async {
+    testWidgets('renders the provided text via TimestampedChatMessage',
+        (tester) async {
       await pumpInApp(tester, const BubbleSpecialOne(text: 'one'));
-      expect(find.text('one'), findsOneWidget);
+
+      final w = tester
+          .widget<TimestampedChatMessage>(find.byType(TimestampedChatMessage));
+      expect(w.text, 'one');
     });
   });
 
   group('BubbleSpecialTwo', () {
-    testWidgets('renders text', (tester) async {
+    testWidgets('renders the provided text via TimestampedChatMessage',
+        (tester) async {
       await pumpInApp(tester, const BubbleSpecialTwo(text: 'two'));
-      expect(find.text('two'), findsOneWidget);
+
+      final w = tester
+          .widget<TimestampedChatMessage>(find.byType(TimestampedChatMessage));
+      expect(w.text, 'two');
     });
   });
 
   group('BubbleSpecialThree', () {
-    testWidgets('renders text', (tester) async {
+    testWidgets('renders the provided text via TimestampedChatMessage',
+        (tester) async {
       await pumpInApp(tester, const BubbleSpecialThree(text: 'three'));
-      expect(find.text('three'), findsOneWidget);
+
+      final w = tester
+          .widget<TimestampedChatMessage>(find.byType(TimestampedChatMessage));
+      expect(w.text, 'three');
     });
   });
 }

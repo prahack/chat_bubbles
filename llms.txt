@@ -15,7 +15,7 @@ Copy-paste-ready snippets for common scenarios. Each is a complete, runnable wid
 Each file's public class has dartdoc on every parameter (enforced by the `public_member_api_docs` lint). The pub.dev page renders the full reference.
 
 - [lib/chat_bubbles.dart](lib/chat_bubbles.dart): public barrel — every exported widget is listed here under a category header
-- [lib/bubbles/bubble_normal.dart](lib/bubbles/bubble_normal.dart): `BubbleNormal` — basic text bubble with tail, timestamp, sent/delivered/seen ticks, edited/forwarded flags
+- [lib/bubbles/bubble_normal.dart](lib/bubbles/bubble_normal.dart): `BubbleNormal` — basic text bubble with tail, timestamp, sent/delivered/seen ticks, edited/forwarded flags. **As of v2.0.0**, timestamp+tick render inline on the last text line when they fit (WhatsApp-style); text selection is no longer supported — use `onLongPress` for copy menus
 - [lib/bubbles/bubble_special_one.dart](lib/bubbles/bubble_special_one.dart): `BubbleSpecialOne` — alternate bubble shape
 - [lib/bubbles/bubble_special_two.dart](lib/bubbles/bubble_special_two.dart): `BubbleSpecialTwo` — alternate bubble shape
 - [lib/bubbles/bubble_special_three.dart](lib/bubbles/bubble_special_three.dart): `BubbleSpecialThree` — alternate bubble shape

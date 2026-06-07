@@ -1,3 +1,20 @@
+## [2.0.0-beta.1] - 07/06/2026
+
+> Pre-release. Pin the exact version to try it: `chat_bubbles: 2.0.0-beta.1`. Stable 2.0.0 will follow once feedback is in.
+
+
+
+### Breaking changes
+
+* **Inline timestamp layout (WhatsApp-style).** The timestamp, "Edited" label, and sent/delivered/seen tick now render **inline on the last text line when they fit**, falling back to a new right-aligned row only when they don't. Previously they always rendered on a separate row below the message. Resolves #26.
+* **Text selection (`SelectableText`) removed from `BubbleNormal`, `BubbleSpecialOne`, `BubbleSpecialTwo`, `BubbleSpecialThree`, and `BubbleReply`.** These bubbles now paint text via a custom `RenderBox` so the inline layout is possible. Long-press text-selection is no longer available out of the box — use `onLongPress` to drive your own copy/select UI, the same pattern WhatsApp / iMessage / Signal follow. Consumers who need full selection can wrap the bubble in Flutter's `SelectableRegion`. `BubbleLinkPreview` keeps a normal `Text` widget (no behavior change).
+
+### Internals
+
+* New internal widget `TimestampedChatMessage` (`lib/utils/timestamped_chat_message.dart`) — a `LeafRenderObjectWidget` that lays out the message text plus the timestamp+edited+icon meta block in one `RenderBox`. Based on the technique demonstrated by the Flutter team and Craig Labenz's [public gist](https://gist.github.com/craiglabenz/c6fc52e3e61f66c51f7a858115bfce51).
+* The old `BubbleStatusRow` helper is retained only for `BubbleLinkPreview`, which structurally cannot put the meta inline (the link-preview card sits between text and status).
+* Added 4 widget tests for `TimestampedChatMessage` covering inline-fits, wraps-below, no-meta, and combined-meta cases.
+
 ## [1.10.1] - 06/06/2026
 
 ### Documentation

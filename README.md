@@ -18,7 +18,7 @@ Add this to your package's `pubspec.yaml` file:
 
 ```yaml
 dependencies:
-  chat_bubbles: ^1.10.1
+  chat_bubbles: 2.0.0-beta.1  # pre-release; pin the exact version
 ```
 
 ## Usage
